@@ -28,12 +28,38 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.runelite.cache.fs;
+package net.runelite.deob;
 
-public class DataFileReadResult
+import java.io.File;
+import java.net.URISyntaxException;
+import org.junit.rules.TemporaryFolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class TemporyFolderLocation
 {
-	public byte[] data;
-	public int revision;
-	public int crc; // crc of compressed data
-	public byte[] whirlpool;
+	private static final Logger logger = LoggerFactory.getLogger(TemporyFolderLocation.class);
+
+	public static File LOCATION;
+
+	static
+	{
+		try
+		{
+			LOCATION = new File(TemporyFolderLocation.class.getResource("/cache").toURI());
+		}
+		catch (URISyntaxException ex)
+		{
+			logger.error(null, ex);
+		}
+
+		File tmp = new File("d:/temp");
+		if (tmp.exists() || tmp.mkdir())
+			System.setProperty("java.io.tmpdir", "d:/temp");
+	}
+
+	public static TemporaryFolder getTemporaryFolder()
+	{
+		return new TemporaryFolder();
+	}
 }
