@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,50 +22,42 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.deob.injection;
+package net.runelite.deob;
 
-import java.io.File;
-import java.io.IOException;
-import net.runelite.asm.ClassGroup;
-import net.runelite.deob.DeobProperties;
-import net.runelite.deob.TemporyFolderLocation;
-import net.runelite.deob.util.JarUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import java.io.InputStream;
+import java.util.Properties;
+import org.junit.rules.ExternalResource;
 
-public class InjectTest
+public class DeobTestProperties extends ExternalResource
 {
-	@Rule
-	public DeobProperties properties = new DeobProperties();
+	private String rsClient;
+	private int rsVersion;
+	private String vanillaClient;
 
-	@Rule
-	public TemporaryFolder folder = TemporyFolderLocation.getTemporaryFolder();
-
-	private ClassGroup deob, vanilla;
-
-	@Before
-	public void before() throws IOException
+	@Override
+	protected void before() throws Throwable
 	{
-		deob = JarUtil.loadJar(new File(properties.getRsClient()));
-		vanilla = JarUtil.loadJar(new File(properties.getVanillaClient()));
+		Properties properties = new Properties();
+		InputStream resourceAsStream = getClass().getResourceAsStream("/deob-test.properties");
+		properties.load(resourceAsStream);
+
+		rsClient = (String) properties.get("rs.client");
+		rsVersion = Integer.parseInt((String) properties.get("rs.version"));
+		vanillaClient = (String) properties.get("vanilla.client");
 	}
 
-	@After
-	public void after() throws IOException
+	public String getRsClient()
 	{
-		JarUtil.saveJar(vanilla, folder.newFile());
+		return rsClient;
 	}
 
-	@Test
-	@Ignore
-	public void testRun() throws IOException, ClassNotFoundException
+	public int getRsVersion()
 	{
-		Inject instance = new Inject(deob, vanilla);
-		instance.run();
+		return rsVersion;
 	}
 
+	public String getVanillaClient()
+	{
+		return vanillaClient;
+	}
 }
