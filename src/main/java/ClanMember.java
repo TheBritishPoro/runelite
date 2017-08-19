@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("br")
-@Implements("XClanMember")
-public class XClanMember extends Node {
+@Implements("ClanMember")
+public class ClanMember extends Node {
    @ObfuscatedName("qv")
    @ObfuscatedSignature(
       signature = "Lfx;"

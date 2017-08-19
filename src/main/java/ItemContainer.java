@@ -5,14 +5,14 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bg")
-@Implements("XItemContainer")
-public class XItemContainer extends Node {
+@Implements("ItemContainer")
+public class ItemContainer extends Node {
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       signature = "Lgr;"
    )
    @Export("itemContainers")
-   static XHashTable itemContainers;
+   static HashTable itemContainers;
    @ObfuscatedName("py")
    @ObfuscatedGetter(
       intValue = 1217716857
@@ -26,10 +26,10 @@ public class XItemContainer extends Node {
    int[] stackSizes;
 
    static {
-      itemContainers = new XHashTable(32);
+      itemContainers = new HashTable(32);
    }
 
-   XItemContainer() {
+   ItemContainer() {
       this.itemIds = new int[]{-1};
       this.stackSizes = new int[]{0};
    }

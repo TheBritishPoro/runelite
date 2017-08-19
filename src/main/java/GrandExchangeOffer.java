@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("a")
-@Implements("XGrandExchangeOffer")
-public class XGrandExchangeOffer {
+@Implements("GrandExchangeOffer")
+public class GrandExchangeOffer {
    @ObfuscatedName("cp")
    static boolean field302;
    @ObfuscatedName("jg")
@@ -55,14 +55,14 @@ public class XGrandExchangeOffer {
    @Export("spent")
    public int spent;
 
-   public XGrandExchangeOffer() {
+   public GrandExchangeOffer() {
    }
 
    @ObfuscatedSignature(
       signature = "(Lfb;Z)V",
       garbageValue = "0"
    )
-   public XGrandExchangeOffer(Buffer var1, boolean var2) {
+   public GrandExchangeOffer(Buffer var1, boolean var2) {
       this.progress = var1.readByte();
       this.itemId = var1.readUnsignedShort();
       this.price = var1.readInt();

@@ -4,8 +4,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gr")
-@Implements("XHashTable")
-public final class XHashTable {
+@Implements("HashTable")
+public final class HashTable {
    @ObfuscatedName("j")
    @Export("size")
    int size;
@@ -29,7 +29,7 @@ public final class XHashTable {
    )
    Node field2461;
 
-   public XHashTable(int var1) {
+   public HashTable(int var1) {
       this.index = 0;
       this.size = var1;
       this.buckets = new Node[var1];
