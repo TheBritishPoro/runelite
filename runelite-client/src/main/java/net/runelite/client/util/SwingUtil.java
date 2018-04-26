@@ -31,12 +31,9 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.SystemTray;
-import java.awt.Toolkit;
 import java.awt.TrayIcon;
-import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -66,7 +63,6 @@ import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.components.CustomScrollBarUI;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
-import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
 
 /**
  * Various Swing utilities.
@@ -233,20 +229,6 @@ public class SwingUtil
 	}
 
 	/**
-	 * Check if point is in screen bounds.
-	 *
-	 * @param x the x
-	 * @param y the y
-	 * @return the boolean
-	 */
-	public static boolean isInScreenBounds(final int x, final int y)
-	{
-		final Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-		final Rectangle bounds = new Rectangle(size);
-		return bounds.contains(x, y);
-	}
-
-	/**
 	 * Add graceful exit callback.
 	 *
 	 * @param frame           the frame
@@ -360,17 +342,6 @@ public class SwingUtil
 
 		navigationButton.setOnSelect(button::doClick);
 		return button;
-	}
-
-	/**
-	 * Checks if custom substance title pane is present.
-	 *
-	 * @param frame the parent frame
-	 * @return true if title pane is present
-	 */
-	public static boolean isCustomTitlePanePresent(final Window frame)
-	{
-		return SubstanceCoreUtilities.getTitlePaneComponent(frame) != null;
 	}
 
 	/**
