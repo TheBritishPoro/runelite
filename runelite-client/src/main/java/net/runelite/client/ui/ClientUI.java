@@ -31,6 +31,7 @@ import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.Rectangle;
 import java.awt.TrayIcon;
@@ -41,7 +42,6 @@ import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -55,6 +55,8 @@ import net.runelite.api.Constants;
 import net.runelite.api.GameState;
 import net.runelite.api.Point;
 import net.runelite.api.events.ConfigChanged;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.RuneLite;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.config.ConfigManager;
@@ -64,6 +66,7 @@ import net.runelite.client.config.WarningOnExit;
 import net.runelite.client.events.NavigationButtonAdded;
 import net.runelite.client.events.NavigationButtonRemoved;
 import net.runelite.client.input.KeyManager;
+import net.runelite.client.input.MouseManager;
 import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
 import net.runelite.client.util.OSType;
 import net.runelite.client.util.OSXUtil;
@@ -83,7 +86,7 @@ public class ClientUI
 	private static final int CLIENT_WELL_HIDDEN_MARGIN = 160;
 	private static final int CLIENT_WELL_HIDDEN_MARGIN_TOP = 10;
 	public static final BufferedImage ICON;
-	private static final BufferedImage SIDEBAR_OPEN;
+	static final BufferedImage SIDEBAR_OPEN;
 	private static final BufferedImage SIDEBAR_CLOSE;
 
 	static
@@ -117,6 +120,7 @@ public class ClientUI
 	private final RuneLiteProperties properties;
 	private final RuneLiteConfig config;
 	private final KeyManager keyManager;
+	private final MouseManager mouseManager;
 	private final Applet client;
 	private final ConfigManager configManager;
 	private final CardLayout cardLayout = new CardLayout();
@@ -128,8 +132,6 @@ public class ClientUI
 	private NavigationButton currentNavButton;
 	private boolean sidebarOpen;
 	private JPanel container;
-	private NavigationButton sidebarNavigationButton;
-	private JButton sidebarNavigationJButton;
 	private Dimension lastClientSize;
 
 	@Inject
@@ -137,12 +139,14 @@ public class ClientUI
 		RuneLiteProperties properties,
 		RuneLiteConfig config,
 		KeyManager keyManager,
+		MouseManager mouseManager,
 		@Nullable Applet client,
 		ConfigManager configManager)
 	{
 		this.properties = properties;
 		this.config = config;
 		this.keyManager = keyManager;
+		this.mouseManager = mouseManager;
 		this.client = client;
 		this.configManager = configManager;
 	}
@@ -289,10 +293,11 @@ public class ClientUI
 			pluginToolbar = new ClientPluginToolbar();
 			frame.add(container);
 
-			// Add key listener
-			final UiKeyListener uiKeyListener = new UiKeyListener(this);
-			frame.addKeyListener(uiKeyListener);
-			keyManager.registerKeyListener(uiKeyListener);
+			// Add input listener
+			final ClientUIInputListener inputListener = new ClientUIInputListener(client, this);
+			frame.addKeyListener(inputListener);
+			keyManager.registerKeyListener(inputListener);
+			mouseManager.registerMouseListener(inputListener);
 
 			// Update config
 			updateFrameConfig(true);
@@ -352,20 +357,6 @@ public class ClientUI
 				frame.setLocationRelativeTo(frame.getOwner());
 			}
 
-			// Create hide sidebar button
-			sidebarNavigationButton = NavigationButton
-				.builder()
-				.priority(100)
-				.icon(SIDEBAR_CLOSE)
-				.onClick(this::toggleSidebar)
-				.build();
-
-			sidebarNavigationJButton = SwingUtil.createSwingButton(
-				sidebarNavigationButton,
-				0,
-				null);
-
-			pluginToolbar.addComponent(sidebarNavigationButton, sidebarNavigationJButton);
 			toggleSidebar();
 			log.info("Showing frame {}", frame);
 		});
@@ -466,6 +457,30 @@ public class ClientUI
 		return new Point(0, 0);
 	}
 
+	/**
+	 * Paint UI related overlays to target graphics
+	 * @param graphics target graphics
+	 */
+	public void paintOverlays(final Graphics2D graphics)
+	{
+		if (!(client instanceof Client))
+		{
+			return;
+		}
+
+		final Client client = (Client)this.client;
+		final int x = client.getRealDimensions().width - SIDEBAR_OPEN.getWidth() - 5;
+
+		// Offset sidebar button if resizable mode logout is visible
+		final Widget logoutButton = client.getWidget(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_LOGOUT_BUTTON);
+		final int y = logoutButton != null && !logoutButton.isHidden() && logoutButton.getParent() != null
+			? logoutButton.getHeight() + logoutButton.getRelativeY() + 5
+			: 5;
+
+		final BufferedImage image = sidebarOpen ? SIDEBAR_OPEN : SIDEBAR_CLOSE;
+		graphics.drawImage(image, x, y, null);
+	}
+
 	public GraphicsConfiguration getGraphicsConfiguration()
 	{
 		return frame.getGraphicsConfiguration();
@@ -490,9 +505,6 @@ public class ClientUI
 
 		if (isSidebarOpen)
 		{
-			sidebarNavigationJButton.setIcon(new ImageIcon(SIDEBAR_OPEN));
-			sidebarNavigationJButton.setToolTipText("Open SideBar");
-
 			contract();
 
 			// Remove plugin toolbar
@@ -500,9 +512,6 @@ public class ClientUI
 		}
 		else
 		{
-			sidebarNavigationJButton.setIcon(new ImageIcon(SIDEBAR_CLOSE));
-			sidebarNavigationJButton.setToolTipText("Close SideBar");
-
 			// Try to restore last panel
 			expand(currentNavButton);
 
