@@ -56,9 +56,9 @@
 	<inceptionYear>2014</inceptionYear>
 
 	<scm>
-		<url>https://github.com/runelite/runelite</url>
-		<connection>scm:git:git://github.com/runelite/runelite</connection>
-		<developerConnection>scm:git:git@github.com:runelite/runelite</developerConnection>
+		<url>https://gitlab.com/runelite/runelite</url>
+		<connection>scm:git:git://gitlab.com/runelite/runelite</connection>
+		<developerConnection>scm:git:git@gitlab.com:runelite/runelite</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
