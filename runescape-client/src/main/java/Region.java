@@ -1930,12 +1930,12 @@ public class Region {
       }
 
       Graphics3D.rasterAlpha = 0;
-      var8 = var1.field1534.length;
+      var8 = var1.faceX.length;
 
       for(var9 = 0; var9 < var8; ++var9) {
-         var10 = var1.field1534[var9];
-         var11 = var1.field1535[var9];
-         var12 = var1.field1536[var9];
+         var10 = var1.faceX[var9];
+         var11 = var1.faceY[var9];
+         var12 = var1.faceZ[var9];
          var13 = SceneTileModel.tmpScreenX[var10];
          int var14 = SceneTileModel.tmpScreenX[var11];
          int var15 = SceneTileModel.tmpScreenX[var12];
