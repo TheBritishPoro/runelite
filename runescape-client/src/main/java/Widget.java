@@ -1213,7 +1213,7 @@ public class Widget extends Node {
       signature = "(ZI)Llc;",
       garbageValue = "-215938927"
    )
-   @Import("getWidgetSprite")
+   @Export("getWidgetSprite")
    public SpritePixels getWidgetSprite(boolean var1) {
       field2621 = false;
       int var2;
