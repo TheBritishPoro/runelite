@@ -56,6 +56,7 @@ import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.ui.components.IconTextField;
+import net.runelite.client.util.RunnableExceptionLogger;
 import net.runelite.client.util.StackFormatter;
 import net.runelite.http.api.hiscore.HiscoreClient;
 import net.runelite.http.api.hiscore.HiscoreEndpoint;
@@ -182,7 +183,7 @@ public class HiscorePanel extends PluginPanel
 		input.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 		input.setHoverBackgroundColor(ColorScheme.DARK_GRAY_HOVER_COLOR);
 		input.setIcon(SEARCH_ICON);
-		input.addActionListener(e -> executor.execute(this::lookup));
+		input.addActionListener(e -> executor.execute(RunnableExceptionLogger.wrap(this::lookup)));
 		input.addMouseListener(new MouseAdapter()
 		{
 			@Override
@@ -396,6 +397,7 @@ public class HiscorePanel extends PluginPanel
 		for (JLabel label : skillLabels)
 		{
 			label.setText("--");
+			label.setToolTipText(null);
 		}
 
 		// if for some reason no endpoint was selected, default to normal
@@ -438,7 +440,7 @@ public class HiscorePanel extends PluginPanel
 		int index = 0;
 		for (JLabel label : skillLabels)
 		{
-			HiscoreSkill skill = find(index++);
+			HiscoreSkill skill = find(index);
 
 			if (skill == null)
 			{
@@ -456,26 +458,24 @@ public class HiscorePanel extends PluginPanel
 					label.setText(Integer.toString(combatLevel));
 				}
 			}
-			else if (result.getSkill(skill) == null || result.getSkill(skill).getRank() == -1)
+			else if (result.getSkill(skill) != null && result.getSkill(skill).getRank() != -1)
 			{
-				label.setToolTipText(null);
-				continue;
-			}
+				Skill s = result.getSkill(skill);
+				int level;
+				if (config.virtualLevels() && SKILLS.contains(skill))
+				{
+					level = Experience.getLevelForXp((int) s.getExperience());
+				}
+				else
+				{
+					level = s.getLevel();
+				}
 
-			Skill s = result.getSkill(skill);
-			int level;
-			if (config.virtualLevels() && SKILLS.contains(skill))
-			{
-				level = Experience.getLevelForXp((int) s.getExperience());
+				label.setText(Integer.toString(level));
 			}
-			else
-			{
-				level = s.getLevel();
-			}
-
-			label.setText(Integer.toString(level));
 
 			label.setToolTipText(detailsHtml(skill));
+			index++;
 		}
 	}
 
