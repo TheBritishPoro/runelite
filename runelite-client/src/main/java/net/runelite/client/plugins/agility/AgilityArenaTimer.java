@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Morgan Lewis <https://github.com/MESLewis>
+ * Copyright (c) 2018, Alex Kolpa <akolpa1990@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,33 +22,45 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.ui.overlay.worldmap;
+package net.runelite.client.plugins.agility;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.function.Predicate;
-import javax.inject.Singleton;
-import lombok.AccessLevel;
-import lombok.Getter;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.time.temporal.ChronoUnit;
+import javax.imageio.ImageIO;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.plugins.Plugin;
+import net.runelite.client.ui.overlay.infobox.Timer;
 
-@Singleton
-public class WorldMapPointManager
+@Slf4j
+public class AgilityArenaTimer extends Timer
 {
-	@Getter(AccessLevel.PACKAGE)
-	private final List<WorldMapPoint> worldMapPoints = new CopyOnWriteArrayList<>();
-
-	public void add(WorldMapPoint worldMapPoint)
+	public AgilityArenaTimer(Plugin plugin)
 	{
-		worldMapPoints.add(worldMapPoint);
+		super(1, ChronoUnit.MINUTES, getTicketImage(), plugin);
+		setTooltip("Time left until location changes");
 	}
 
-	public void remove(WorldMapPoint worldMapPoint)
+	private static BufferedImage image;
+	private static BufferedImage getTicketImage()
 	{
-		worldMapPoints.remove(worldMapPoint);
-	}
+		if (image != null)
+		{
+			return image;
+		}
 
-	public void removeIf(Predicate<WorldMapPoint> filter)
-	{
-		worldMapPoints.removeIf(filter);
+		try
+		{
+			synchronized (ImageIO.class)
+			{
+				image = ImageIO.read(AgilityArenaTimer.class.getResourceAsStream( "agilityarenaticket.png"));
+			}
+		}
+		catch (IOException ex)
+		{
+			log.warn("unable to load image", ex);
+		}
+
+		return image;
 	}
 }
