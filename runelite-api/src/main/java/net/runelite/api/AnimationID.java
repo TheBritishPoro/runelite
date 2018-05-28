@@ -157,4 +157,7 @@ public final class AnimationID
 
 	// Battlestaff Crafting
 	public static final int CRAFTING_BATTLESTAVES = 7531;
+
+	// Thieving
+	public static final int THIEVING_HUMAN = 881;
 }
