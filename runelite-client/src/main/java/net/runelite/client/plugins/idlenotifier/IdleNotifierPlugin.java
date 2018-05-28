@@ -29,11 +29,16 @@ import com.google.common.eventbus.Subscribe;
 import com.google.inject.Provides;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
 import javax.inject.Inject;
 import net.runelite.api.Actor;
+import net.runelite.api.AnimationID;
 import static net.runelite.api.AnimationID.*;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.Player;
 import net.runelite.api.Skill;
 import net.runelite.api.Varbits;
@@ -62,7 +67,6 @@ public class IdleNotifierPlugin extends Plugin
 	@Inject
 	private IdleNotifierConfig config;
 
-	private Actor lastOpponent;
 	private Instant lastAnimating;
 	private Instant lastInteracting;
 	private boolean notifyIdle = false;
@@ -311,24 +315,29 @@ public class IdleNotifierPlugin extends Plugin
 
 	private boolean checkOutOfCombat(Duration waitDuration, Player local)
 	{
-		Actor opponent = local.getInteracting();
-		boolean isPlayer = opponent instanceof Player;
+		final Actor opponent = local.getInteracting();
 
-		if (opponent != null
-			&& !isPlayer
-			&& opponent.getCombatLevel() > 0)
+		if (opponent != null)
 		{
-			resetTimers();
-			lastOpponent = opponent;
-		}
-		else if (opponent == null)
-		{
-			lastOpponent = null;
-		}
+			// Reset last interaction time
+			lastInteracting = null;
 
-		if (lastOpponent != null && opponent == lastOpponent)
-		{
-			lastInteracting = Instant.now();
+			final boolean isNpc = opponent instanceof NPC;
+
+			// If player is interacting with NPC but his animation is thieving, do not set new opponent
+			if (isNpc && local.getAnimation() != AnimationID.THIEVING_HUMAN)
+			{
+				final NPC npc = (NPC) opponent;
+				final NPCComposition npcComposition = npc.getComposition();
+				final List<String> npcMenuActions = Arrays.asList(npcComposition.getActions());
+
+				if (npcMenuActions.contains("Attack"))
+				{
+					// Player is most likely in combat with attack-able NPC
+					resetTimers();
+					lastInteracting = Instant.now();
+				}
+			}
 		}
 
 		if (lastInteracting != null && Instant.now().compareTo(lastInteracting.plus(waitDuration)) >= 0)
@@ -411,7 +420,6 @@ public class IdleNotifierPlugin extends Plugin
 		lastAnimating = null;
 
 		// Reset combat idle timer
-		lastOpponent = null;
 		lastInteracting = null;
 	}
 }
