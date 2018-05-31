@@ -478,7 +478,6 @@ public abstract class Actor extends Renderable {
       garbageValue = "-872169209"
    )
    @Export("setCombatInfo")
-   @Hook("onSetCombatInfo")
    final void setCombatInfo(int var1, int var2, int var3, int var4, int var5, int var6) {
       CombatInfo2 var8 = (CombatInfo2)CombatInfo2.field3305.get((long)var1);
       CombatInfo2 var7;
