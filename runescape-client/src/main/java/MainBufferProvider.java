@@ -14,12 +14,12 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ab")
+@ObfuscatedName("ad")
 @Implements("MainBufferProvider")
 public final class MainBufferProvider extends BufferProvider {
+   @ObfuscatedName("z")
+   Component field384;
    @ObfuscatedName("w")
-   Component field379;
-   @ObfuscatedName("m")
    @Export("image")
    Image image;
 
@@ -35,63 +35,63 @@ public final class MainBufferProvider extends BufferProvider {
       this.setRaster();
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Ljava/awt/Component;I)V",
-      garbageValue = "-2019994969"
+      signature = "(Ljava/awt/Component;B)V",
+      garbageValue = "-102"
    )
    @Export("replaceComponent")
    final void replaceComponent(Component var1) {
-      this.field379 = var1;
+      this.field384 = var1;
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(IIB)V",
-      garbageValue = "31"
+      signature = "(III)V",
+      garbageValue = "-1986786716"
    )
    public final void drawFull(int var1, int var2) {
-      this.draw(this.field379.getGraphics(), var1, var2);
+      this.draw(this.field384.getGraphics(), var1, var2);
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(IIIII)V",
-      garbageValue = "1328513548"
+      garbageValue = "-661513186"
    )
    public final void draw(int var1, int var2, int var3, int var4) {
-      this.drawSub(this.field379.getGraphics(), var1, var2, var3, var4);
+      this.drawSub(this.field384.getGraphics(), var1, var2, var3, var4);
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(Ljava/awt/Graphics;IIB)V",
-      garbageValue = "1"
+      signature = "(Ljava/awt/Graphics;III)V",
+      garbageValue = "1968187025"
    )
    @Export("draw")
    final void draw(Graphics var1, int var2, int var3) {
       try {
-         var1.drawImage(this.image, var2, var3, this.field379);
+         var1.drawImage(this.image, var2, var3, this.field384);
       } catch (Exception var5) {
-         this.field379.repaint();
+         this.field384.repaint();
       }
 
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "(Ljava/awt/Graphics;IIIII)V",
-      garbageValue = "199706844"
+      signature = "(Ljava/awt/Graphics;IIIIB)V",
+      garbageValue = "1"
    )
    @Export("drawSub")
    final void drawSub(Graphics var1, int var2, int var3, int var4, int var5) {
       try {
          Shape var6 = var1.getClip();
          var1.clipRect(var2, var3, var4, var5);
-         var1.drawImage(this.image, 0, 0, this.field379);
+         var1.drawImage(this.image, 0, 0, this.field384);
          var1.setClip(var6);
       } catch (Exception var7) {
-         this.field379.repaint();
+         this.field384.repaint();
       }
 
    }

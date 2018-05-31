@@ -1,45 +1,39 @@
 import java.util.HashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kl")
+@ObfuscatedName("kv")
 @Implements("Fonts")
 public class Fonts {
-   @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = -1286566079
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "Lir;"
    )
-   static int field3692;
+   IndexDataBase field3681;
    @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Liv;"
+      signature = "Lir;"
    )
-   IndexDataBase field3694;
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "Liv;"
-   )
-   IndexDataBase field3689;
-   @ObfuscatedName("q")
+   IndexDataBase field3679;
+   @ObfuscatedName("s")
    @Export("map")
    HashMap map;
 
    @ObfuscatedSignature(
-      signature = "(Liv;Liv;)V"
+      signature = "(Lir;Lir;)V"
    )
    public Fonts(IndexDataBase var1, IndexDataBase var2) {
-      this.field3694 = var1;
-      this.field3689 = var2;
+      this.field3681 = var1;
+      this.field3679 = var2;
       this.map = new HashMap();
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "([Lkt;I)Ljava/util/HashMap;",
-      garbageValue = "959623838"
+      signature = "([Lkc;B)Ljava/util/HashMap;",
+      garbageValue = "-33"
    )
    @Export("createMap")
    public HashMap createMap(FontName[] var1) {
@@ -51,7 +45,12 @@ public class Fonts {
          if(this.map.containsKey(var5)) {
             var2.put(var5, this.map.get(var5));
          } else {
-            Font var6 = class313.method5759(this.field3694, this.field3689, var5.field3686, "");
+            IndexDataBase var7 = this.field3681;
+            IndexDataBase var8 = this.field3679;
+            String var9 = var5.field3666;
+            int var10 = var7.getFile(var9);
+            int var11 = var7.getChild(var10, "");
+            Font var6 = MessageNode.method1058(var7, var8, var10, var11);
             if(var6 != null) {
                this.map.put(var5, var6);
                var2.put(var5, var6);

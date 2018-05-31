@@ -1,72 +1,73 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ie")
+@ObfuscatedName("ii")
 @Implements("VarCString")
 public class VarCString extends CacheableNode {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "Liv;"
+      signature = "Lir;"
    )
-   public static IndexDataBase field3283;
-   @ObfuscatedName("m")
+   public static IndexDataBase field3264;
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "Lgj;"
    )
-   public static NodeCache field3285;
-   @ObfuscatedName("bf")
-   @ObfuscatedSignature(
-      signature = "Lbk;"
+   static NodeCache field3260;
+   @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 1654146755
    )
-   @Export("mouseRecorder")
-   static MouseRecorder mouseRecorder;
-   @ObfuscatedName("q")
-   public boolean field3284;
+   static int field3259;
+   @ObfuscatedName("s")
+   public boolean field3261;
 
    static {
-      field3285 = new NodeCache(64);
+      field3260 = new NodeCache(64);
    }
 
-   public VarCString() {
-      this.field3284 = false;
+   VarCString() {
+      this.field3261 = false;
    }
 
    @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(Lgy;I)V",
-      garbageValue = "597972575"
+      signature = "(Lgk;B)V",
+      garbageValue = "75"
    )
-   public void method4856(Buffer var1) {
+   void method4852(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if(var2 == 0) {
             return;
          }
 
-         this.method4857(var1, var2);
+         this.method4854(var1, var2);
       }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(Lgy;II)V",
-      garbageValue = "-693004220"
+      signature = "(Lgk;IS)V",
+      garbageValue = "1000"
    )
-   void method4857(Buffer var1, int var2) {
+   void method4854(Buffer var1, int var2) {
       if(var2 == 2) {
-         this.field3284 = true;
+         this.field3261 = true;
       }
 
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Liv;I)V",
-      garbageValue = "1026887111"
+      signature = "(Lir;Lir;I)V",
+      garbageValue = "-1839091252"
    )
-   public static void method4860(IndexDataBase var0) {
-      class231.underlay_ref = var0;
+   public static void method4851(IndexDataBase var0, IndexDataBase var1) {
+      KitDefinition.identKit_ref = var0;
+      KitDefinition.field3290 = var1;
+      KitDefinition.field3294 = KitDefinition.identKit_ref.fileCount(3);
    }
 }

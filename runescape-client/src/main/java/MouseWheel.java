@@ -5,10 +5,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fp")
 @Implements("MouseWheel")
 public interface MouseWheel {
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "855519944"
+      garbageValue = "-371619108"
    )
    int useRotation();
 }

@@ -1,296 +1,204 @@
-import java.io.IOException;
 import java.util.Comparator;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ej")
+@ObfuscatedName("ey")
 public class class137 implements Comparator {
-   @ObfuscatedName("ru")
-   static short[] field1889;
-   @ObfuscatedName("jz")
-   @ObfuscatedGetter(
-      intValue = 377740755
-   )
-   static int field1888;
-   @ObfuscatedName("w")
-   final boolean field1887;
+   @ObfuscatedName("z")
+   final boolean field1870;
 
    public class137(boolean var1) {
-      this.field1887 = var1;
+      this.field1870 = var1;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Lkd;Lkd;I)I",
-      garbageValue = "1479821814"
+      signature = "(Lkz;Lkz;I)I",
+      garbageValue = "2097631968"
    )
-   int method3146(ChatPlayer var1, ChatPlayer var2) {
-      return this.field1887?var1.field3649 - var2.field3649:var2.field3649 - var1.field3649;
-   }
-
-   public int compare(Object var1, Object var2) {
-      return this.method3146((ChatPlayer)var1, (ChatPlayer)var2);
+   int method3120(ChatPlayer var1, ChatPlayer var2) {
+      return this.field1870?var1.field3627 - var2.field3627:var2.field3627 - var1.field3627;
    }
 
    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 
-   @ObfuscatedName("w")
+   public int compare(Object var1, Object var2) {
+      return this.method3120((ChatPlayer)var1, (ChatPlayer)var2);
+   }
+
+   @ObfuscatedName("i")
    @ObfuscatedSignature(
-      signature = "(I)Z",
-      garbageValue = "-2074570907"
+      signature = "(Lir;Ljava/lang/String;Ljava/lang/String;I)Lll;",
+      garbageValue = "-1573456149"
    )
-   public static boolean method3141() {
-      long var0 = class166.method3456();
-      int var2 = (int)(var0 - class250.field3223);
-      class250.field3223 = var0;
-      if(var2 > 200) {
-         var2 = 200;
-      }
+   public static SpritePixels method3127(IndexDataBase var0, String var1, String var2) {
+      int var3 = var0.getFile(var1);
+      int var4 = var0.getChild(var3, var2);
+      return class229.getSpriteAsSpritePixels(var0, var3, var4);
+   }
 
-      class250.field3209 += var2;
-      if(class250.NetCache_pendingResponsesCount == 0 && class250.NetCache_pendingPriorityResponsesCount == 0 && class250.NetCache_pendingWritesCount == 0 && class250.NetCache_pendingPriorityWritesCount == 0) {
-         return true;
-      } else if(class250.NetCache_socket == null) {
-         return false;
-      } else {
+   @ObfuscatedName("ie")
+   @ObfuscatedSignature(
+      signature = "(Lhi;II)I",
+      garbageValue = "1207234398"
+   )
+   static final int method3119(Widget var0, int var1) {
+      if(var0.dynamicValues != null && var1 < var0.dynamicValues.length) {
          try {
-            if(class250.field3209 > 30000) {
-               throw new IOException();
-            } else {
-               FileRequest var3;
-               Buffer var4;
-               while(class250.NetCache_pendingPriorityResponsesCount < 200 && class250.NetCache_pendingPriorityWritesCount > 0) {
-                  var3 = (FileRequest)class250.NetCache_pendingPriorityWrites.first();
-                  var4 = new Buffer(4);
-                  var4.putByte(1);
-                  var4.put24bitInt((int)var3.hash);
-                  class250.NetCache_socket.vmethod3385(var4.payload, 0, 4);
-                  class250.NetCache_pendingPriorityResponses.put(var3, var3.hash);
-                  --class250.NetCache_pendingPriorityWritesCount;
-                  ++class250.NetCache_pendingPriorityResponsesCount;
+            int[] var2 = var0.dynamicValues[var1];
+            int var3 = 0;
+            int var4 = 0;
+            byte var5 = 0;
+
+            while(true) {
+               int var6 = var2[var4++];
+               int var7 = 0;
+               byte var8 = 0;
+               if(var6 == 0) {
+                  return var3;
                }
 
-               while(class250.NetCache_pendingResponsesCount < 200 && class250.NetCache_pendingWritesCount > 0) {
-                  var3 = (FileRequest)class250.NetCache_pendingWritesQueue.peek();
-                  var4 = new Buffer(4);
-                  var4.putByte(0);
-                  var4.put24bitInt((int)var3.hash);
-                  class250.NetCache_socket.vmethod3385(var4.payload, 0, 4);
-                  var3.unlinkDual();
-                  class250.NetCache_pendingResponses.put(var3, var3.hash);
-                  --class250.NetCache_pendingWritesCount;
-                  ++class250.NetCache_pendingResponsesCount;
+               if(var6 == 1) {
+                  var7 = Client.boostedSkillLevels[var2[var4++]];
                }
 
-               for(int var15 = 0; var15 < 100; ++var15) {
-                  int var16 = class250.NetCache_socket.vmethod3354();
-                  if(var16 < 0) {
-                     throw new IOException();
+               if(var6 == 2) {
+                  var7 = Client.realSkillLevels[var2[var4++]];
+               }
+
+               if(var6 == 3) {
+                  var7 = Client.skillExperiences[var2[var4++]];
+               }
+
+               int var9;
+               Widget var10;
+               int var11;
+               int var12;
+               if(var6 == 4) {
+                  var9 = var2[var4++] << 16;
+                  var9 += var2[var4++];
+                  var10 = class26.getWidget(var9);
+                  var11 = var2[var4++];
+                  if(var11 != -1 && (!TextureProvider.getItemDefinition(var11).isMembers || Client.isMembers)) {
+                     for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
+                        if(var11 + 1 == var10.itemIds[var12]) {
+                           var7 += var10.itemQuantities[var12];
+                        }
+                     }
                   }
+               }
 
-                  if(var16 == 0) {
-                     break;
+               if(var6 == 5) {
+                  var7 = class225.clientVarps[var2[var4++]];
+               }
+
+               if(var6 == 6) {
+                  var7 = class234.field2779[Client.realSkillLevels[var2[var4++]] - 1];
+               }
+
+               if(var6 == 7) {
+                  var7 = class225.clientVarps[var2[var4++]] * 100 / 46875;
+               }
+
+               if(var6 == 8) {
+                  var7 = class138.localPlayer.combatLevel;
+               }
+
+               if(var6 == 9) {
+                  for(var9 = 0; var9 < 25; ++var9) {
+                     if(class234.field2780[var9]) {
+                        var7 += Client.realSkillLevels[var9];
+                     }
                   }
+               }
 
-                  class250.field3209 = 0;
-                  byte var5 = 0;
-                  if(class320.currentRequest == null) {
-                     var5 = 8;
-                  } else if(class250.field3221 == 0) {
-                     var5 = 1;
-                  }
-
-                  int var6;
-                  int var7;
-                  int var8;
-                  int var10;
-                  if(var5 > 0) {
-                     var6 = var5 - class250.NetCache_responseHeaderBuffer.offset;
-                     if(var6 > var16) {
-                        var6 = var16;
-                     }
-
-                     class250.NetCache_socket.vmethod3356(class250.NetCache_responseHeaderBuffer.payload, class250.NetCache_responseHeaderBuffer.offset, var6);
-                     if(class250.field3225 != 0) {
-                        for(var7 = 0; var7 < var6; ++var7) {
-                           class250.NetCache_responseHeaderBuffer.payload[class250.NetCache_responseHeaderBuffer.offset + var7] ^= class250.field3225;
-                        }
-                     }
-
-                     class250.NetCache_responseHeaderBuffer.offset += var6;
-                     if(class250.NetCache_responseHeaderBuffer.offset < var5) {
-                        break;
-                     }
-
-                     if(class320.currentRequest == null) {
-                        class250.NetCache_responseHeaderBuffer.offset = 0;
-                        var7 = class250.NetCache_responseHeaderBuffer.readUnsignedByte();
-                        var8 = class250.NetCache_responseHeaderBuffer.readUnsignedShort();
-                        int var9 = class250.NetCache_responseHeaderBuffer.readUnsignedByte();
-                        var10 = class250.NetCache_responseHeaderBuffer.readInt();
-                        long var11 = (long)(var8 + (var7 << 16));
-                        FileRequest var13 = (FileRequest)class250.NetCache_pendingPriorityResponses.get(var11);
-                        class250.field3220 = true;
-                        if(var13 == null) {
-                           var13 = (FileRequest)class250.NetCache_pendingResponses.get(var11);
-                           class250.field3220 = false;
-                        }
-
-                        if(var13 == null) {
-                           throw new IOException();
-                        }
-
-                        int var14 = var9 == 0?5:9;
-                        class320.currentRequest = var13;
-                        class232.NetCache_responseArchiveBuffer = new Buffer(var14 + var10 + class320.currentRequest.padding);
-                        class232.NetCache_responseArchiveBuffer.putByte(var9);
-                        class232.NetCache_responseArchiveBuffer.putInt(var10);
-                        class250.field3221 = 8;
-                        class250.NetCache_responseHeaderBuffer.offset = 0;
-                     } else if(class250.field3221 == 0) {
-                        if(class250.NetCache_responseHeaderBuffer.payload[0] == -1) {
-                           class250.field3221 = 1;
-                           class250.NetCache_responseHeaderBuffer.offset = 0;
-                        } else {
-                           class320.currentRequest = null;
-                        }
-                     }
-                  } else {
-                     var6 = class232.NetCache_responseArchiveBuffer.payload.length - class320.currentRequest.padding;
-                     var7 = 512 - class250.field3221;
-                     if(var7 > var6 - class232.NetCache_responseArchiveBuffer.offset) {
-                        var7 = var6 - class232.NetCache_responseArchiveBuffer.offset;
-                     }
-
-                     if(var7 > var16) {
-                        var7 = var16;
-                     }
-
-                     class250.NetCache_socket.vmethod3356(class232.NetCache_responseArchiveBuffer.payload, class232.NetCache_responseArchiveBuffer.offset, var7);
-                     if(class250.field3225 != 0) {
-                        for(var8 = 0; var8 < var7; ++var8) {
-                           class232.NetCache_responseArchiveBuffer.payload[class232.NetCache_responseArchiveBuffer.offset + var8] ^= class250.field3225;
-                        }
-                     }
-
-                     class232.NetCache_responseArchiveBuffer.offset += var7;
-                     class250.field3221 += var7;
-                     if(var6 == class232.NetCache_responseArchiveBuffer.offset) {
-                        if(16711935L == class320.currentRequest.hash) {
-                           class325.NetCache_reference = class232.NetCache_responseArchiveBuffer;
-
-                           for(var8 = 0; var8 < 256; ++var8) {
-                              IndexData var17 = class250.NetCache_indexCaches[var8];
-                              if(var17 != null) {
-                                 class325.NetCache_reference.offset = var8 * 8 + 5;
-                                 var10 = class325.NetCache_reference.readInt();
-                                 int var18 = class325.NetCache_reference.readInt();
-                                 var17.setInformation(var10, var18);
-                              }
-                           }
-                        } else {
-                           class250.NetCache_crc.reset();
-                           class250.NetCache_crc.update(class232.NetCache_responseArchiveBuffer.payload, 0, var6);
-                           var8 = (int)class250.NetCache_crc.getValue();
-                           if(var8 != class320.currentRequest.crc) {
-                              try {
-                                 class250.NetCache_socket.vmethod3368();
-                              } catch (Exception var20) {
-                                 ;
-                              }
-
-                              ++class250.field3226;
-                              class250.NetCache_socket = null;
-                              class250.field3225 = (byte)((int)(Math.random() * 255.0D + 1.0D));
-                              return false;
-                           }
-
-                           class250.field3226 = 0;
-                           class250.field3227 = 0;
-                           class320.currentRequest.index.write((int)(class320.currentRequest.hash & 65535L), class232.NetCache_responseArchiveBuffer.payload, (class320.currentRequest.hash & 16711680L) == 16711680L, class250.field3220);
-                        }
-
-                        class320.currentRequest.unlink();
-                        if(class250.field3220) {
-                           --class250.NetCache_pendingPriorityResponsesCount;
-                        } else {
-                           --class250.NetCache_pendingResponsesCount;
-                        }
-
-                        class250.field3221 = 0;
-                        class320.currentRequest = null;
-                        class232.NetCache_responseArchiveBuffer = null;
-                     } else {
-                        if(class250.field3221 != 512) {
+               if(var6 == 10) {
+                  var9 = var2[var4++] << 16;
+                  var9 += var2[var4++];
+                  var10 = class26.getWidget(var9);
+                  var11 = var2[var4++];
+                  if(var11 != -1 && (!TextureProvider.getItemDefinition(var11).isMembers || Client.isMembers)) {
+                     for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
+                        if(var11 + 1 == var10.itemIds[var12]) {
+                           var7 = 999999999;
                            break;
                         }
-
-                        class250.field3221 = 0;
                      }
                   }
                }
 
-               return true;
-            }
-         } catch (IOException var21) {
-            try {
-               class250.NetCache_socket.vmethod3368();
-            } catch (Exception var19) {
-               ;
-            }
+               if(var6 == 11) {
+                  var7 = Client.energy;
+               }
 
-            ++class250.field3227;
-            class250.NetCache_socket = null;
-            return false;
+               if(var6 == 12) {
+                  var7 = Client.weight;
+               }
+
+               if(var6 == 13) {
+                  var9 = class225.clientVarps[var2[var4++]];
+                  int var13 = var2[var4++];
+                  var7 = (var9 & 1 << var13) != 0?1:0;
+               }
+
+               if(var6 == 14) {
+                  var9 = var2[var4++];
+                  var7 = GameSocket.getVarbit(var9);
+               }
+
+               if(var6 == 15) {
+                  var8 = 1;
+               }
+
+               if(var6 == 16) {
+                  var8 = 2;
+               }
+
+               if(var6 == 17) {
+                  var8 = 3;
+               }
+
+               if(var6 == 18) {
+                  var7 = (class138.localPlayer.x >> 7) + PendingSpawn.baseX;
+               }
+
+               if(var6 == 19) {
+                  var7 = (class138.localPlayer.y >> 7) + Client.baseY;
+               }
+
+               if(var6 == 20) {
+                  var7 = var2[var4++];
+               }
+
+               if(var8 == 0) {
+                  if(var5 == 0) {
+                     var3 += var7;
+                  }
+
+                  if(var5 == 1) {
+                     var3 -= var7;
+                  }
+
+                  if(var5 == 2 && var7 != 0) {
+                     var3 /= var7;
+                  }
+
+                  if(var5 == 3) {
+                     var3 *= var7;
+                  }
+
+                  var5 = 0;
+               } else {
+                  var5 = var8;
+               }
+            }
+         } catch (Exception var14) {
+            return -1;
          }
-      }
-   }
-
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "(II)Ljh;",
-      garbageValue = "-335324697"
-   )
-   @Export("getAnimation")
-   public static Sequence getAnimation(int var0) {
-      Sequence var1 = (Sequence)Sequence.sequences.get((long)var0);
-      if(var1 != null) {
-         return var1;
       } else {
-         byte[] var2 = Sequence.seq_ref.getConfigData(12, var0);
-         var1 = new Sequence();
-         if(var2 != null) {
-            var1.decode(new Buffer(var2));
-         }
-
-         var1.post();
-         Sequence.sequences.put(var1, (long)var0);
-         return var1;
-      }
-   }
-
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "(I)[Lip;",
-      garbageValue = "1594770687"
-   )
-   public static BuildType[] method3149() {
-      return new BuildType[]{BuildType.BUILD_LIVE, BuildType.LIVE, BuildType.RC, BuildType.WIP};
-   }
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(II)V",
-      garbageValue = "435577119"
-   )
-   static void method3148(int var0) {
-      ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-      if(var1 != null) {
-         var1.unlink();
+         return -2;
       }
    }
 }

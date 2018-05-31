@@ -4,20 +4,20 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hq")
+@ObfuscatedName("hj")
 @Implements("IterableDualNodeQueue")
 public class IterableDualNodeQueue implements Iterable {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "Lgc;"
+      signature = "Lgw;"
    )
    @Export("sentinel")
    public CacheableNode sentinel;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Lgc;"
+      signature = "Lgw;"
    )
-   CacheableNode field2470;
+   CacheableNode field2444;
 
    public IterableDualNodeQueue() {
       this.sentinel = new CacheableNode();
@@ -25,7 +25,7 @@ public class IterableDualNodeQueue implements Iterable {
       this.sentinel.next = this.sentinel;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @Export("clear")
    public void clear() {
       while(this.sentinel.previous != this.sentinel) {
@@ -34,9 +34,9 @@ public class IterableDualNodeQueue implements Iterable {
 
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(Lgc;)V"
+      signature = "(Lgw;)V"
    )
    @Export("add")
    public void add(CacheableNode var1) {
@@ -50,11 +50,11 @@ public class IterableDualNodeQueue implements Iterable {
       var1.previous.next = var1;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "()Lgc;"
+      signature = "()Lgw;"
    )
-   CacheableNode method4184() {
+   CacheableNode method4156() {
       CacheableNode var1 = this.sentinel.previous;
       if(var1 == this.sentinel) {
          return null;
@@ -64,19 +64,19 @@ public class IterableDualNodeQueue implements Iterable {
       }
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "()Lgc;"
+      signature = "()Lgw;"
    )
-   CacheableNode method4185() {
-      return this.method4186((CacheableNode)null);
+   CacheableNode method4177() {
+      return this.method4160((CacheableNode)null);
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "(Lgc;)Lgc;"
+      signature = "(Lgw;)Lgw;"
    )
-   CacheableNode method4186(CacheableNode var1) {
+   CacheableNode method4160(CacheableNode var1) {
       CacheableNode var2;
       if(var1 == null) {
          var2 = this.sentinel.previous;
@@ -85,25 +85,25 @@ public class IterableDualNodeQueue implements Iterable {
       }
 
       if(var2 == this.sentinel) {
-         this.field2470 = null;
+         this.field2444 = null;
          return null;
       } else {
-         this.field2470 = var2.previous;
+         this.field2444 = var2.previous;
          return var2;
       }
    }
 
-   @ObfuscatedName("a")
+   @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "()Lgc;"
+      signature = "()Lgw;"
    )
-   CacheableNode method4187() {
-      CacheableNode var1 = this.field2470;
+   CacheableNode method4159() {
+      CacheableNode var1 = this.field2444;
       if(var1 == this.sentinel) {
-         this.field2470 = null;
+         this.field2444 = null;
          return null;
       } else {
-         this.field2470 = var1.previous;
+         this.field2444 = var1.previous;
          return var1;
       }
    }

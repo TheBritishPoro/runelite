@@ -1,136 +1,90 @@
-import java.io.File;
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("co")
 public class class81 {
-   @ObfuscatedName("q")
-   static byte[] field1183;
-   @ObfuscatedName("b")
-   static byte[] field1177;
-   @ObfuscatedName("f")
+   @ObfuscatedName("s")
+   static byte[] field1156;
+   @ObfuscatedName("l")
+   static byte[] field1153;
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "[Lgy;"
+      signature = "[Lgk;"
    )
-   static Buffer[] field1179;
-   @ObfuscatedName("n")
+   static Buffer[] field1157;
+   @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = 1358551967
+      intValue = -1161097351
    )
    @Export("playerIndexesCount")
    static int playerIndexesCount;
-   @ObfuscatedName("h")
+   @ObfuscatedName("k")
    @Export("playerIndices")
    static int[] playerIndices;
-   @ObfuscatedName("x")
+   @ObfuscatedName("i")
    @ObfuscatedGetter(
-      intValue = 1972551019
+      intValue = 92024931
    )
-   static int field1182;
-   @ObfuscatedName("j")
-   static int[] field1175;
-   @ObfuscatedName("a")
+   static int field1160;
+   @ObfuscatedName("x")
+   static int[] field1161;
+   @ObfuscatedName("e")
    @Export("Players_regions")
    static int[] Players_regions;
-   @ObfuscatedName("l")
+   @ObfuscatedName("p")
    @Export("Players_orientations")
    static int[] Players_orientations;
-   @ObfuscatedName("d")
+   @ObfuscatedName("b")
    @Export("Players_targetIndices")
    static int[] Players_targetIndices;
-   @ObfuscatedName("s")
+   @ObfuscatedName("n")
    @ObfuscatedGetter(
-      intValue = 1296694293
+      intValue = -757311547
    )
-   static int field1176;
-   @ObfuscatedName("p")
-   static int[] field1188;
+   static int field1165;
+   @ObfuscatedName("f")
+   static int[] field1166;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
-      signature = "Lgy;"
+      signature = "Lgk;"
    )
-   static Buffer field1189;
-   @ObfuscatedName("r")
-   static int[] field1178;
-   @ObfuscatedName("dm")
-   @ObfuscatedGetter(
-      intValue = 1649712923
-   )
-   static int field1192;
-   @ObfuscatedName("fx")
-   @ObfuscatedSignature(
-      signature = "[Llc;"
-   )
-   @Export("mapDots")
-   static SpritePixels[] mapDots;
+   static Buffer field1154;
+   @ObfuscatedName("ab")
+   static int[] field1169;
 
    static {
-      field1183 = new byte[2048];
-      field1177 = new byte[2048];
-      field1179 = new Buffer[2048];
+      field1156 = new byte[2048];
+      field1153 = new byte[2048];
+      field1157 = new Buffer[2048];
       playerIndexesCount = 0;
       playerIndices = new int[2048];
-      field1182 = 0;
-      field1175 = new int[2048];
+      field1160 = 0;
+      field1161 = new int[2048];
       Players_regions = new int[2048];
       Players_orientations = new int[2048];
       Players_targetIndices = new int[2048];
-      field1176 = 0;
-      field1188 = new int[2048];
-      field1189 = new Buffer(new byte[5000]);
+      field1165 = 0;
+      field1166 = new int[2048];
+      field1154 = new Buffer(new byte[5000]);
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("n")
    @ObfuscatedSignature(
-      signature = "(Ljava/io/File;Ljava/io/File;I)V",
-      garbageValue = "1970983576"
+      signature = "(I)I",
+      garbageValue = "-1864987128"
    )
-   public static void method1921(File var0, File var1) {
-      try {
-         FileOnDisk var2 = new FileOnDisk(class155.jagexClDat, "rw", 10000L);
-         Buffer var3 = new Buffer(500);
-         var3.putByte(3);
-         var3.putByte(var1 != null?1:0);
-         var3.putCESU8(var0.getPath());
-         if(var1 != null) {
-            var3.putCESU8("");
-         }
-
-         var2.write(var3.payload, 0, var3.offset);
-         var2.close();
-      } catch (IOException var4) {
-         var4.printStackTrace();
-      }
-
+   static final int method1884() {
+      return class120.Viewport_mouseX;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("jb")
    @ObfuscatedSignature(
-      signature = "(Liv;Liv;Liv;B)V",
-      garbageValue = "-124"
+      signature = "(Lhi;B)Z",
+      garbageValue = "-10"
    )
-   public static void method1923(IndexDataBase var0, IndexDataBase var1, IndexDataBase var2) {
-      class267.field3386 = var0;
-      class177.field2314 = var1;
-      class267.field3366 = var2;
-   }
-
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(II)I",
-      garbageValue = "983127599"
-   )
-   @Export("nextPowerOfTwo")
-   public static int nextPowerOfTwo(int var0) {
-      --var0;
-      var0 |= var0 >>> 1;
-      var0 |= var0 >>> 2;
-      var0 |= var0 >>> 4;
-      var0 |= var0 >>> 8;
-      var0 |= var0 >>> 16;
-      return var0 + 1;
+   static boolean method1885(Widget var0) {
+      return var0.isHidden;
    }
 }

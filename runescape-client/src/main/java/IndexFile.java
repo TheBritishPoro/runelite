@@ -9,30 +9,30 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ff")
 @Implements("IndexFile")
 public final class IndexFile {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @Export("IndexStore_buffer")
    static byte[] IndexStore_buffer;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Ldd;"
+      signature = "Ldy;"
    )
    @Export("dataFile")
    CacheFile dataFile;
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Ldd;"
+      signature = "Ldy;"
    )
    @Export("indexFile")
    CacheFile indexFile;
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = 69040701
+      intValue = -561550751
    )
    @Export("index")
    int index;
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @ObfuscatedGetter(
-      intValue = 1834258411
+      intValue = -1445683659
    )
    @Export("maxSize")
    int maxSize;
@@ -42,7 +42,7 @@ public final class IndexFile {
    }
 
    @ObfuscatedSignature(
-      signature = "(ILdd;Ldd;I)V"
+      signature = "(ILdy;Ldy;I)V"
    )
    public IndexFile(int var1, CacheFile var2, CacheFile var3, int var4) {
       this.dataFile = null;
@@ -54,10 +54,10 @@ public final class IndexFile {
       this.maxSize = var4;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(IB)[B",
-      garbageValue = "127"
+      signature = "(II)[B",
+      garbageValue = "1936326418"
    )
    @Export("read")
    public byte[] read(int var1) {
@@ -130,10 +130,10 @@ public final class IndexFile {
       }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(I[BIB)Z",
-      garbageValue = "-8"
+      signature = "(I[BII)Z",
+      garbageValue = "-1888723881"
    )
    @Export("write")
    public boolean write(int var1, byte[] var2, int var3) {
@@ -152,10 +152,10 @@ public final class IndexFile {
       }
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(I[BIZB)Z",
-      garbageValue = "-14"
+      garbageValue = "20"
    )
    @Export("write0")
    boolean write0(int var1, byte[] var2, int var3, boolean var4) {
@@ -197,28 +197,32 @@ public final class IndexFile {
 
             while(true) {
                if(var7 < var3) {
-                  label146: {
+                  label136: {
                      int var9 = 0;
                      int var14;
                      if(var4) {
-                        this.dataFile.seek((long)(var6 * 520));
+                        label155: {
+                           this.dataFile.seek((long)(var6 * 520));
 
-                        try {
-                           this.dataFile.read(IndexStore_buffer, 0, 8);
-                        } catch (EOFException var16) {
-                           break label146;
-                        }
+                           try {
+                              this.dataFile.read(IndexStore_buffer, 0, 8);
+                           } catch (EOFException var16) {
+                              break label136;
+                           }
 
-                        var14 = (IndexStore_buffer[1] & 255) + ((IndexStore_buffer[0] & 255) << 8);
-                        int var11 = (IndexStore_buffer[3] & 255) + ((IndexStore_buffer[2] & 255) << 8);
-                        var9 = ((IndexStore_buffer[5] & 255) << 8) + ((IndexStore_buffer[4] & 255) << 16) + (IndexStore_buffer[6] & 255);
-                        int var12 = IndexStore_buffer[7] & 255;
-                        if(var14 != var1 || var8 != var11 || var12 != this.index) {
-                           var10000 = false;
-                           return var10000;
-                        }
+                           var14 = (IndexStore_buffer[1] & 255) + ((IndexStore_buffer[0] & 255) << 8);
+                           int var11 = (IndexStore_buffer[3] & 255) + ((IndexStore_buffer[2] & 255) << 8);
+                           var9 = ((IndexStore_buffer[5] & 255) << 8) + ((IndexStore_buffer[4] & 255) << 16) + (IndexStore_buffer[6] & 255);
+                           int var12 = IndexStore_buffer[7] & 255;
+                           if(var14 == var1 && var8 == var11 && var12 == this.index) {
+                              if(var9 >= 0 && (long)var9 <= this.dataFile.length() / 520L) {
+                                 break label155;
+                              }
 
-                        if(var9 < 0 || (long)var9 > this.dataFile.length() / 520L) {
+                              var10000 = false;
+                              return var10000;
+                           }
+
                            var10000 = false;
                            return var10000;
                         }
@@ -231,7 +235,7 @@ public final class IndexFile {
                            ++var9;
                         }
 
-                        if(var6 == var9) {
+                        if(var9 == var6) {
                            ++var9;
                         }
                      }
@@ -272,41 +276,15 @@ public final class IndexFile {
       }
    }
 
-   @ObfuscatedName("jj")
+   @ObfuscatedName("gi")
    @ObfuscatedSignature(
-      signature = "(Lhl;B)Lhl;",
-      garbageValue = "48"
+      signature = "(B)V",
+      garbageValue = "2"
    )
-   static Widget method3387(Widget var0) {
-      Widget var2 = var0;
-      int var3 = PlayerComposition.method4514(AbstractSoundSystem.getWidgetClickMask(var0));
-      Widget var1;
-      if(var3 == 0) {
-         var1 = null;
-      } else {
-         int var4 = 0;
-
-         while(true) {
-            if(var4 >= var3) {
-               var1 = var2;
-               break;
-            }
-
-            var2 = OwnWorldComparator.getWidget(var2.parentId);
-            if(var2 == null) {
-               var1 = null;
-               break;
-            }
-
-            ++var4;
-         }
+   static void method3380() {
+      if(Client.field699) {
+         class11.method98(class138.localPlayer, false);
       }
 
-      Widget var5 = var1;
-      if(var1 == null) {
-         var5 = var0.dragParent;
-      }
-
-      return var5;
    }
 }

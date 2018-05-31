@@ -1,19 +1,19 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ko")
+@ObfuscatedName("ks")
 public class class306 {
-   @ObfuscatedName("e")
+   @ObfuscatedName("n")
    @ObfuscatedSignature(
-      signature = "(Liv;III)Z",
-      garbageValue = "-584627357"
+      signature = "(Lir;III)Z",
+      garbageValue = "-1104652703"
    )
-   public static boolean method5702(IndexDataBase var0, int var1, int var2) {
+   static boolean method5660(IndexDataBase var0, int var1, int var2) {
       byte[] var3 = var0.getConfigData(var1, var2);
       if(var3 == null) {
          return false;
       } else {
-         class171.decodeSprite(var3);
+         ObjectComposition.decodeSprite(var3);
          return true;
       }
    }

@@ -1,51 +1,34 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eq")
+@ObfuscatedName("eb")
 public class class145 extends class283 {
-   @ObfuscatedName("w")
-   final boolean field1924;
+   @ObfuscatedName("z")
+   final boolean field1903;
 
    public class145(boolean var1) {
-      this.field1924 = var1;
+      this.field1903 = var1;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Lkd;Lkd;I)I",
-      garbageValue = "-295095521"
+      signature = "(Lkz;Lkz;I)I",
+      garbageValue = "2025986991"
    )
-   int method3195(ChatPlayer var1, ChatPlayer var2) {
-      return var1.world != 0 && var2.world != 0?(this.field1924?var1.getRsName().compareCleanName(var2.getRsName()):var2.getRsName().compareCleanName(var1.getRsName())):this.method5320(var1, var2);
+   int method3182(ChatPlayer var1, ChatPlayer var2) {
+      return var1.world != 0 && var2.world != 0?(this.field1903?var1.getRsName().compareCleanName(var2.getRsName()):var2.getRsName().compareCleanName(var1.getRsName())):this.method5308(var1, var2);
    }
 
    public int compare(Object var1, Object var2) {
-      return this.method3195((ChatPlayer)var1, (ChatPlayer)var2);
+      return this.method3182((ChatPlayer)var1, (ChatPlayer)var2);
    }
 
-   @ObfuscatedName("gm")
+   @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "0"
+      signature = "(II)Z",
+      garbageValue = "763302428"
    )
-   static void method3200() {
-      if(Client.field711) {
-         class32.method586(MilliTimer.localPlayer, false);
-      }
-
-   }
-
-   @ObfuscatedName("km")
-   @ObfuscatedSignature(
-      signature = "(IIIZI)V",
-      garbageValue = "-37627365"
-   )
-   public static void method3194(int var0, int var1, int var2, boolean var3) {
-      PacketNode var4 = DecorativeObject.method3115(ClientPacket.field2161, Client.field739.field1250);
-      var4.packetBuffer.method3595(var2);
-      var4.packetBuffer.method3605(var0);
-      var4.packetBuffer.method3605(var1);
-      var4.packetBuffer.method3670(var3?Client.field674:0);
-      Client.field739.method2019(var4);
+   public static boolean method3188(int var0) {
+      return (var0 >> 30 & 1) != 0;
    }
 }

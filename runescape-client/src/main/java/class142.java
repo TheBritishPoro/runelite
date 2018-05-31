@@ -1,68 +1,61 @@
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
+@ObfuscatedName("eu")
 public class class142 extends class283 {
-   @ObfuscatedName("ky")
-   @ObfuscatedGetter(
-      intValue = 946956583
-   )
-   static int field1911;
-   @ObfuscatedName("w")
-   final boolean field1909;
+   @ObfuscatedName("z")
+   final boolean field1890;
 
    public class142(boolean var1) {
-      this.field1909 = var1;
+      this.field1890 = var1;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Lkd;Lkd;I)I",
-      garbageValue = "1971585662"
+      signature = "(Lkz;Lkz;I)I",
+      garbageValue = "-879071974"
    )
-   int method3181(ChatPlayer var1, ChatPlayer var2) {
+   int method3164(ChatPlayer var1, ChatPlayer var2) {
       if(var1.world != 0) {
          if(var2.world == 0) {
-            return this.field1909?-1:1;
+            return this.field1890?-1:1;
          }
       } else if(var2.world != 0) {
-         return this.field1909?1:-1;
+         return this.field1890?1:-1;
       }
 
-      return this.method5320(var1, var2);
+      return this.method5308(var1, var2);
    }
 
    public int compare(Object var1, Object var2) {
-      return this.method3181((ChatPlayer)var1, (ChatPlayer)var2);
+      return this.method3164((ChatPlayer)var1, (ChatPlayer)var2);
    }
 
-   @ObfuscatedName("p")
+   @ObfuscatedName("jf")
    @ObfuscatedSignature(
-      signature = "(B)[Llh;",
-      garbageValue = "18"
+      signature = "(Ljava/lang/String;ZB)Ljava/lang/String;",
+      garbageValue = "20"
    )
-   static IndexedSprite[] method3182() {
-      IndexedSprite[] var0 = new IndexedSprite[class319.indexedSpriteCount];
-
-      for(int var1 = 0; var1 < class319.indexedSpriteCount; ++var1) {
-         IndexedSprite var2 = var0[var1] = new IndexedSprite();
-         var2.originalWidth = class319.indexedSpriteWidth;
-         var2.originalHeight = class275.indexedSpriteHeight;
-         var2.offsetX = class319.indexedSpriteOffsetXs[var1];
-         var2.offsetY = class319.indexedSpriteOffsetYs[var1];
-         var2.width = class192.indexSpriteWidths[var1];
-         var2.height = class319.indexedSpriteHeights[var1];
-         var2.palette = class319.indexedSpritePalette;
-         var2.pixels = class294.spritePixels[var1];
+   static String method3161(String var0, boolean var1) {
+      String var2 = var1?"https://":"http://";
+      if(Client.socketType == 1) {
+         var0 = var0 + "-wtrc";
+      } else if(Client.socketType == 2) {
+         var0 = var0 + "-wtqa";
+      } else if(Client.socketType == 3) {
+         var0 = var0 + "-wtwip";
+      } else if(Client.socketType == 5) {
+         var0 = var0 + "-wti";
+      } else if(Client.socketType == 4) {
+         var0 = "local";
       }
 
-      class319.indexedSpriteOffsetXs = null;
-      class319.indexedSpriteOffsetYs = null;
-      class192.indexSpriteWidths = null;
-      class319.indexedSpriteHeights = null;
-      class319.indexedSpritePalette = null;
-      class294.spritePixels = null;
-      return var0;
+      String var3 = "";
+      if(GameSocket.sessionToken != null) {
+         var3 = "/p=" + GameSocket.sessionToken;
+      }
+
+      String var4 = "runescape.com";
+      return var2 + var0 + "." + var4 + "/l=" + Client.languageId + "/a=" + FrameMap.field1709 + var3 + "/";
    }
 }

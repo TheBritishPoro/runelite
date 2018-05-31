@@ -1,13 +1,11 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hw")
+@ObfuscatedName("ht")
 public class class232 {
-   @ObfuscatedName("y")
+   @ObfuscatedName("bc")
    @ObfuscatedSignature(
-      signature = "Lgy;"
+      signature = "Lly;"
    )
-   @Export("NetCache_responseArchiveBuffer")
-   public static Buffer NetCache_responseArchiveBuffer;
+   static IndexedSprite field2752;
 }

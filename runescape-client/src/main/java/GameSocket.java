@@ -6,66 +6,76 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fi")
+@ObfuscatedName("fc")
 @Implements("GameSocket")
 public class GameSocket implements Runnable {
-   @ObfuscatedName("s")
+   @ObfuscatedName("au")
    @ObfuscatedSignature(
-      signature = "Lkr;"
+      signature = "Llc;"
    )
-   public static Font field2036;
+   @Export("rasterProvider")
+   public static BufferProvider rasterProvider;
+   @ObfuscatedName("bl")
+   @Export("sessionToken")
+   static String sessionToken;
+   @ObfuscatedName("ca")
+   @ObfuscatedGetter(
+      intValue = 1930449729
+   )
+   @Export("currentPressedKey")
+   public static int currentPressedKey;
+   @ObfuscatedName("z")
+   Thread field2008;
    @ObfuscatedName("w")
-   Thread field2032;
-   @ObfuscatedName("m")
-   OutputStream field2031;
+   OutputStream field2006;
+   @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = -837409575
+   )
+   int field2015;
+   @ObfuscatedName("l")
+   byte[] field2012;
+   @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 769097443
+   )
+   int field2010;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = -637420263
+      intValue = -2146315675
    )
-   int field2035;
-   @ObfuscatedName("b")
-   byte[] field2033;
-   @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1035658403
-   )
-   int field2039;
-   @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = 973030665
-   )
-   int field2030;
-   @ObfuscatedName("h")
-   IOException field2034;
-   @ObfuscatedName("x")
-   boolean field2037;
+   int field2005;
+   @ObfuscatedName("k")
+   IOException field2011;
+   @ObfuscatedName("i")
+   boolean field2009;
 
    GameSocket(OutputStream var1, int var2) {
-      this.field2039 = 0;
-      this.field2030 = 0;
-      this.field2031 = var1;
-      this.field2035 = var2 + 1;
-      this.field2033 = new byte[this.field2035];
-      this.field2032 = new Thread(this);
-      this.field2032.setDaemon(true);
-      this.field2032.start();
+      this.field2010 = 0;
+      this.field2005 = 0;
+      this.field2006 = var1;
+      this.field2015 = var2 + 1;
+      this.field2012 = new byte[this.field2015];
+      this.field2008 = new Thread(this);
+      this.field2008.setDaemon(true);
+      this.field2008.start();
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
       signature = "(I)Z",
-      garbageValue = "2045893110"
+      garbageValue = "1097599728"
    )
-   boolean method3399() {
-      if(this.field2037) {
+   boolean method3390() {
+      if(this.field2009) {
          try {
-            this.field2031.close();
-            if(this.field2034 == null) {
-               this.field2034 = new IOException("");
+            this.field2006.close();
+            if(this.field2011 == null) {
+               this.field2011 = new IOException("");
             }
          } catch (IOException var2) {
-            if(this.field2034 == null) {
-               this.field2034 = new IOException(var2);
+            if(this.field2011 == null) {
+               this.field2011 = new IOException(var2);
             }
          }
 
@@ -75,37 +85,37 @@ public class GameSocket implements Runnable {
       }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "([BIII)V",
-      garbageValue = "-204100853"
+      garbageValue = "1100841407"
    )
    @Export("read")
    void read(byte[] var1, int var2, int var3) throws IOException {
       if(var3 >= 0 && var2 >= 0 && var3 + var2 <= var1.length) {
          synchronized(this) {
-            if(this.field2034 != null) {
-               throw new IOException(this.field2034.toString());
+            if(this.field2011 != null) {
+               throw new IOException(this.field2011.toString());
             } else {
                int var5;
-               if(this.field2039 <= this.field2030) {
-                  var5 = this.field2035 - this.field2030 + this.field2039 - 1;
+               if(this.field2010 <= this.field2005) {
+                  var5 = this.field2015 - this.field2005 + this.field2010 - 1;
                } else {
-                  var5 = this.field2039 - this.field2030 - 1;
+                  var5 = this.field2010 - this.field2005 - 1;
                }
 
                if(var5 < var3) {
                   throw new IOException("");
                } else {
-                  if(var3 + this.field2030 <= this.field2035) {
-                     System.arraycopy(var1, var2, this.field2033, this.field2030, var3);
+                  if(var3 + this.field2005 <= this.field2015) {
+                     System.arraycopy(var1, var2, this.field2012, this.field2005, var3);
                   } else {
-                     int var6 = this.field2035 - this.field2030;
-                     System.arraycopy(var1, var2, this.field2033, this.field2030, var6);
-                     System.arraycopy(var1, var6 + var2, this.field2033, 0, var3 - var6);
+                     int var6 = this.field2015 - this.field2005;
+                     System.arraycopy(var1, var2, this.field2012, this.field2005, var6);
+                     System.arraycopy(var1, var6 + var2, this.field2012, 0, var3 - var6);
                   }
 
-                  this.field2030 = (var3 + this.field2030) % this.field2035;
+                  this.field2005 = (var3 + this.field2005) % this.field2015;
                   this.notifyAll();
                }
             }
@@ -115,19 +125,19 @@ public class GameSocket implements Runnable {
       }
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "-81"
+      signature = "(I)V",
+      garbageValue = "-1681840837"
    )
-   void method3402() {
+   void method3384() {
       synchronized(this) {
-         this.field2037 = true;
+         this.field2009 = true;
          this.notifyAll();
       }
 
       try {
-         this.field2032.join();
+         this.field2008.join();
       } catch (InterruptedException var3) {
          ;
       }
@@ -139,14 +149,14 @@ public class GameSocket implements Runnable {
          int var1;
          synchronized(this) {
             while(true) {
-               if(this.field2034 != null) {
+               if(this.field2011 != null) {
                   return;
                }
 
-               if(this.field2039 <= this.field2030) {
-                  var1 = this.field2030 - this.field2039;
+               if(this.field2010 <= this.field2005) {
+                  var1 = this.field2005 - this.field2010;
                } else {
-                  var1 = this.field2035 - this.field2039 + this.field2030;
+                  var1 = this.field2015 - this.field2010 + this.field2005;
                }
 
                if(var1 > 0) {
@@ -154,13 +164,13 @@ public class GameSocket implements Runnable {
                }
 
                try {
-                  this.field2031.flush();
+                  this.field2006.flush();
                } catch (IOException var11) {
-                  this.field2034 = var11;
+                  this.field2011 = var11;
                   return;
                }
 
-               if(this.method3399()) {
+               if(this.method3390()) {
                   return;
                }
 
@@ -173,149 +183,78 @@ public class GameSocket implements Runnable {
          }
 
          try {
-            if(var1 + this.field2039 <= this.field2035) {
-               this.field2031.write(this.field2033, this.field2039, var1);
+            if(var1 + this.field2010 <= this.field2015) {
+               this.field2006.write(this.field2012, this.field2010, var1);
             } else {
-               int var7 = this.field2035 - this.field2039;
-               this.field2031.write(this.field2033, this.field2039, var7);
-               this.field2031.write(this.field2033, 0, var1 - var7);
+               int var7 = this.field2015 - this.field2010;
+               this.field2006.write(this.field2012, this.field2010, var7);
+               this.field2006.write(this.field2012, 0, var1 - var7);
             }
          } catch (IOException var10) {
             IOException var2 = var10;
             synchronized(this) {
-               this.field2034 = var2;
+               this.field2011 = var2;
                return;
             }
          }
 
          synchronized(this) {
-            this.field2039 = (var1 + this.field2039) % this.field2035;
+            this.field2010 = (var1 + this.field2010) % this.field2015;
          }
-      } while(!this.method3399());
+      } while(!this.method3390());
 
    }
 
-   @ObfuscatedName("gj")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "1044304180"
+      signature = "(II)I",
+      garbageValue = "-397804509"
    )
-   static final int method3411() {
-      if(ScriptState.preferences.hideRoofs) {
-         return class192.plane;
+   @Export("getVarbit")
+   public static int getVarbit(int var0) {
+      Varbit var2 = (Varbit)Varbit.varbits.get((long)var0);
+      Varbit var1;
+      if(var2 != null) {
+         var1 = var2;
       } else {
-         int var0 = 3;
-         if(class146.cameraPitch < 310) {
-            int var1;
-            int var2;
-            if(Client.field678 == 1) {
-               var1 = Signlink.field1979 >> 7;
-               var2 = ItemContainer.field481 >> 7;
-            } else {
-               var1 = MilliTimer.localPlayer.x >> 7;
-               var2 = MilliTimer.localPlayer.y >> 7;
-            }
-
-            int var3 = WorldMapType3.cameraX >> 7;
-            int var4 = class13.cameraY >> 7;
-            if(var3 < 0 || var4 < 0 || var3 >= 104 || var4 >= 104) {
-               return class192.plane;
-            }
-
-            if(var1 < 0 || var2 < 0 || var1 >= 104 || var2 >= 104) {
-               return class192.plane;
-            }
-
-            if((class50.tileSettings[class192.plane][var3][var4] & 4) != 0) {
-               var0 = class192.plane;
-            }
-
-            int var5;
-            if(var1 > var3) {
-               var5 = var1 - var3;
-            } else {
-               var5 = var3 - var1;
-            }
-
-            int var6;
-            if(var2 > var4) {
-               var6 = var2 - var4;
-            } else {
-               var6 = var4 - var2;
-            }
-
-            int var7;
-            int var8;
-            if(var5 > var6) {
-               var7 = var6 * 65536 / var5;
-               var8 = 32768;
-
-               while(var3 != var1) {
-                  if(var3 < var1) {
-                     ++var3;
-                  } else if(var3 > var1) {
-                     --var3;
-                  }
-
-                  if((class50.tileSettings[class192.plane][var3][var4] & 4) != 0) {
-                     var0 = class192.plane;
-                  }
-
-                  var8 += var7;
-                  if(var8 >= 65536) {
-                     var8 -= 65536;
-                     if(var4 < var2) {
-                        ++var4;
-                     } else if(var4 > var2) {
-                        --var4;
-                     }
-
-                     if((class50.tileSettings[class192.plane][var3][var4] & 4) != 0) {
-                        var0 = class192.plane;
-                     }
-                  }
-               }
-            } else if(var6 > 0) {
-               var7 = var5 * 65536 / var6;
-               var8 = 32768;
-
-               while(var4 != var2) {
-                  if(var4 < var2) {
-                     ++var4;
-                  } else if(var4 > var2) {
-                     --var4;
-                  }
-
-                  if((class50.tileSettings[class192.plane][var3][var4] & 4) != 0) {
-                     var0 = class192.plane;
-                  }
-
-                  var8 += var7;
-                  if(var8 >= 65536) {
-                     var8 -= 65536;
-                     if(var3 < var1) {
-                        ++var3;
-                     } else if(var3 > var1) {
-                        --var3;
-                     }
-
-                     if((class50.tileSettings[class192.plane][var3][var4] & 4) != 0) {
-                        var0 = class192.plane;
-                     }
-                  }
-               }
-            }
+         byte[] var7 = Varbit.varbit_ref.getConfigData(14, var0);
+         var2 = new Varbit();
+         if(var7 != null) {
+            var2.decode(new Buffer(var7));
          }
 
-         if(MilliTimer.localPlayer.x >= 0 && MilliTimer.localPlayer.y >= 0 && MilliTimer.localPlayer.x < 13312 && MilliTimer.localPlayer.y < 13312) {
-            if((class50.tileSettings[class192.plane][MilliTimer.localPlayer.x >> 7][MilliTimer.localPlayer.y >> 7] & 4) != 0) {
-               var0 = class192.plane;
-            }
-
-            return var0;
-         } else {
-            return class192.plane;
-         }
+         Varbit.varbits.put(var2, (long)var0);
+         var1 = var2;
       }
+
+      int var3 = var1.configId;
+      int var4 = var1.leastSignificantBit;
+      int var5 = var1.mostSignificantBit;
+      int var6 = class225.varpsMasks[var5 - var4];
+      return class225.clientVarps[var3] >> var4 & var6;
+   }
+
+   @ObfuscatedName("ic")
+   @ObfuscatedSignature(
+      signature = "([Lhi;Lhi;ZI)V",
+      garbageValue = "96383462"
+   )
+   static void method3388(Widget[] var0, Widget var1, boolean var2) {
+      int var3 = var1.scrollWidth != 0?var1.scrollWidth:var1.width;
+      int var4 = var1.scrollHeight != 0?var1.scrollHeight:var1.height;
+      class304.method5635(var0, var1.id, var3, var4, var2);
+      if(var1.children != null) {
+         class304.method5635(var1.children, var1.id, var3, var4, var2);
+      }
+
+      WidgetNode var5 = (WidgetNode)Client.componentTable.get((long)var1.id);
+      if(var5 != null) {
+         Script.method1946(var5.id, var3, var4, var2);
+      }
+
+      if(var1.contentType == 1337) {
+         ;
+      }
+
    }
 }

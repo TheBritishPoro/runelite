@@ -4,16 +4,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fl")
+@ObfuscatedName("fv")
 @Implements("GZipDecompressor")
 public class GZipDecompressor {
-   @ObfuscatedName("w")
+   @ObfuscatedName("k")
+   @Export("validInterfaces")
+   static boolean[] validInterfaces;
+   @ObfuscatedName("cm")
+   @ObfuscatedSignature(
+      signature = "Lic;"
+   )
+   @Export("indexSprites")
+   static IndexData indexSprites;
+   @ObfuscatedName("z")
    @Export("inflator")
    Inflater inflator;
-
-   public GZipDecompressor() {
-      this(-1, 1000000, 1000000);
-   }
 
    @ObfuscatedSignature(
       signature = "(III)V",
@@ -22,10 +27,14 @@ public class GZipDecompressor {
    GZipDecompressor(int var1, int var2, int var3) {
    }
 
-   @ObfuscatedName("w")
+   public GZipDecompressor() {
+      this(-1, 1000000, 1000000);
+   }
+
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Lgy;[BI)V",
-      garbageValue = "1499837314"
+      signature = "(Lgk;[BI)V",
+      garbageValue = "641933971"
    )
    @Export("decompress")
    public void decompress(Buffer var1, byte[] var2) {
@@ -48,36 +57,39 @@ public class GZipDecompressor {
       }
    }
 
-   @ObfuscatedName("ag")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "([BB)[B",
-      garbageValue = "1"
+      signature = "(II)Lii;",
+      garbageValue = "-1879492666"
    )
-   @Export("decodeContainer")
-   static final byte[] decodeContainer(byte[] var0) {
-      Buffer var1 = new Buffer(var0);
-      int var2 = var1.readUnsignedByte();
-      int var3 = var1.readInt();
-      if(var3 < 0 || IndexDataBase.field3179 != 0 && var3 > IndexDataBase.field3179) {
-         throw new RuntimeException();
-      } else if(var2 == 0) {
-         byte[] var4 = new byte[var3];
-         var1.readBytes(var4, 0, var3);
-         return var4;
+   public static VarCString method3485(int var0) {
+      VarCString var1 = (VarCString)VarCString.field3260.get((long)var0);
+      if(var1 != null) {
+         return var1;
       } else {
-         int var6 = var1.readInt();
-         if(var6 >= 0 && (IndexDataBase.field3179 == 0 || var6 <= IndexDataBase.field3179)) {
-            byte[] var5 = new byte[var6];
-            if(var2 == 1) {
-               class176.Bzip2Decompressor_decompress(var5, var6, var0, var3, 9);
-            } else {
-               IndexDataBase.gzip.decompress(var1, var5);
-            }
-
-            return var5;
-         } else {
-            throw new RuntimeException();
+         byte[] var2 = VarCString.field3264.getConfigData(15, var0);
+         var1 = new VarCString();
+         if(var2 != null) {
+            var1.method4852(new Buffer(var2));
          }
+
+         VarCString.field3260.put(var1, (long)var0);
+         return var1;
       }
+   }
+
+   @ObfuscatedName("je")
+   @ObfuscatedSignature(
+      signature = "(Lgk;II)V",
+      garbageValue = "-6945047"
+   )
+   static void method3487(Buffer var0, int var1) {
+      byte[] var2 = var0.payload;
+      if(Client.field620 == null) {
+         Client.field620 = new byte[24];
+      }
+
+      class193.method3873(var2, var1, Client.field620, 0, 24);
+      class146.method3190(var0, var1);
    }
 }

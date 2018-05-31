@@ -1,59 +1,34 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kf")
+@ObfuscatedName("kt")
 @Implements("Friend")
 public class Friend extends ChatPlayer {
+   @ObfuscatedName("z")
+   boolean field3648;
    @ObfuscatedName("w")
-   boolean field3664;
-   @ObfuscatedName("m")
-   boolean field3663;
+   boolean field3650;
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Lkf;I)I",
-      garbageValue = "1903277839"
+      signature = "(Lkt;I)I",
+      garbageValue = "1391171788"
    )
-   int method5485(Friend var1) {
-      return super.world == Client.world && Client.world != var1.world?-1:(Client.world == var1.world && super.world != Client.world?1:(super.world != 0 && var1.world == 0?-1:(var1.world != 0 && super.world == 0?1:(this.field3664 && !var1.field3664?-1:(!this.field3664 && var1.field3664?1:(this.field3663 && !var1.field3663?-1:(!this.field3663 && var1.field3663?1:(super.world != 0?super.field3649 - var1.field3649:var1.field3649 - super.field3649))))))));
+   int method5452(Friend var1) {
+      return super.world == Client.world && Client.world != var1.world?-1:(Client.world == var1.world && super.world != Client.world?1:(super.world != 0 && var1.world == 0?-1:(var1.world != 0 && super.world == 0?1:(this.field3648 && !var1.field3648?-1:(!this.field3648 && var1.field3648?1:(this.field3650 && !var1.field3650?-1:(!this.field3650 && var1.field3650?1:(super.world != 0?super.field3627 - var1.field3627:var1.field3627 - super.field3627))))))));
    }
 
-   @ObfuscatedName("aw")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      signature = "(Ljn;I)I",
-      garbageValue = "1707398523"
+      signature = "(Ljx;B)I",
+      garbageValue = "97"
    )
-   public int vmethod5482(Nameable var1) {
-      return this.method5485((Friend)var1);
+   public int vmethod5453(Nameable var1) {
+      return this.method5452((Friend)var1);
    }
 
    public int compareTo(Object var1) {
-      return this.method5485((Friend)var1);
-   }
-
-   @ObfuscatedName("i")
-   @ObfuscatedSignature(
-      signature = "(Lbb;I)V",
-      garbageValue = "-2026437852"
-   )
-   @Export("changeWorld")
-   static void changeWorld(World var0) {
-      if(var0.method1603() != Client.isMembers) {
-         Client.isMembers = var0.method1603();
-         boolean var1 = var0.method1603();
-         if(var1 != GrandExchangeOffer.isMembersWorld) {
-            class21.method303();
-            GrandExchangeOffer.isMembersWorld = var1;
-         }
-      }
-
-      WorldComparator.host = var0.address;
-      Client.world = var0.id;
-      Client.flags = var0.mask;
-      ServerPacket.port1 = Client.socketType == 0?43594:var0.id + 40000;
-      class13.port2 = Client.socketType == 0?443:var0.id + 50000;
-      Size.myWorldPort = ServerPacket.port1;
+      return this.method5452((Friend)var1);
    }
 }

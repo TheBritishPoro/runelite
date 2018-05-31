@@ -4,117 +4,61 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("be")
+@ObfuscatedName("bj")
 @Implements("WidgetNode")
 public class WidgetNode extends Node {
-   @ObfuscatedName("j")
-   @ObfuscatedSignature(
-      signature = "[Llh;"
-   )
-   @Export("titlemuteSprite")
-   static IndexedSprite[] titlemuteSprite;
-   @ObfuscatedName("da")
-   @ObfuscatedSignature(
-      signature = "Lic;"
-   )
-   @Export("indexTrack2")
-   static IndexData indexTrack2;
-   @ObfuscatedName("et")
-   @ObfuscatedSignature(
-      signature = "Lkr;"
-   )
-   @Export("fontBold12")
-   static Font fontBold12;
-   @ObfuscatedName("gq")
+   @ObfuscatedName("rz")
    @ObfuscatedGetter(
-      intValue = 313816975
+      intValue = -150808717
    )
-   @Export("cameraYaw")
-   static int cameraYaw;
-   @ObfuscatedName("w")
+   static int field495;
+   @ObfuscatedName("e")
    @ObfuscatedGetter(
-      intValue = -1841486463
+      intValue = 1708585715
+   )
+   @Export("scriptStringStackSize")
+   static int scriptStringStackSize;
+   @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = -432145823
    )
    @Export("id")
    int id;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = 1460070893
+      intValue = -1556790455
    )
    @Export("owner")
    int owner;
-   @ObfuscatedName("q")
-   boolean field500;
+   @ObfuscatedName("s")
+   boolean field496;
 
    WidgetNode() {
-      this.field500 = false;
+      this.field496 = false;
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("jn")
    @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "1096780829"
+      signature = "(IIIILll;Lhv;B)V",
+      garbageValue = "103"
    )
-   public static int method1076() {
-      return KeyFocusListener.keyboardIdleTicks;
-   }
+   @Export("drawDot")
+   static final void drawDot(int var0, int var1, int var2, int var3, SpritePixels var4, class224 var5) {
+      if(var4 != null) {
+         int var6 = Client.mapAngle & 2047;
+         int var7 = var3 * var3 + var2 * var2;
+         if(var7 <= 6400) {
+            int var8 = Graphics3D.SINE[var6];
+            int var9 = Graphics3D.COSINE[var6];
+            int var10 = var3 * var8 + var9 * var2 >> 16;
+            int var11 = var3 * var9 - var8 * var2 >> 16;
+            if(var7 > 2500) {
+               var4.method5867(var10 + var5.field2553 / 2 - var4.maxWidth / 2, var5.field2549 / 2 - var11 - var4.maxHeight / 2, var0, var1, var5.field2553, var5.field2549, var5.field2551, var5.field2550);
+            } else {
+               var4.drawAt(var0 + var10 + var5.field2553 / 2 - var4.maxWidth / 2, var5.field2549 / 2 + var1 - var11 - var4.maxHeight / 2);
+            }
 
-   @ObfuscatedName("fy")
-   @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "62"
-   )
-   static final void method1074() {
-      class59.method1130();
-      CollisionData.method3447();
-      KitDefinition.identKits.reset();
-      ObjectComposition.objects.reset();
-      ObjectComposition.field3426.reset();
-      ObjectComposition.cachedModels.reset();
-      ObjectComposition.field3394.reset();
-      class34.method635();
-      class21.method303();
-      class24.method462();
-      Frames.method3092();
-      Varbit.varbits.reset();
-      class157.method3307();
-      class267.method5044();
-      CombatInfo2.field3323.reset();
-      CombatInfo2.field3324.reset();
-      class265.field3352.reset();
-      class264.field3345.reset();
-      Area.areaSpriteCache.reset();
-      PlayerComposition.field2597.reset();
-      Widget.widgetSpriteCache.reset();
-      Widget.Widget_cachedModels.reset();
-      Widget.Widget_cachedFonts.reset();
-      Widget.field2620.reset();
-      ((TextureProvider)Graphics3D.textureLoader).reset();
-      Script.field1214.reset();
-      FileSystem.indexInterfaces.reset();
-      Client.indexSoundEffects.reset();
-      WorldMapDecoration.indexCache3.reset();
-      FileOnDisk.indexCache4.reset();
-      class234.indexMaps.reset();
-      MouseInput.indexTrack1.reset();
-      class216.indexModels.reset();
-      class59.indexSprites.reset();
-      class183.indexTextures.reset();
-      MapLabel.indexCache10.reset();
-      indexTrack2.reset();
-      TotalQuantityComparator.indexScripts.reset();
-   }
-
-   @ObfuscatedName("fx")
-   @ObfuscatedSignature(
-      signature = "(I)V",
-      garbageValue = "-2145213429"
-   )
-   static final void method1075() {
-      if(Client.field815 != class192.plane) {
-         Client.field815 = class192.plane;
-         GameEngine.method983(class192.plane);
+         }
       }
-
    }
 }

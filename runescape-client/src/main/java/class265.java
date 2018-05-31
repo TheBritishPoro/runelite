@@ -1,120 +1,91 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("je")
+@ObfuscatedName("ji")
 public class class265 extends CacheableNode {
    @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Liv;"
-   )
-   public static IndexDataBase field3351;
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
       signature = "Lgj;"
    )
-   public static NodeCache field3352;
-   @ObfuscatedName("q")
+   public static NodeCache field3334;
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Lgx;"
+      signature = "Lgu;"
    )
-   IterableHashTable field3353;
+   IterableHashTable field3335;
 
    static {
-      field3352 = new NodeCache(64);
+      field3334 = new NodeCache(64);
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(I)V",
-      garbageValue = "2120970672"
+      signature = "(S)V",
+      garbageValue = "-12113"
    )
-   public void method4976() {
+   public void method4961() {
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(Lgy;I)V",
-      garbageValue = "-83961279"
+      signature = "(Lgk;I)V",
+      garbageValue = "-1049647297"
    )
-   public void method4990(Buffer var1) {
+   public void method4960(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if(var2 == 0) {
             return;
          }
 
-         this.method4978(var1, var2);
+         this.method4967(var1, var2);
       }
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(Lgy;II)V",
-      garbageValue = "-132881650"
+      signature = "(Lgk;IB)V",
+      garbageValue = "49"
    )
-   void method4978(Buffer var1, int var2) {
+   void method4967(Buffer var1, int var2) {
       if(var2 == 249) {
-         this.field3353 = CacheFile.readStringIntParameters(var1, this.field3353);
+         this.field3335 = KeyFocusListener.readStringIntParameters(var1, this.field3335);
       }
 
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
       signature = "(III)I",
-      garbageValue = "1681148037"
+      garbageValue = "1625397785"
    )
-   public int method4982(int var1, int var2) {
-      IterableHashTable var4 = this.field3353;
-      int var3;
-      if(var4 == null) {
-         var3 = var2;
-      } else {
-         IntegerNode var5 = (IntegerNode)var4.get((long)var1);
-         if(var5 == null) {
-            var3 = var2;
-         } else {
-            var3 = var5.value;
-         }
-      }
-
-      return var3;
+   public int method4962(int var1, int var2) {
+      return FriendManager.method1668(this.field3335, var1, var2);
    }
 
-   @ObfuscatedName("a")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
       signature = "(ILjava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "-188946533"
+      garbageValue = "1321856430"
    )
-   public String method4980(int var1, String var2) {
-      return CombatInfoListHolder.method1822(this.field3353, var1, var2);
+   public String method4963(int var1, String var2) {
+      return WorldMapRectangle.method171(this.field3335, var1, var2);
    }
 
-   @ObfuscatedName("jo")
+   @ObfuscatedName("e")
    @ObfuscatedSignature(
-      signature = "(IIII)Lbe;",
-      garbageValue = "-1188594297"
+      signature = "(Ljava/lang/CharSequence;S)Ljava/lang/String;",
+      garbageValue = "-15504"
    )
-   static final WidgetNode method4994(int var0, int var1, int var2) {
-      WidgetNode var3 = new WidgetNode();
-      var3.id = var1;
-      var3.owner = var2;
-      Client.componentTable.put(var3, (long)var0);
-      class25.method465(var1);
-      Widget var4 = OwnWorldComparator.getWidget(var0);
-      DState.method3548(var4);
-      if(Client.field756 != null) {
-         DState.method3548(Client.field756);
-         Client.field756 = null;
+   public static String method4976(CharSequence var0) {
+      int var2 = var0.length();
+      char[] var3 = new char[var2];
+
+      for(int var4 = 0; var4 < var2; ++var4) {
+         var3[var4] = '*';
       }
 
-      WorldComparator.method9();
-      class45.method818(Widget.widgets[var0 >> 16], var4, false);
-      GrandExchangeOffer.runWidgetOnLoadListener(var1);
-      if(Client.widgetRoot != -1) {
-         class76.method1849(Client.widgetRoot, 1);
-      }
-
-      return var3;
+      String var1 = new String(var3);
+      return var1;
    }
 }

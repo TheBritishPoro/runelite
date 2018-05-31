@@ -2,122 +2,122 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
+@ObfuscatedName("cs")
 public class class92 extends Node {
-   @ObfuscatedName("h")
+   @ObfuscatedName("k")
    @Export("payload")
    static byte[] payload;
-   @ObfuscatedName("x")
+   @ObfuscatedName("i")
    @Export("position")
    static int position;
-   @ObfuscatedName("j")
+   @ObfuscatedName("x")
    @Export("bitPosition")
    static int bitPosition;
-   @ObfuscatedName("a")
+   @ObfuscatedName("e")
    @Export("blockSize0")
    static int blockSize0;
-   @ObfuscatedName("l")
+   @ObfuscatedName("p")
    @Export("blockSize1")
    static int blockSize1;
-   @ObfuscatedName("d")
+   @ObfuscatedName("b")
    @ObfuscatedSignature(
-      signature = "[Lca;"
+      signature = "[Lcv;"
    )
    @Export("codeBooks")
    static CodeBook[] codeBooks;
-   @ObfuscatedName("s")
+   @ObfuscatedName("n")
    @ObfuscatedSignature(
-      signature = "[Lcl;"
+      signature = "[Lcc;"
    )
    @Export("floors")
    static Floor1[] floors;
-   @ObfuscatedName("p")
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      signature = "[Lcu;"
+      signature = "[Lck;"
    )
    @Export("residues")
    static Residue[] residues;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
-      signature = "[Lda;"
+      signature = "[Ldz;"
    )
    @Export("mappings")
    static Mapping[] mappings;
-   @ObfuscatedName("y")
+   @ObfuscatedName("m")
    @Export("modeBlockFlags")
    static boolean[] modeBlockFlags;
-   @ObfuscatedName("c")
+   @ObfuscatedName("r")
    @Export("modeMappings")
    static int[] modeMappings;
-   @ObfuscatedName("e")
-   static boolean field1284;
-   @ObfuscatedName("k")
-   static float[] field1291;
-   @ObfuscatedName("r")
-   static float[] field1283;
-   @ObfuscatedName("v")
-   static float[] field1279;
-   @ObfuscatedName("o")
-   static float[] field1294;
-   @ObfuscatedName("ai")
-   static float[] field1286;
-   @ObfuscatedName("at")
-   static float[] field1296;
-   @ObfuscatedName("ad")
-   static float[] field1297;
-   @ObfuscatedName("ac")
-   static int[] field1298;
-   @ObfuscatedName("ay")
-   static int[] field1299;
-   @ObfuscatedName("w")
-   byte[][] field1280;
-   @ObfuscatedName("m")
-   int field1273;
-   @ObfuscatedName("q")
-   int field1302;
-   @ObfuscatedName("b")
-   int field1272;
-   @ObfuscatedName("f")
-   int field1292;
-   @ObfuscatedName("n")
-   boolean field1274;
    @ObfuscatedName("t")
-   float[] field1287;
-   @ObfuscatedName("u")
-   int field1288;
-   @ObfuscatedName("i")
-   int field1289;
-   @ObfuscatedName("z")
-   boolean field1290;
-   @ObfuscatedName("an")
-   byte[] field1300;
-   @ObfuscatedName("as")
-   int field1295;
+   static boolean field1260;
+   @ObfuscatedName("d")
+   static float[] field1265;
+   @ObfuscatedName("h")
+   static float[] field1251;
+   @ObfuscatedName("c")
+   static float[] field1269;
+   @ObfuscatedName("v")
+   static float[] field1268;
+   @ObfuscatedName("af")
+   static float[] field1247;
+   @ObfuscatedName("ah")
+   static float[] field1270;
+   @ObfuscatedName("ab")
+   static float[] field1271;
    @ObfuscatedName("aw")
-   int field1271;
+   static int[] field1272;
+   @ObfuscatedName("ak")
+   static int[] field1267;
+   @ObfuscatedName("z")
+   byte[][] field1263;
+   @ObfuscatedName("w")
+   int field1244;
+   @ObfuscatedName("s")
+   int field1245;
+   @ObfuscatedName("l")
+   int field1246;
+   @ObfuscatedName("u")
+   int field1253;
+   @ObfuscatedName("q")
+   boolean field1248;
+   @ObfuscatedName("o")
+   float[] field1261;
+   @ObfuscatedName("y")
+   int field1264;
+   @ObfuscatedName("a")
+   int field1249;
+   @ObfuscatedName("j")
+   boolean field1256;
+   @ObfuscatedName("as")
+   byte[] field1274;
+   @ObfuscatedName("an")
+   int field1275;
+   @ObfuscatedName("ao")
+   int field1276;
 
    static {
-      field1284 = false;
+      field1260 = false;
    }
 
    class92(byte[] var1) {
-      this.method2122(var1);
+      this.method2094(var1);
    }
 
-   @ObfuscatedName("j")
-   void method2122(byte[] var1) {
+   @ObfuscatedName("u")
+   void method2094(byte[] var1) {
       Buffer var2 = new Buffer(var1);
-      this.field1273 = var2.readInt();
-      this.field1302 = var2.readInt();
-      this.field1272 = var2.readInt();
-      this.field1292 = var2.readInt();
-      if(this.field1292 < 0) {
-         this.field1292 = ~this.field1292;
-         this.field1274 = true;
+      this.field1244 = var2.readInt();
+      this.field1245 = var2.readInt();
+      this.field1246 = var2.readInt();
+      this.field1253 = var2.readInt();
+      if(this.field1253 < 0) {
+         this.field1253 = ~this.field1253;
+         this.field1248 = true;
       }
 
       int var3 = var2.readInt();
-      this.field1280 = new byte[var3][];
+      this.field1263 = new byte[var3][];
 
       for(int var4 = 0; var4 < var3; ++var4) {
          int var5 = 0;
@@ -130,16 +130,16 @@ public class class92 extends Node {
 
          byte[] var7 = new byte[var5];
          var2.readBytes(var7, 0, var5);
-         this.field1280[var4] = var7;
+         this.field1263[var4] = var7;
       }
 
    }
 
-   @ObfuscatedName("l")
-   float[] method2125(int var1) {
-      setBytes(this.field1280[var1], 0);
+   @ObfuscatedName("i")
+   float[] method2086(int var1) {
+      setBytes(this.field1263[var1], 0);
       getBit();
-      int var2 = getInt(class11.ilog(modeMappings.length - 1));
+      int var2 = getInt(class143.ilog(modeMappings.length - 1));
       boolean var3 = modeBlockFlags[var2];
       int var4 = var3?blockSize1:blockSize0;
       boolean var5 = false;
@@ -182,9 +182,9 @@ public class class92 extends Node {
       boolean var15 = !floors[var17].decodedFloor();
       boolean var45 = var15;
 
-      for(var17 = 0; var17 < var14.field1413; ++var17) {
-         Residue var18 = residues[var14.field1410[var17]];
-         float[] var19 = field1291;
+      for(var17 = 0; var17 < var14.field1388; ++var17) {
+         Residue var18 = residues[var14.field1386[var17]];
+         float[] var19 = field1265;
          var18.decodeResidue(var19, var4 >> 1, var45);
       }
 
@@ -192,19 +192,19 @@ public class class92 extends Node {
       if(!var15) {
          var17 = var14.mux;
          var40 = var14.submapFloors[var17];
-         floors[var40].computeFloor(field1291, var4 >> 1);
+         floors[var40].computeFloor(field1265, var4 >> 1);
       }
 
       int var42;
       if(var15) {
          for(var17 = var4 >> 1; var17 < var4; ++var17) {
-            field1291[var17] = 0.0F;
+            field1265[var17] = 0.0F;
          }
       } else {
          var17 = var4 >> 1;
          var40 = var4 >> 2;
          var42 = var4 >> 3;
-         float[] var43 = field1291;
+         float[] var43 = field1265;
 
          int var21;
          for(var21 = 0; var21 < var17; ++var21) {
@@ -215,10 +215,10 @@ public class class92 extends Node {
             var43[var21] = -var43[var4 - var21 - 1];
          }
 
-         float[] var44 = var3?field1286:field1283;
-         float[] var22 = var3?field1296:field1279;
-         float[] var23 = var3?field1297:field1294;
-         int[] var24 = var3?field1299:field1298;
+         float[] var44 = var3?field1247:field1251;
+         float[] var22 = var3?field1270:field1269;
+         float[] var23 = var3?field1271:field1268;
+         int[] var24 = var3?field1267:field1272;
 
          int var25;
          float var26;
@@ -249,7 +249,7 @@ public class class92 extends Node {
             var43[var25 * 4 + 1] = (var27 - var29) * var30 + (var26 - var28) * var31;
          }
 
-         var25 = class11.ilog(var4 - 1);
+         var25 = class143.ilog(var4 - 1);
 
          int var47;
          int var48;
@@ -348,71 +348,71 @@ public class class92 extends Node {
 
          for(var47 = var8; var47 < var9; ++var47) {
             var27 = (float)Math.sin(((double)(var47 - var8) + 0.5D) / (double)var10 * 0.5D * 3.141592653589793D);
-            field1291[var47] *= (float)Math.sin(1.5707963267948966D * (double)var27 * (double)var27);
+            field1265[var47] *= (float)Math.sin(1.5707963267948966D * (double)var27 * (double)var27);
          }
 
          for(var47 = var11; var47 < var12; ++var47) {
             var27 = (float)Math.sin(((double)(var47 - var11) + 0.5D) / (double)var13 * 0.5D * 3.141592653589793D + 1.5707963267948966D);
-            field1291[var47] *= (float)Math.sin(1.5707963267948966D * (double)var27 * (double)var27);
+            field1265[var47] *= (float)Math.sin(1.5707963267948966D * (double)var27 * (double)var27);
          }
       }
 
       float[] var41 = null;
-      if(this.field1288 > 0) {
-         var40 = var4 + this.field1288 >> 2;
+      if(this.field1264 > 0) {
+         var40 = var4 + this.field1264 >> 2;
          var41 = new float[var40];
          int var20;
-         if(!this.field1290) {
-            for(var42 = 0; var42 < this.field1289; ++var42) {
-               var20 = var42 + (this.field1288 >> 1);
-               var41[var42] += this.field1287[var20];
+         if(!this.field1256) {
+            for(var42 = 0; var42 < this.field1249; ++var42) {
+               var20 = var42 + (this.field1264 >> 1);
+               var41[var42] += this.field1261[var20];
             }
          }
 
          if(!var15) {
             for(var42 = var8; var42 < var4 >> 1; ++var42) {
                var20 = var41.length - (var4 >> 1) + var42;
-               var41[var20] += field1291[var42];
+               var41[var20] += field1265[var42];
             }
          }
       }
 
-      float[] var46 = this.field1287;
-      this.field1287 = field1291;
-      field1291 = var46;
-      this.field1288 = var4;
-      this.field1289 = var12 - (var4 >> 1);
-      this.field1290 = var15;
+      float[] var46 = this.field1261;
+      this.field1261 = field1265;
+      field1265 = var46;
+      this.field1264 = var4;
+      this.field1249 = var12 - (var4 >> 1);
+      this.field1256 = var15;
       return var41;
    }
 
    @ObfuscatedName("p")
    @ObfuscatedSignature(
-      signature = "([I)Lcg;"
+      signature = "([I)Lct;"
    )
-   RawAudioNode method2128(int[] var1) {
+   RawAudioNode method2083(int[] var1) {
       if(var1 != null && var1[0] <= 0) {
          return null;
       } else {
-         if(this.field1300 == null) {
-            this.field1288 = 0;
-            this.field1287 = new float[blockSize1];
-            this.field1300 = new byte[this.field1302];
-            this.field1295 = 0;
-            this.field1271 = 0;
+         if(this.field1274 == null) {
+            this.field1264 = 0;
+            this.field1261 = new float[blockSize1];
+            this.field1274 = new byte[this.field1245];
+            this.field1275 = 0;
+            this.field1276 = 0;
          }
 
-         for(; this.field1271 < this.field1280.length; ++this.field1271) {
+         for(; this.field1276 < this.field1263.length; ++this.field1276) {
             if(var1 != null && var1[0] <= 0) {
                return null;
             }
 
-            float[] var2 = this.method2125(this.field1271);
+            float[] var2 = this.method2086(this.field1276);
             if(var2 != null) {
-               int var3 = this.field1295;
+               int var3 = this.field1275;
                int var4 = var2.length;
-               if(var4 > this.field1302 - var3) {
-                  var4 = this.field1302 - var3;
+               if(var4 > this.field1245 - var3) {
+                  var4 = this.field1245 - var3;
                }
 
                for(int var5 = 0; var5 < var4; ++var5) {
@@ -421,25 +421,25 @@ public class class92 extends Node {
                      var6 = ~var6 >> 31;
                   }
 
-                  this.field1300[var3++] = (byte)(var6 - 128);
+                  this.field1274[var3++] = (byte)(var6 - 128);
                }
 
                if(var1 != null) {
-                  var1[0] -= var3 - this.field1295;
+                  var1[0] -= var3 - this.field1275;
                }
 
-               this.field1295 = var3;
+               this.field1275 = var3;
             }
          }
 
-         this.field1287 = null;
-         byte[] var7 = this.field1300;
-         this.field1300 = null;
-         return new RawAudioNode(this.field1273, var7, this.field1272, this.field1292, this.field1274);
+         this.field1261 = null;
+         byte[] var7 = this.field1274;
+         this.field1274 = null;
+         return new RawAudioNode(this.field1244, var7, this.field1246, this.field1253, this.field1248);
       }
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @Export("float32Unpack")
    static float float32Unpack(int var0) {
       int var1 = var0 & 2097151;
@@ -452,7 +452,7 @@ public class class92 extends Node {
       return (float)((double)var1 * Math.pow(2.0D, (double)(var3 - 788)));
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @Export("setBytes")
    static void setBytes(byte[] var0, int var1) {
       payload = var0;
@@ -460,7 +460,7 @@ public class class92 extends Node {
       bitPosition = 0;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @Export("getBit")
    static int getBit() {
       int var0 = payload[position] >> bitPosition & 1;
@@ -470,7 +470,7 @@ public class class92 extends Node {
       return var0;
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @Export("getInt")
    static int getInt(int var0) {
       int var1 = 0;
@@ -495,12 +495,12 @@ public class class92 extends Node {
       return var1;
    }
 
-   @ObfuscatedName("a")
-   static void method2129(byte[] var0) {
+   @ObfuscatedName("q")
+   static void method2082(byte[] var0) {
       setBytes(var0, 0);
       blockSize0 = 1 << getInt(4);
       blockSize1 = 1 << getInt(4);
-      field1291 = new float[blockSize1];
+      field1265 = new float[blockSize1];
 
       int var1;
       int var2;
@@ -519,37 +519,46 @@ public class class92 extends Node {
             var6[var7 * 2 + 1] = -((float)Math.sin((double)(var7 * 4) * 3.141592653589793D / (double)var2));
          }
 
-         float[] var12 = new float[var3];
+         float[] var18 = new float[var3];
 
          for(int var8 = 0; var8 < var4; ++var8) {
-            var12[var8 * 2] = (float)Math.cos((double)(var8 * 2 + 1) * 3.141592653589793D / (double)(var2 * 2));
-            var12[var8 * 2 + 1] = (float)Math.sin((double)(var8 * 2 + 1) * 3.141592653589793D / (double)(var2 * 2));
+            var18[var8 * 2] = (float)Math.cos((double)(var8 * 2 + 1) * 3.141592653589793D / (double)(var2 * 2));
+            var18[var8 * 2 + 1] = (float)Math.sin((double)(var8 * 2 + 1) * 3.141592653589793D / (double)(var2 * 2));
          }
 
-         float[] var13 = new float[var4];
+         float[] var19 = new float[var4];
 
          for(int var9 = 0; var9 < var5; ++var9) {
-            var13[var9 * 2] = (float)Math.cos((double)(var9 * 4 + 2) * 3.141592653589793D / (double)var2);
-            var13[var9 * 2 + 1] = -((float)Math.sin((double)(var9 * 4 + 2) * 3.141592653589793D / (double)var2));
+            var19[var9 * 2] = (float)Math.cos((double)(var9 * 4 + 2) * 3.141592653589793D / (double)var2);
+            var19[var9 * 2 + 1] = -((float)Math.sin((double)(var9 * 4 + 2) * 3.141592653589793D / (double)var2));
          }
 
-         int[] var14 = new int[var5];
-         int var10 = class11.ilog(var5 - 1);
+         int[] var20 = new int[var5];
+         int var10 = class143.ilog(var5 - 1);
 
          for(int var11 = 0; var11 < var5; ++var11) {
-            var14[var11] = MapIconReference.method690(var11, var10);
+            int var15 = var11;
+            int var16 = var10;
+
+            int var17;
+            for(var17 = 0; var16 > 0; --var16) {
+               var17 = var17 << 1 | var15 & 1;
+               var15 >>>= 1;
+            }
+
+            var20[var11] = var17;
          }
 
          if(var1 != 0) {
-            field1286 = var6;
-            field1296 = var12;
-            field1297 = var13;
-            field1299 = var14;
+            field1247 = var6;
+            field1270 = var18;
+            field1271 = var19;
+            field1267 = var20;
          } else {
-            field1283 = var6;
-            field1279 = var12;
-            field1294 = var13;
-            field1298 = var14;
+            field1251 = var6;
+            field1269 = var18;
+            field1268 = var19;
+            field1272 = var20;
          }
       }
 
@@ -591,40 +600,40 @@ public class class92 extends Node {
       modeBlockFlags = new boolean[var5];
       modeMappings = new int[var5];
 
-      for(int var15 = 0; var15 < var5; ++var15) {
-         modeBlockFlags[var15] = getBit() != 0;
+      for(int var21 = 0; var21 < var5; ++var21) {
+         modeBlockFlags[var21] = getBit() != 0;
          getInt(16);
          getInt(16);
-         modeMappings[var15] = getInt(8);
+         modeMappings[var21] = getInt(8);
       }
 
    }
 
-   @ObfuscatedName("d")
+   @ObfuscatedName("x")
    @ObfuscatedSignature(
-      signature = "(Liv;)Z"
+      signature = "(Lir;)Z"
    )
-   static boolean method2132(IndexDataBase var0) {
-      if(!field1284) {
+   static boolean method2087(IndexDataBase var0) {
+      if(!field1260) {
          byte[] var1 = var0.getConfigData(0, 0);
          if(var1 == null) {
             return false;
          }
 
-         method2129(var1);
-         field1284 = true;
+         method2082(var1);
+         field1260 = true;
       }
 
       return true;
    }
 
-   @ObfuscatedName("s")
+   @ObfuscatedName("e")
    @ObfuscatedSignature(
-      signature = "(Liv;II)Lcb;"
+      signature = "(Lir;II)Lcs;"
    )
    @Export("getInstrument")
    static class92 getInstrument(IndexDataBase var0, int var1, int var2) {
-      if(!method2132(var0)) {
+      if(!method2087(var0)) {
          var0.tryLoadRecord(var1, var2);
          return null;
       } else {

@@ -7,40 +7,51 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jy")
 @Implements("Enum")
 public class Enum extends CacheableNode {
-   @ObfuscatedName("m")
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "Lir;"
+   )
+   @Export("EnumDefinition_indexCache")
+   public static IndexDataBase EnumDefinition_indexCache;
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "Lgj;"
    )
    @Export("EnumDefinition_cached")
    static NodeCache EnumDefinition_cached;
-   @ObfuscatedName("q")
+   @ObfuscatedName("bi")
+   @ObfuscatedSignature(
+      signature = "Lid;"
+   )
+   static BuildType field3346;
+   @ObfuscatedName("s")
    @Export("keyType")
    public char keyType;
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @Export("valType")
    public char valType;
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @Export("defaultString")
    public String defaultString;
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = 67416857
+      intValue = -1596194807
    )
    @Export("defaultInt")
    public int defaultInt;
-   @ObfuscatedName("h")
+   @ObfuscatedName("k")
    @ObfuscatedGetter(
-      intValue = -303547453
+      intValue = 689327517
    )
    @Export("size")
    public int size;
-   @ObfuscatedName("x")
+   @ObfuscatedName("i")
    @Export("keys")
    public int[] keys;
-   @ObfuscatedName("j")
+   @ObfuscatedName("x")
    @Export("intVals")
    public int[] intVals;
-   @ObfuscatedName("a")
+   @ObfuscatedName("e")
    @Export("stringVals")
    public String[] stringVals;
 
@@ -53,10 +64,10 @@ public class Enum extends CacheableNode {
       this.size = 0;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(Lgy;I)V",
-      garbageValue = "-1038789195"
+      signature = "(Lgk;B)V",
+      garbageValue = "2"
    )
    @Export("decode")
    void decode(Buffer var1) {
@@ -70,10 +81,10 @@ public class Enum extends CacheableNode {
       }
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(Lgy;II)V",
-      garbageValue = "-1216349647"
+      signature = "(Lgk;IB)V",
+      garbageValue = "1"
    )
    @Export("readNext")
    void readNext(Buffer var1, int var2) {
@@ -110,38 +121,33 @@ public class Enum extends CacheableNode {
 
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(B)I",
-      garbageValue = "3"
+      signature = "(I)I",
+      garbageValue = "-530255352"
    )
-   public int method4998() {
+   public int method4980() {
       return this.size;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(I)V",
-      garbageValue = "296702561"
+      signature = "(DDIB)[D",
+      garbageValue = "2"
    )
-   static void method5008() {
-      FileOnDisk var0 = null;
+   public static double[] method4986(double var0, double var2, int var4) {
+      int var5 = var4 * 2 + 1;
+      double[] var6 = new double[var5];
+      int var7 = -var4;
 
-      try {
-         var0 = class240.getPreferencesFile("", LoginPacket.field2265.name, true);
-         Buffer var1 = ScriptState.preferences.serialize();
-         var0.write(var1.payload, 0, var1.offset);
-      } catch (Exception var3) {
-         ;
+      for(int var8 = 0; var7 <= var4; ++var8) {
+         double var15 = ((double)var7 - var0) / var2;
+         double var13 = Math.exp(-var15 * var15 / 2.0D) / Math.sqrt(6.283185307179586D);
+         double var11 = var13 / var2;
+         var6[var8] = var11;
+         ++var7;
       }
 
-      try {
-         if(var0 != null) {
-            var0.closeSync(true);
-         }
-      } catch (Exception var2) {
-         ;
-      }
-
+      return var6;
    }
 }

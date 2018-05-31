@@ -6,44 +6,46 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lt")
+@ObfuscatedName("lv")
 @Implements("ClassInfo")
 public class ClassInfo extends Node {
+   @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = 751933843
+   )
+   static int field3757;
+   @ObfuscatedName("r")
+   @ObfuscatedSignature(
+      signature = "Lac;"
+   )
+   @Export("scriptMapIconReference")
+   static MapIconReference scriptMapIconReference;
+   @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = -1515270287
+   )
+   int field3758;
    @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = 2094893415
-   )
-   public int field3758;
-   @ObfuscatedName("m")
-   @Export("args")
-   public byte[][][] args;
-   @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1610310061
+      intValue = 893643005
    )
    @Export("count")
-   public int count;
-   @ObfuscatedName("b")
+   int count;
+   @ObfuscatedName("s")
    @Export("type")
-   public int[] type;
-   @ObfuscatedName("f")
-   public int[] field3757;
-   @ObfuscatedName("n")
+   int[] type;
+   @ObfuscatedName("l")
    @Export("errorIdentifiers")
-   public int[] errorIdentifiers;
-   @ObfuscatedName("h")
+   int[] errorIdentifiers;
+   @ObfuscatedName("u")
    @Export("fields")
-   public Field[] fields;
-   @ObfuscatedName("x")
+   Field[] fields;
+   @ObfuscatedName("q")
+   int[] field3753;
+   @ObfuscatedName("k")
    @Export("methods")
-   public Method[] methods;
-
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "(Liv;I)V",
-      garbageValue = "-288900723"
-   )
-   public static void method5752(IndexDataBase var0) {
-      class265.field3351 = var0;
-   }
+   Method[] methods;
+   @ObfuscatedName("i")
+   @Export("args")
+   byte[][][] args;
 }

@@ -3,49 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("an")
+@ObfuscatedName("as")
 @Implements("WorldMapSectionBase")
 public interface WorldMapSectionBase {
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "(La;B)V",
+      garbageValue = "-105"
+   )
+   void vmethod635(WorldMapData var1);
+
    @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(Li;I)V",
-      garbageValue = "-1657983190"
-   )
-   void vmethod692(WorldMapData var1);
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
       signature = "(IIII)Z",
-      garbageValue = "1329615536"
+      garbageValue = "2090621319"
    )
    @Export("containsCoord")
    boolean containsCoord(int var1, int var2, int var3);
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(III)Z",
-      garbageValue = "-1150064833"
+      garbageValue = "-658565537"
    )
-   boolean vmethod694(int var1, int var2);
+   boolean vmethod637(int var1, int var2);
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(IIII)[I",
-      garbageValue = "-1657440355"
+      signature = "(IIIB)[I",
+      garbageValue = "56"
    )
-   int[] vmethod712(int var1, int var2, int var3);
+   int[] vmethod638(int var1, int var2, int var3);
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "(III)Lhh;",
-      garbageValue = "2126255726"
+      signature = "(III)Lha;",
+      garbageValue = "2128900046"
    )
-   Coordinates vmethod707(int var1, int var2);
+   Coordinates vmethod659(int var1, int var2);
 
-   @ObfuscatedName("a")
+   @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "(Lgy;S)V",
-      garbageValue = "255"
+      signature = "(Lgk;B)V",
+      garbageValue = "-40"
    )
-   void vmethod697(Buffer var1);
+   void vmethod639(Buffer var1);
 }

@@ -4,79 +4,85 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("ib")
 @Implements("Spotanim")
 public class Spotanim extends CacheableNode {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "Liv;"
+      signature = "Lir;"
    )
    @Export("SpotAnimationDefinition_indexCache")
-   static IndexDataBase SpotAnimationDefinition_indexCache;
-   @ObfuscatedName("q")
+   public static IndexDataBase SpotAnimationDefinition_indexCache;
+   @ObfuscatedName("w")
+   @ObfuscatedSignature(
+      signature = "Lir;"
+   )
+   @Export("SpotAnimationDefinition_modelIndexCache")
+   public static IndexDataBase SpotAnimationDefinition_modelIndexCache;
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "Lgj;"
    )
    @Export("spotanims")
-   static NodeCache spotanims;
-   @ObfuscatedName("b")
+   public static NodeCache spotanims;
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
       signature = "Lgj;"
    )
    @Export("SpotAnimationDefinition_cachedModels")
-   static NodeCache SpotAnimationDefinition_cachedModels;
-   @ObfuscatedName("f")
+   public static NodeCache SpotAnimationDefinition_cachedModels;
+   @ObfuscatedName("u")
    @ObfuscatedGetter(
-      intValue = -1075787503
+      intValue = -222748263
    )
    @Export("id")
    int id;
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = 1373189613
+      intValue = 1890309405
    )
-   int field3291;
-   @ObfuscatedName("h")
+   int field3268;
+   @ObfuscatedName("k")
    @ObfuscatedGetter(
-      intValue = -92331913
+      intValue = -1738740977
    )
-   public int field3292;
+   public int field3271;
+   @ObfuscatedName("i")
+   short[] field3266;
    @ObfuscatedName("x")
-   short[] field3289;
-   @ObfuscatedName("j")
-   short[] field3294;
-   @ObfuscatedName("a")
-   short[] field3301;
-   @ObfuscatedName("l")
-   short[] field3296;
-   @ObfuscatedName("d")
+   short[] field3270;
+   @ObfuscatedName("e")
+   short[] field3274;
+   @ObfuscatedName("p")
+   short[] field3275;
+   @ObfuscatedName("b")
    @ObfuscatedGetter(
-      intValue = 380474301
+      intValue = -1496956879
    )
    @Export("widthScale")
    int widthScale;
-   @ObfuscatedName("s")
+   @ObfuscatedName("n")
    @ObfuscatedGetter(
-      intValue = -119979769
+      intValue = -3859707
    )
    @Export("heightScale")
    int heightScale;
-   @ObfuscatedName("p")
+   @ObfuscatedName("f")
    @ObfuscatedGetter(
-      intValue = 818209207
+      intValue = 1793069157
    )
    @Export("orientation")
    int orientation;
    @ObfuscatedName("g")
    @ObfuscatedGetter(
-      intValue = 745529987
+      intValue = 1287651757
    )
-   int field3293;
-   @ObfuscatedName("y")
+   int field3273;
+   @ObfuscatedName("m")
    @ObfuscatedGetter(
-      intValue = -1021149467
+      intValue = 1462355847
    )
-   int field3297;
+   int field3269;
 
    static {
       spotanims = new NodeCache(64);
@@ -84,18 +90,18 @@ public class Spotanim extends CacheableNode {
    }
 
    Spotanim() {
-      this.field3292 = -1;
+      this.field3271 = -1;
       this.widthScale = 128;
       this.heightScale = 128;
       this.orientation = 0;
-      this.field3293 = 0;
-      this.field3297 = 0;
+      this.field3273 = 0;
+      this.field3269 = 0;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(Lgy;I)V",
-      garbageValue = "317387597"
+      signature = "(Lgk;I)V",
+      garbageValue = "713149858"
    )
    @Export("decode")
    void decode(Buffer var1) {
@@ -109,17 +115,17 @@ public class Spotanim extends CacheableNode {
       }
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(Lgy;II)V",
-      garbageValue = "-1069439507"
+      signature = "(Lgk;II)V",
+      garbageValue = "269273917"
    )
    @Export("readNext")
    void readNext(Buffer var1, int var2) {
       if(var2 == 1) {
-         this.field3291 = var1.readUnsignedShort();
+         this.field3268 = var1.readUnsignedShort();
       } else if(var2 == 2) {
-         this.field3292 = var1.readUnsignedShort();
+         this.field3271 = var1.readUnsignedShort();
       } else if(var2 == 4) {
          this.widthScale = var1.readUnsignedShort();
       } else if(var2 == 5) {
@@ -127,69 +133,69 @@ public class Spotanim extends CacheableNode {
       } else if(var2 == 6) {
          this.orientation = var1.readUnsignedShort();
       } else if(var2 == 7) {
-         this.field3293 = var1.readUnsignedByte();
+         this.field3273 = var1.readUnsignedByte();
       } else if(var2 == 8) {
-         this.field3297 = var1.readUnsignedByte();
+         this.field3269 = var1.readUnsignedByte();
       } else {
          int var3;
          int var4;
          if(var2 == 40) {
             var3 = var1.readUnsignedByte();
-            this.field3289 = new short[var3];
-            this.field3294 = new short[var3];
+            this.field3266 = new short[var3];
+            this.field3270 = new short[var3];
 
             for(var4 = 0; var4 < var3; ++var4) {
-               this.field3289[var4] = (short)var1.readUnsignedShort();
-               this.field3294[var4] = (short)var1.readUnsignedShort();
+               this.field3266[var4] = (short)var1.readUnsignedShort();
+               this.field3270[var4] = (short)var1.readUnsignedShort();
             }
          } else if(var2 == 41) {
             var3 = var1.readUnsignedByte();
-            this.field3301 = new short[var3];
-            this.field3296 = new short[var3];
+            this.field3274 = new short[var3];
+            this.field3275 = new short[var3];
 
             for(var4 = 0; var4 < var3; ++var4) {
-               this.field3301[var4] = (short)var1.readUnsignedShort();
-               this.field3296[var4] = (short)var1.readUnsignedShort();
+               this.field3274[var4] = (short)var1.readUnsignedShort();
+               this.field3275[var4] = (short)var1.readUnsignedShort();
             }
          }
       }
 
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(II)Ldk;",
-      garbageValue = "-15359933"
+      signature = "(II)Ldc;",
+      garbageValue = "-226282486"
    )
    @Export("getModel")
    public final Model getModel(int var1) {
       Model var2 = (Model)SpotAnimationDefinition_cachedModels.get((long)this.id);
       if(var2 == null) {
-         ModelData var3 = ModelData.method2619(Varcs.SpotAnimationDefinition_modelIndexCache, this.field3291, 0);
+         ModelData var3 = ModelData.method2568(SpotAnimationDefinition_modelIndexCache, this.field3268, 0);
          if(var3 == null) {
             return null;
          }
 
          int var4;
-         if(this.field3289 != null) {
-            for(var4 = 0; var4 < this.field3289.length; ++var4) {
-               var3.recolor(this.field3289[var4], this.field3294[var4]);
+         if(this.field3266 != null) {
+            for(var4 = 0; var4 < this.field3266.length; ++var4) {
+               var3.recolor(this.field3266[var4], this.field3270[var4]);
             }
          }
 
-         if(this.field3301 != null) {
-            for(var4 = 0; var4 < this.field3301.length; ++var4) {
-               var3.method2632(this.field3301[var4], this.field3296[var4]);
+         if(this.field3274 != null) {
+            for(var4 = 0; var4 < this.field3274.length; ++var4) {
+               var3.method2582(this.field3274[var4], this.field3275[var4]);
             }
          }
 
-         var2 = var3.light(this.field3293 + 64, this.field3297 + 850, -30, -50, -30);
+         var2 = var3.light(this.field3273 + 64, this.field3269 + 850, -30, -50, -30);
          SpotAnimationDefinition_cachedModels.put(var2, (long)this.id);
       }
 
       Model var5;
-      if(this.field3292 != -1 && var1 != -1) {
-         var5 = class137.getAnimation(this.field3292).transformSpotAnimModel(var2, var1);
+      if(this.field3271 != -1 && var1 != -1) {
+         var5 = TotalQuantityComparator.getAnimation(this.field3271).transformSpotAnimModel(var2, var1);
       } else {
          var5 = var2.toSharedSpotAnimModel(true);
       }

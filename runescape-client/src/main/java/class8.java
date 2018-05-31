@@ -1,64 +1,34 @@
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("j")
+@ObfuscatedName("x")
 public class class8 {
-   @ObfuscatedName("rc")
-   @ObfuscatedSignature(
-      signature = "Lir;"
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 1767584041
    )
-   public static class251 field53;
-   @ObfuscatedName("at")
-   static int[] field51;
-   @ObfuscatedName("ce")
-   @Export("middleMouseMovesCamera")
-   static boolean middleMouseMovesCamera;
-   @ObfuscatedName("fh")
-   static byte[][] field58;
+   protected static int field48;
+   @ObfuscatedName("t")
+   static String[] field52;
+   @ObfuscatedName("ar")
+   protected static String field55;
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(I)[Lfr;",
-      garbageValue = "-2014391752"
+      signature = "(Llm;B)I",
+      garbageValue = "28"
    )
-   public static class171[] method90() {
-      return new class171[]{class171.field2274, class171.field2267, class171.field2269, class171.field2270, class171.field2271, class171.field2276, class171.field2273, class171.field2268, class171.field2275, class171.field2272};
-   }
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(IB)Ljq;",
-      garbageValue = "43"
-   )
-   public static class267 method92(int var0) {
-      class267 var1 = (class267)class267.field3367.get((long)var0);
-      if(var1 != null) {
-         return var1;
+   public static final int method84(JagexLoginType var0) {
+      if(var0 == null) {
+         return 12;
       } else {
-         byte[] var2 = class267.field3386.getConfigData(32, var0);
-         var1 = new class267();
-         if(var2 != null) {
-            var1.method5010(new Buffer(var2));
+         switch(var0.field3879) {
+         case 4:
+            return 20;
+         default:
+            return 12;
          }
-
-         class267.field3367.put(var1, (long)var0);
-         return var1;
       }
-   }
-
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      signature = "(IIB)I",
-      garbageValue = "-44"
-   )
-   static int method91(int var0, int var1) {
-      long var2 = (long)((var0 << 16) + var1);
-      return class320.currentRequest != null && var2 == class320.currentRequest.hash?class232.NetCache_responseArchiveBuffer.offset * 99 / (class232.NetCache_responseArchiveBuffer.payload.length - class320.currentRequest.padding) + 1:0;
-   }
-
-   @ObfuscatedName("l")
-   public static int method93(long var0) {
-      return (int)(var0 >>> 17 & 4294967295L);
    }
 }

@@ -4,43 +4,45 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bq")
+@ObfuscatedName("bm")
 @Implements("AttackOption")
 public enum AttackOption implements Enumerated {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "Lbq;"
+      signature = "Lbm;"
    )
    @Export("AttackOption_dependsOnCombatLevels")
    AttackOption_dependsOnCombatLevels(0),
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Lbq;"
+      signature = "Lbm;"
    )
    @Export("AttackOption_alwaysRightClick")
    AttackOption_alwaysRightClick(1),
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Lbq;"
+      signature = "Lbm;"
    )
    @Export("AttackOption_leftClickWhereAvailable")
    AttackOption_leftClickWhereAvailable(2),
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "Lbq;"
+      signature = "Lbm;"
    )
    @Export("AttackOption_hidden")
    AttackOption_hidden(3);
 
-   @ObfuscatedName("qp")
+   @ObfuscatedName("j")
+   static int[] field1077;
+   @ObfuscatedName("cx")
    @ObfuscatedSignature(
-      signature = "Lll;"
+      signature = "Lic;"
    )
-   @Export("platformInfo")
-   static MachineInfo platformInfo;
-   @ObfuscatedName("f")
+   @Export("indexInterfaces")
+   static IndexData indexInterfaces;
+   @ObfuscatedName("u")
    @ObfuscatedGetter(
-      intValue = 1657086489
+      intValue = 58517799
    )
    @Export("id")
    final int id;
@@ -49,24 +51,12 @@ public enum AttackOption implements Enumerated {
       this.id = var3;
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "(B)I",
-      garbageValue = "60"
+      garbageValue = "59"
    )
    public int rsOrdinal() {
       return this.id;
-   }
-
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "50"
-   )
-   static void method1855() {
-      class83.chatLineMap.clear();
-      class83.messages.clear();
-      class83.field1205.clear();
-      class83.field1208 = 0;
    }
 }

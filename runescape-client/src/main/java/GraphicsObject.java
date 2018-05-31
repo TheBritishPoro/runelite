@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Hook;
 import net.runelite.mapping.Implements;
@@ -5,66 +7,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bf")
+@ObfuscatedName("by")
 @Implements("GraphicsObject")
 public final class GraphicsObject extends Renderable {
-   @ObfuscatedName("bx")
-   @ObfuscatedSignature(
-      signature = "Lip;"
-   )
-   static BuildType field1042;
-   @ObfuscatedName("w")
+   @ObfuscatedName("qa")
    @ObfuscatedGetter(
-      intValue = 930375409
+      longValue = 6136871153165894453L
    )
-   @Export("id")
-   int id;
-   @ObfuscatedName("m")
+   static long field1013;
+   @ObfuscatedName("z")
    @ObfuscatedGetter(
-      intValue = 655944159
-   )
-   @Export("startCycle")
-   int startCycle;
-   @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 611659329
-   )
-   @Export("level")
-   int level;
-   @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 469231961
-   )
-   @Export("x")
-   int x;
-   @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1901568555
-   )
-   @Export("y")
-   int y;
-   @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = 2001790593
+      intValue = -904369215
    )
    @Export("height")
    int height;
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      signature = "Ljh;"
+   @ObfuscatedName("w")
+   @ObfuscatedGetter(
+      intValue = -975901259
    )
-   Sequence field1038;
+   @Export("id")
+   int id;
+   @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = -975475893
+   )
+   @Export("startCycle")
+   int startCycle;
+   @ObfuscatedName("l")
+   @ObfuscatedGetter(
+      intValue = 1389377337
+   )
+   @Export("level")
+   int level;
+   @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 1930171125
+   )
+   @Export("x")
+   int x;
+   @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1202134777
+   )
+   @Export("y")
+   int y;
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "Ljn;"
+   )
+   Sequence field1018;
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = -1404768991
+   )
+   int field1019;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
-      intValue = -1488825937
+      intValue = 1843616515
    )
-   int field1039;
-   @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -271875461
-   )
-   int field1040;
-   @ObfuscatedName("a")
+   int field1020;
+   @ObfuscatedName("e")
    @Export("finished")
    boolean finished;
 
@@ -73,8 +75,8 @@ public final class GraphicsObject extends Renderable {
       end = true
    )
    GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-      this.field1039 = 0;
-      this.field1040 = 0;
+      this.field1019 = 0;
+      this.field1020 = 0;
       this.finished = false;
       this.id = var1;
       this.level = var2;
@@ -82,29 +84,29 @@ public final class GraphicsObject extends Renderable {
       this.y = var4;
       this.height = var5;
       this.startCycle = var7 + var6;
-      int var8 = ScriptState.getSpotAnimType(this.id).field3292;
+      int var8 = MouseRecorder.getSpotAnimType(this.id).field3271;
       if(var8 != -1) {
          this.finished = false;
-         this.field1038 = class137.getAnimation(var8);
+         this.field1018 = TotalQuantityComparator.getAnimation(var8);
       } else {
          this.finished = true;
       }
 
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(II)V",
-      garbageValue = "677069676"
+      signature = "(IB)V",
+      garbageValue = "-58"
    )
-   final void method1812(int var1) {
+   final void method1771(int var1) {
       if(!this.finished) {
-         this.field1040 += var1;
+         this.field1020 += var1;
 
-         while(this.field1040 > this.field1038.frameLengths[this.field1039]) {
-            this.field1040 -= this.field1038.frameLengths[this.field1039];
-            ++this.field1039;
-            if(this.field1039 >= this.field1038.frameIDs.length) {
+         while(this.field1020 > this.field1018.frameLengths[this.field1019]) {
+            this.field1020 -= this.field1018.frameLengths[this.field1019];
+            ++this.field1019;
+            if(this.field1019 >= this.field1018.frameIDs.length) {
                this.finished = true;
                break;
             }
@@ -113,16 +115,16 @@ public final class GraphicsObject extends Renderable {
       }
    }
 
-   @ObfuscatedName("s")
+   @ObfuscatedName("e")
    @ObfuscatedSignature(
-      signature = "(B)Ldk;",
-      garbageValue = "111"
+      signature = "(I)Ldc;",
+      garbageValue = "2119202332"
    )
    protected final Model getModel() {
-      Spotanim var1 = ScriptState.getSpotAnimType(this.id);
+      Spotanim var1 = MouseRecorder.getSpotAnimType(this.id);
       Model var2;
       if(!this.finished) {
-         var2 = var1.getModel(this.field1039);
+         var2 = var1.getModel(this.field1019);
       } else {
          var2 = var1.getModel(-1);
       }
@@ -130,33 +132,84 @@ public final class GraphicsObject extends Renderable {
       return var2 == null?null:var2;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(IB)Lcs;",
-      garbageValue = "-74"
+      signature = "(Ljava/io/File;ZI)Z",
+      garbageValue = "307061840"
    )
-   static Script method1806(int var0) {
-      Script var1 = (Script)Script.field1214.get((long)var0);
-      if(var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = TotalQuantityComparator.indexScripts.getConfigData(var0, 0);
-         if(var2 == null) {
-            return null;
-         } else {
-            var1 = class143.newScript(var2);
-            Script.field1214.put(var1, (long)var0);
-            return var1;
+   static boolean method1766(File var0, boolean var1) {
+      try {
+         RandomAccessFile var2 = new RandomAccessFile(var0, "rw");
+         int var3 = var2.read();
+         var2.seek(0L);
+         var2.write(var3);
+         var2.seek(0L);
+         var2.close();
+         if(var1) {
+            var0.delete();
          }
+
+         return true;
+      } catch (Exception var4) {
+         return false;
       }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("i")
    @ObfuscatedSignature(
-      signature = "(CI)Z",
-      garbageValue = "24362530"
+      signature = "(ILce;ZB)I",
+      garbageValue = "5"
    )
-   static final boolean method1813(char var0) {
-      return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
+   static int method1768(int var0, Script var1, boolean var2) {
+      Widget var3;
+      if(var0 >= 2000) {
+         var0 -= 1000;
+         var3 = class26.getWidget(class69.intStack[--class69.intStackSize]);
+      } else {
+         var3 = var2?class276.field3561:KitDefinition.field3301;
+      }
+
+      Player.method1114(var3);
+      if(var0 != 1200 && var0 != 1205 && var0 != 1212) {
+         if(var0 == 1201) {
+            var3.modelType = 2;
+            var3.modelId = class69.intStack[--class69.intStackSize];
+            return 1;
+         } else if(var0 == 1202) {
+            var3.modelType = 3;
+            var3.modelId = class138.localPlayer.composition.method4483();
+            return 1;
+         } else {
+            return 2;
+         }
+      } else {
+         class69.intStackSize -= 2;
+         int var4 = class69.intStack[class69.intStackSize];
+         int var5 = class69.intStack[class69.intStackSize + 1];
+         var3.itemId = var4;
+         var3.itemQuantity = var5;
+         ItemComposition var6 = TextureProvider.getItemDefinition(var4);
+         var3.rotationX = var6.xan2d;
+         var3.rotationZ = var6.yan2d;
+         var3.rotationY = var6.zan2d;
+         var3.offsetX2d = var6.offsetX2d;
+         var3.offsetY2d = var6.offsetY2d;
+         var3.modelZoom = var6.zoom2d;
+         if(var0 == 1205) {
+            var3.field2664 = 0;
+         } else if(var0 == 1212 | 1 == var6.isStackable) {
+            var3.field2664 = 1;
+         } else {
+            var3.field2664 = 2;
+         }
+
+         if(var3.field2660 > 0) {
+            var3.modelZoom = var3.modelZoom * 32 / var3.field2660;
+         } else if(var3.originalWidth > 0) {
+            var3.modelZoom = var3.modelZoom * 32 / var3.originalWidth;
+         }
+
+         return 1;
+      }
    }
 }

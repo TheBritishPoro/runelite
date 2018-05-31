@@ -1,23 +1,18 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jr")
+@ObfuscatedName("js")
 public class class275 {
-   @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 745313375
-   )
-   @Export("indexedSpriteHeight")
-   static int indexedSpriteHeight;
-
-   @ObfuscatedName("jc")
+   @ObfuscatedName("fe")
    @ObfuscatedSignature(
-      signature = "(I)Z",
-      garbageValue = "1931787566"
+      signature = "(I)V",
+      garbageValue = "1245904188"
    )
-   static boolean method5250() {
-      return Client.field669;
+   static void method5239() {
+      if(ItemContainer.renderOverview != null) {
+         ItemContainer.renderOverview.method6011(class13.plane, (class138.localPlayer.x >> 7) + PendingSpawn.baseX, (class138.localPlayer.y >> 7) + Client.baseY, false);
+         ItemContainer.renderOverview.method6027();
+      }
+
    }
 }

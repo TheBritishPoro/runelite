@@ -1,38 +1,34 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ex")
 public class class140 extends class283 {
-   @ObfuscatedName("fz")
-   @Export("landMapFileIds")
-   static int[] landMapFileIds;
-   @ObfuscatedName("w")
-   final boolean field1900;
+   @ObfuscatedName("z")
+   final boolean field1883;
 
    public class140(boolean var1) {
-      this.field1900 = var1;
+      this.field1883 = var1;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Lkd;Lkd;I)I",
-      garbageValue = "-449392151"
+      signature = "(Lkz;Lkz;I)I",
+      garbageValue = "-359404132"
    )
-   int method3169(ChatPlayer var1, ChatPlayer var2) {
-      return Client.world == var1.world && var2.world == Client.world?(this.field1900?var1.field3649 - var2.field3649:var2.field3649 - var1.field3649):this.method5320(var1, var2);
+   int method3147(ChatPlayer var1, ChatPlayer var2) {
+      return Client.world == var1.world && var2.world == Client.world?(this.field1883?var1.field3627 - var2.field3627:var2.field3627 - var1.field3627):this.method5308(var1, var2);
    }
 
    public int compare(Object var1, Object var2) {
-      return this.method3169((ChatPlayer)var1, (ChatPlayer)var2);
+      return this.method3147((ChatPlayer)var1, (ChatPlayer)var2);
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "([Ljava/lang/String;[SI)V",
-      garbageValue = "430996961"
+      signature = "(IB)Z",
+      garbageValue = "-1"
    )
-   public static void method3173(String[] var0, short[] var1) {
-      WorldMapType3.method155(var0, var1, 0, var0.length - 1);
+   public static boolean method3150(int var0) {
+      return (var0 >> 29 & 1) != 0;
    }
 }

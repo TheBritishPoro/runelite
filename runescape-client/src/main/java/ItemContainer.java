@@ -1,31 +1,32 @@
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bo")
+@ObfuscatedName("bp")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-   @ObfuscatedName("w")
+   @ObfuscatedName("ri")
    @ObfuscatedSignature(
-      signature = "Lgd;"
+      signature = "Llw;"
+   )
+   @Export("renderOverview")
+   static RenderOverview renderOverview;
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "Lgx;"
    )
    @Export("itemContainers")
    static HashTable itemContainers;
-   @ObfuscatedName("fo")
-   @Export("landRegionFileIds")
-   static int[] landRegionFileIds;
-   @ObfuscatedName("gl")
-   @ObfuscatedGetter(
-      intValue = -277523073
+   @ObfuscatedName("n")
+   @ObfuscatedSignature(
+      signature = "Lly;"
    )
-   static int field481;
-   @ObfuscatedName("m")
+   static IndexedSprite field472;
+   @ObfuscatedName("w")
    @Export("itemIds")
    int[] itemIds;
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @Export("stackSizes")
    int[] stackSizes;
 
@@ -38,28 +39,36 @@ public class ItemContainer extends Node {
       this.stackSizes = new int[]{0};
    }
 
-   @ObfuscatedName("hd")
+   @ObfuscatedName("fa")
    @ObfuscatedSignature(
-      signature = "(ZI)V",
-      garbageValue = "-2110619792"
+      signature = "(IZZZB)Lic;",
+      garbageValue = "95"
    )
-   @Export("flush")
-   static final void flush(boolean var0) {
-      Varbit.method4951();
-      ++Client.field739.field1252;
-      if(Client.field739.field1252 >= 50 || var0) {
-         Client.field739.field1252 = 0;
-         if(!Client.socketError && Client.field739.getSocket() != null) {
-            PacketNode var1 = DecorativeObject.method3115(ClientPacket.field2217, Client.field739.field1250);
-            Client.field739.method2019(var1);
-
-            try {
-               Client.field739.method2034();
-            } catch (IOException var3) {
-               Client.socketError = true;
-            }
-         }
-
+   @Export("openCacheIndex")
+   static IndexData openCacheIndex(int var0, boolean var1, boolean var2, boolean var3) {
+      IndexFile var4 = null;
+      if(class155.dat2File != null) {
+         var4 = new IndexFile(var0, class155.dat2File, class76.idxFiles[var0], 1000000);
       }
+
+      return new IndexData(var4, class34.indexStore255, var0, var1, var2, var3);
+   }
+
+   @ObfuscatedName("jc")
+   @ObfuscatedSignature(
+      signature = "(I)V",
+      garbageValue = "-1595845951"
+   )
+   static final void method1012() {
+      for(int var0 = 0; var0 < class81.playerIndexesCount; ++var0) {
+         Player var1 = Client.cachedPlayers[class81.playerIndices[var0]];
+         var1.method1084();
+      }
+
+      class37.method640();
+      if(WorldMapType3.clanMemberManager != null) {
+         WorldMapType3.clanMemberManager.method5467();
+      }
+
    }
 }

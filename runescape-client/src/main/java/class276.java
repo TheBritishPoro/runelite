@@ -1,16 +1,16 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jt")
+@ObfuscatedName("jm")
 public class class276 {
-   @ObfuscatedName("l")
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      signature = "(Liv;Ljava/lang/String;Ljava/lang/String;B)Llc;",
-      garbageValue = "-32"
+      signature = "Lhi;"
    )
-   public static SpritePixels method5251(IndexDataBase var0, String var1, String var2) {
-      int var3 = var0.getFile(var1);
-      int var4 = var0.getChild(var3, var2);
-      return ChatLineBuffer.getSpriteAsSpritePixels(var0, var3, var4);
-   }
+   static Widget field3561;
+   @ObfuscatedName("iy")
+   @ObfuscatedSignature(
+      signature = "Lhi;"
+   )
+   static Widget field3559;
 }

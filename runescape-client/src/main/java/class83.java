@@ -5,114 +5,159 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cf")
+@ObfuscatedName("cl")
 public class class83 {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @Export("chatLineMap")
    static final Map chatLineMap;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Lgx;"
+      signature = "Lgu;"
    )
    @Export("messages")
    static final IterableHashTable messages;
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Lhq;"
+      signature = "Lhj;"
    )
-   static final IterableDualNodeQueue field1205;
-   @ObfuscatedName("b")
+   static final IterableDualNodeQueue field1184;
+   @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = 2021624217
+      intValue = 556765175
    )
-   static int field1208;
-   @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = -2076105995
-   )
-   @Export("scriptStringStackSize")
-   static int scriptStringStackSize;
-   @ObfuscatedName("ad")
-   static int[] field1206;
+   static int field1186;
 
    static {
       chatLineMap = new HashMap();
       messages = new IterableHashTable(1024);
-      field1205 = new IterableDualNodeQueue();
-      field1208 = 0;
+      field1184 = new IterableDualNodeQueue();
+      field1186 = 0;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("gv")
    @ObfuscatedSignature(
-      signature = "(Liv;Liv;I)V",
-      garbageValue = "-927941967"
+      signature = "(Ljava/lang/String;ZI)V",
+      garbageValue = "1049390668"
    )
-   public static void method1986(IndexDataBase var0, IndexDataBase var1) {
-      KitDefinition.identKit_ref = var0;
-      KitDefinition.field3320 = var1;
-      KitDefinition.field3319 = KitDefinition.identKit_ref.fileCount(3);
+   static final void method1933(String var0, boolean var1) {
+      if(Client.field677) {
+         byte var2 = 4;
+         int var3 = var2 + 6;
+         int var4 = var2 + 6;
+         int var5 = Actor.font_p12full.method5519(var0, 250);
+         int var6 = Actor.font_p12full.method5520(var0, 250) * 13;
+         Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var2 + var5 + var2, var2 + var2 + var6, 0);
+         Rasterizer2D.drawRectangle(var3 - var2, var4 - var2, var2 + var5 + var2, var6 + var2 + var2, 16777215);
+         Actor.font_p12full.method5526(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0);
+         MouseInput.method948(var3 - var2, var4 - var2, var2 + var5 + var2, var2 + var2 + var6);
+         if(var1) {
+            GameSocket.rasterProvider.drawFull(0, 0);
+         } else {
+            int var7 = var3;
+            int var8 = var4;
+            int var9 = var5;
+            int var10 = var6;
+
+            for(int var11 = 0; var11 < Client.widgetCount; ++var11) {
+               if(Client.widgetBoundsWidth[var11] + Client.widgetPositionX[var11] > var7 && Client.widgetPositionX[var11] < var7 + var9 && Client.widgetBoundsHeight[var11] + Client.widgetPositionY[var11] > var8 && Client.widgetPositionY[var11] < var10 + var8) {
+                  Client.field788[var11] = true;
+               }
+            }
+         }
+
+      }
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("he")
    @ObfuscatedSignature(
-      signature = "(Lge;I)V",
-      garbageValue = "1737338095"
+      signature = "(I)V",
+      garbageValue = "1621920950"
    )
-   @Export("initializeGPI")
-   static final void initializeGPI(PacketBuffer var0) {
-      var0.bitAccess();
-      int var1 = Client.localInteractingIndex;
-      Player var2 = MilliTimer.localPlayer = Client.cachedPlayers[var1] = new Player();
-      var2.playerId = var1;
-      int var3 = var0.getBits(30);
-      byte var4 = (byte)(var3 >> 28);
-      int var5 = var3 >> 14 & 16383;
-      int var6 = var3 & 16383;
-      var2.pathX[0] = var5 - class178.baseX;
-      var2.x = (var2.pathX[0] << 7) + (var2.getSize() << 6);
-      var2.pathY[0] = var6 - CombatInfoListHolder.baseY;
-      var2.y = (var2.pathY[0] << 7) + (var2.getSize() << 6);
-      class192.plane = var2.field581 = var4;
-      if(class81.field1179[var1] != null) {
-         var2.decodeApperance(class81.field1179[var1]);
+   static final void method1940() {
+      int var0 = MouseInput.menuX;
+      int var1 = WorldComparator.menuY;
+      int var2 = UrlRequester.field1856;
+      int var3 = class151.field1933;
+      int var4 = 6116423;
+      Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, var4);
+      Rasterizer2D.Rasterizer2D_fillRectangle(var0 + 1, var1 + 1, var2 - 2, 16, 0);
+      Rasterizer2D.drawRectangle(var0 + 1, var1 + 18, var2 - 2, var3 - 19, 0);
+      ClanMemberManager.fontBold12.method5522("Choose Option", var0 + 3, var1 + 14, var4, -1);
+      int var5 = MouseInput.mouseLastX;
+      int var6 = MouseInput.mouseLastY * 673804999;
+
+      int var7;
+      int var8;
+      int var9;
+      for(var7 = 0; var7 < Client.menuOptionCount; ++var7) {
+         var8 = var1 + (Client.menuOptionCount - 1 - var7) * 15 + 31;
+         var9 = 16777215;
+         if(var5 > var0 && var5 < var2 + var0 && var6 > var8 - 13 && var6 < var8 + 3) {
+            var9 = 16776960;
+         }
+
+         ClanMemberManager.fontBold12.method5522(WorldMapType1.method176(var7), var0 + 3, var8, var9, 0);
       }
 
-      class81.playerIndexesCount = 0;
-      class81.playerIndices[++class81.playerIndexesCount - 1] = var1;
-      class81.field1183[var1] = 0;
-      class81.field1182 = 0;
+      var7 = MouseInput.menuX;
+      var8 = WorldComparator.menuY;
+      var9 = UrlRequester.field1856;
+      int var10 = class151.field1933;
 
-      for(int var7 = 1; var7 < 2048; ++var7) {
-         if(var1 != var7) {
-            int var8 = var0.getBits(18);
-            int var9 = var8 >> 16;
-            int var10 = var8 >> 8 & 597;
-            int var11 = var8 & 597;
-            class81.Players_regions[var7] = (var10 << 14) + var11 + (var9 << 28);
-            class81.Players_orientations[var7] = 0;
-            class81.Players_targetIndices[var7] = -1;
-            class81.field1175[++class81.field1182 - 1] = var7;
-            class81.field1183[var7] = 0;
+      for(int var11 = 0; var11 < Client.widgetCount; ++var11) {
+         if(Client.widgetBoundsWidth[var11] + Client.widgetPositionX[var11] > var7 && Client.widgetPositionX[var11] < var7 + var9 && Client.widgetBoundsHeight[var11] + Client.widgetPositionY[var11] > var8 && Client.widgetPositionY[var11] < var8 + var10) {
+            Client.field788[var11] = true;
          }
       }
 
-      var0.byteAccess();
    }
 
-   @ObfuscatedName("d")
+   @ObfuscatedName("ib")
    @ObfuscatedSignature(
-      signature = "(III)I",
-      garbageValue = "-709266034"
+      signature = "([Lhi;II)V",
+      garbageValue = "1406653934"
    )
-   static final int method1985(int var0, int var1) {
-      int var2 = UnitPriceComparator.getSmoothNoise(var0 + 45365, 91923 + var1, 4) - 128 + (UnitPriceComparator.getSmoothNoise(10294 + var0, var1 + 37821, 2) - 128 >> 1) + (UnitPriceComparator.getSmoothNoise(var0, var1, 1) - 128 >> 2);
-      var2 = (int)(0.3D * (double)var2) + 35;
-      if(var2 < 10) {
-         var2 = 10;
-      } else if(var2 > 60) {
-         var2 = 60;
+   static final void method1923(Widget[] var0, int var1) {
+      for(int var2 = 0; var2 < var0.length; ++var2) {
+         Widget var3 = var0[var2];
+         if(var3 != null) {
+            if(var3.type == 0) {
+               if(var3.children != null) {
+                  method1923(var3.children, var1);
+               }
+
+               WidgetNode var4 = (WidgetNode)Client.componentTable.get((long)var3.id);
+               if(var4 != null) {
+                  int var5 = var4.id;
+                  if(CombatInfo2.loadWidget(var5)) {
+                     method1923(GameCanvas.widgets[var5], var1);
+                  }
+               }
+            }
+
+            ScriptEvent var6;
+            if(var1 == 0 && var3.onDialogAbortListener != null) {
+               var6 = new ScriptEvent();
+               var6.source = var3;
+               var6.params = var3.onDialogAbortListener;
+               class68.method1696(var6);
+            }
+
+            if(var1 == 1 && var3.onSubChangeListener != null) {
+               if(var3.index >= 0) {
+                  Widget var7 = class26.getWidget(var3.id);
+                  if(var7 == null || var7.children == null || var3.index >= var7.children.length || var3 != var7.children[var3.index]) {
+                     continue;
+                  }
+               }
+
+               var6 = new ScriptEvent();
+               var6.source = var3;
+               var6.params = var3.onSubChangeListener;
+               class68.method1696(var6);
+            }
+         }
       }
 
-      return var2;
    }
 }

@@ -1,53 +1,43 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hn")
+@ObfuscatedName("hm")
 public class class217 {
    @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Liv;"
+      signature = "Lir;"
    )
-   public static IndexDataBase field2484;
-   @ObfuscatedName("m")
+   public static IndexDataBase field2464;
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Liv;"
+      signature = "Lir;"
    )
-   public static IndexDataBase field2482;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "Liv;"
-   )
-   public static IndexDataBase field2490;
-   @ObfuscatedName("b")
-   @ObfuscatedSignature(
-      signature = "Lho;"
-   )
-   public static class218 field2485;
-   @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -908068121
-   )
-   static int field2486;
-   @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -2009173685
-   )
-   static int field2487;
+   public static IndexDataBase field2458;
    @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "Liv;"
+      signature = "Lhg;"
    )
-   static IndexDataBase field2489;
-   @ObfuscatedName("fd")
-   @ObfuscatedSignature(
-      signature = "[Llc;"
+   public static class218 field2459;
+   @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 687030539
    )
-   @Export("mapMarkers")
-   static SpritePixels[] mapMarkers;
+   public static int field2460;
+   @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = 1666633617
+   )
+   static int field2461;
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = -1011833693
+   )
+   static int field2462;
+   @ObfuscatedName("p")
+   static boolean field2463;
 
    static {
-      field2486 = 0;
+      field2460 = 0;
    }
 }

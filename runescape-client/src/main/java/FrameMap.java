@@ -2,26 +2,38 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dx")
+@ObfuscatedName("dt")
 @Implements("FrameMap")
 public class FrameMap extends Node {
-   @ObfuscatedName("w")
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      signature = "[Lly;"
+   )
+   @Export("titlemuteSprite")
+   static IndexedSprite[] titlemuteSprite;
+   @ObfuscatedName("ba")
    @ObfuscatedGetter(
-      intValue = 570567615
+      intValue = -1804049311
+   )
+   static int field1709;
+   @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = 28942011
    )
    @Export("id")
    int id;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = -82372649
+      intValue = -1349970051
    )
    @Export("count")
    int count;
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @Export("types")
    int[] types;
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @Export("list")
    int[][] list;
 

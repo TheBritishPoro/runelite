@@ -2,57 +2,57 @@ import java.util.Iterator;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ga")
+@ObfuscatedName("gm")
 public class class199 implements Iterator {
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "Lgy;"
+   )
+   CombatInfoList field2404;
    @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Lgt;"
+      signature = "Lga;"
    )
-   CombatInfoList field2429;
-   @ObfuscatedName("m")
+   Node field2403;
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Lgl;"
+      signature = "Lga;"
    )
-   Node field2428;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "Lgl;"
-   )
-   Node field2430;
+   Node field2402;
 
    @ObfuscatedSignature(
-      signature = "(Lgt;)V"
+      signature = "(Lgy;)V"
    )
    class199(CombatInfoList var1) {
-      this.field2430 = null;
-      this.field2429 = var1;
-      this.field2428 = this.field2429.node.next;
-      this.field2430 = null;
-   }
-
-   public void remove() {
-      if(this.field2430 == null) {
-         throw new IllegalStateException();
-      } else {
-         this.field2430.unlink();
-         this.field2430 = null;
-      }
+      this.field2402 = null;
+      this.field2404 = var1;
+      this.field2403 = this.field2404.node.next;
+      this.field2402 = null;
    }
 
    public Object next() {
-      Node var1 = this.field2428;
-      if(var1 == this.field2429.node) {
+      Node var1 = this.field2403;
+      if(var1 == this.field2404.node) {
          var1 = null;
-         this.field2428 = null;
+         this.field2403 = null;
       } else {
-         this.field2428 = var1.next;
+         this.field2403 = var1.next;
       }
 
-      this.field2430 = var1;
+      this.field2402 = var1;
       return var1;
    }
 
    public boolean hasNext() {
-      return this.field2429.node != this.field2428;
+      return this.field2404.node != this.field2403;
+   }
+
+   public void remove() {
+      if(this.field2402 == null) {
+         throw new IllegalStateException();
+      } else {
+         this.field2402.unlink();
+         this.field2402 = null;
+      }
    }
 }

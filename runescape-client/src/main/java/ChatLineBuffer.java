@@ -4,18 +4,23 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("co")
+@ObfuscatedName("cw")
 @Implements("ChatLineBuffer")
 public class ChatLineBuffer {
-   @ObfuscatedName("m")
+   @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 1175004073
+   )
+   public static int field1212;
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "[Lbn;"
+      signature = "[Lbh;"
    )
    @Export("lines")
    MessageNode[] lines;
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedGetter(
-      intValue = 1420819617
+      intValue = 177761561
    )
    @Export("length")
    int length;
@@ -24,10 +29,10 @@ public class ChatLineBuffer {
       this.lines = new MessageNode[100];
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lbn;",
-      garbageValue = "-458883414"
+      signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)Lbh;",
+      garbageValue = "55"
    )
    @Export("addMessage")
    MessageNode addMessage(int var1, String var2, String var3, String var4) {
@@ -55,74 +60,39 @@ public class ChatLineBuffer {
       return var5;
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(IB)Lbn;",
-      garbageValue = "-44"
+      signature = "(IB)Lbh;",
+      garbageValue = "78"
    )
    @Export("getMessage")
    MessageNode getMessage(int var1) {
       return var1 >= 0 && var1 < this.length?this.lines[var1]:null;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "1556967243"
+      garbageValue = "8454016"
    )
    @Export("size")
    int size() {
       return this.length;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(Liv;IIB)Llc;",
-      garbageValue = "-114"
+      signature = "(IIIIIIB)I",
+      garbageValue = "-1"
    )
-   @Export("getSpriteAsSpritePixels")
-   public static SpritePixels getSpriteAsSpritePixels(IndexDataBase var0, int var1, int var2) {
-      if(!class306.method5702(var0, var1, var2)) {
-         return null;
-      } else {
-         SpritePixels var4 = new SpritePixels();
-         var4.maxWidth = class319.indexedSpriteWidth;
-         var4.maxHeight = class275.indexedSpriteHeight;
-         var4.offsetX = class319.indexedSpriteOffsetXs[0];
-         var4.offsetY = class319.indexedSpriteOffsetYs[0];
-         var4.width = class192.indexSpriteWidths[0];
-         var4.height = class319.indexedSpriteHeights[0];
-         int var5 = var4.height * var4.width;
-         byte[] var6 = class294.spritePixels[0];
-         var4.pixels = new int[var5];
-
-         for(int var7 = 0; var7 < var5; ++var7) {
-            var4.pixels[var7] = class319.indexedSpritePalette[var6[var7] & 255];
-         }
-
-         class319.indexedSpriteOffsetXs = null;
-         class319.indexedSpriteOffsetYs = null;
-         class192.indexSpriteWidths = null;
-         class319.indexedSpriteHeights = null;
-         class319.indexedSpritePalette = null;
-         class294.spritePixels = null;
-         return var4;
+   public static int method1970(int var0, int var1, int var2, int var3, int var4, int var5) {
+      if((var5 & 1) == 1) {
+         int var6 = var3;
+         var3 = var4;
+         var4 = var6;
       }
-   }
 
-   @ObfuscatedName("fq")
-   @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "0"
-   )
-   static final void method2018() {
-      if(Client.field688 > 0) {
-         Varcs.method1959();
-      } else {
-         Client.field840.method5256();
-         Resampler.setGameState(40);
-         VertexNormal.field1697 = Client.field739.getSocket();
-         Client.field739.method2024();
-      }
+      var2 &= 3;
+      return var2 == 0?var1:(var2 == 1?7 - var0 - (var3 - 1):(var2 == 2?7 - var1 - (var4 - 1):var0));
    }
 }

@@ -1,46 +1,43 @@
-import java.awt.Component;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("f")
+@ObfuscatedName("u")
 @Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
-   @ObfuscatedName("x")
-   @Export("isMembersWorld")
-   public static boolean isMembersWorld;
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @Export("state")
    byte state;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = 767568315
+      intValue = -505500629
    )
    @Export("itemId")
    public int itemId;
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedGetter(
-      intValue = -898523007
+      intValue = 1231470581
    )
    @Export("price")
    public int price;
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = 2052595455
+      intValue = 528031905
    )
    @Export("totalQuantity")
    public int totalQuantity;
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @ObfuscatedGetter(
-      intValue = 256549175
+      intValue = -1404264417
    )
    @Export("quantitySold")
    public int quantitySold;
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = 696708223
+      intValue = -1551136007
    )
    @Export("spent")
    public int spent;
@@ -49,7 +46,7 @@ public class GrandExchangeOffer {
    }
 
    @ObfuscatedSignature(
-      signature = "(Lgy;Z)V",
+      signature = "(Lgk;Z)V",
       garbageValue = "0"
    )
    public GrandExchangeOffer(Buffer var1, boolean var2) {
@@ -61,42 +58,42 @@ public class GrandExchangeOffer {
       this.spent = var1.readInt();
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(B)I",
-      garbageValue = "1"
+      signature = "(I)I",
+      garbageValue = "-1516792528"
    )
    @Export("status")
    public int status() {
       return this.state & 7;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "1682121096"
+      signature = "(B)I",
+      garbageValue = "63"
    )
    @Export("type")
    public int type() {
       return (this.state & 8) == 8?1:0;
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "(IB)V",
-      garbageValue = "32"
+      signature = "(II)V",
+      garbageValue = "-658609218"
    )
-   void method52(int var1) {
+   void method44(int var1) {
       this.state &= -8;
       this.state = (byte)(this.state | var1 & 7);
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("q")
    @ObfuscatedSignature(
       signature = "(II)V",
-      garbageValue = "-194001658"
+      garbageValue = "74851290"
    )
-   void method36(int var1) {
+   void method40(int var1) {
       this.state &= -9;
       if(var1 == 1) {
          this.state = (byte)(this.state | 8);
@@ -104,81 +101,83 @@ public class GrandExchangeOffer {
 
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Ljava/awt/Component;I)V",
-      garbageValue = "102125315"
+      signature = "(I)Z",
+      garbageValue = "1218832541"
    )
-   static void method53(Component var0) {
-      var0.removeKeyListener(KeyFocusListener.keyboard);
-      var0.removeFocusListener(KeyFocusListener.keyboard);
-      KeyFocusListener.field349 = -1;
-   }
+   @Export("loadWorlds")
+   static boolean loadWorlds() {
+      try {
+         if(class49.listFetcher == null) {
+            class49.listFetcher = MapIcon.urlRequester.request(new URL(class26.field219));
+         } else if(class49.listFetcher.isDone()) {
+            byte[] var0 = class49.listFetcher.getResponse();
+            Buffer var1 = new Buffer(var0);
+            var1.readInt();
+            World.worldCount = var1.readUnsignedShort();
+            World.worldList = new World[World.worldCount];
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(ZZB)Llh;",
-      garbageValue = "96"
-   )
-   static IndexedSprite method54(boolean var0, boolean var1) {
-      return var0?(var1?Buffer.field2363:class78.field1110):(var1?CombatInfo1.field944:class78.field1109);
-   }
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(IIIIIIB)I",
-      garbageValue = "0"
-   )
-   public static int method56(int var0, int var1, int var2, int var3, int var4, int var5) {
-      if((var5 & 1) == 1) {
-         int var6 = var3;
-         var3 = var4;
-         var4 = var6;
-      }
-
-      var2 &= 3;
-      return var2 == 0?var1:(var2 == 1?7 - var0 - (var3 - 1):(var2 == 2?7 - var1 - (var4 - 1):var0));
-   }
-
-   @ObfuscatedName("o")
-   @ObfuscatedSignature(
-      signature = "(II)V",
-      garbageValue = "-824282945"
-   )
-   @Export("runWidgetOnLoadListener")
-   static void runWidgetOnLoadListener(int var0) {
-      if(var0 != -1) {
-         if(GameCanvas.loadWidget(var0)) {
-            Widget[] var1 = Widget.widgets[var0];
-
-            for(int var2 = 0; var2 < var1.length; ++var2) {
-               Widget var3 = var1[var2];
-               if(var3.onLoadListener != null) {
-                  ScriptEvent var4 = new ScriptEvent();
-                  var4.source = var3;
-                  var4.params = var3.onLoadListener;
-                  MouseRecorder.runScript(var4, 5000000);
-               }
+            World var3;
+            for(int var2 = 0; var2 < World.worldCount; var3.index = var2++) {
+               var3 = World.worldList[var2] = new World();
+               var3.id = var1.readUnsignedShort();
+               var3.mask = var1.readInt();
+               var3.address = var1.readString();
+               var3.activity = var1.readString();
+               var3.location = var1.readUnsignedByte();
+               var3.playerCount = var1.readShort();
             }
 
+            MapLabel.method282(World.worldList, 0, World.worldList.length - 1, World.field946, World.field939);
+            class49.listFetcher = null;
+            return true;
          }
+      } catch (Exception var4) {
+         var4.printStackTrace();
+         class49.listFetcher = null;
       }
+
+      return false;
    }
 
-   @ObfuscatedName("jg")
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      signature = "(Lhl;IIIB)V",
-      garbageValue = "1"
+      signature = "(I)V",
+      garbageValue = "-106852228"
    )
-   static final void method57(Widget var0, int var1, int var2, int var3) {
-      class224 var4 = var0.method4561(false);
-      if(var4 != null) {
-         if(Client.field822 < 3) {
-            class35.compass.method5948(var1, var2, var4.field2570, var4.field2575, 25, 25, Client.mapAngle, 256, var4.field2573, var4.field2572);
-         } else {
-            Rasterizer2D.method5786(var1, var2, 0, var4.field2573, var4.field2572);
-         }
-
+   static final void method56() {
+      if(!class120.Viewport_false0) {
+         int var0 = Region.pitchSin;
+         int var1 = Region.pitchCos;
+         int var2 = Region.yawSin;
+         int var3 = Region.yawCos;
+         byte var4 = 50;
+         short var5 = 3500;
+         int var6 = (class120.Viewport_mouseX - Graphics3D.centerX) * var4 / Graphics3D.Rasterizer3D_zoom;
+         int var7 = (class120.Viewport_mouseY - Graphics3D.centerY) * var4 / Graphics3D.Rasterizer3D_zoom;
+         int var8 = (class120.Viewport_mouseX - Graphics3D.centerX) * var5 / Graphics3D.Rasterizer3D_zoom;
+         int var9 = (class120.Viewport_mouseY - Graphics3D.centerY) * var5 / Graphics3D.Rasterizer3D_zoom;
+         int var10 = Graphics3D.method2807(var7, var4, var1, var0);
+         int var11 = Graphics3D.method2790(var7, var4, var1, var0);
+         var7 = var10;
+         var10 = Graphics3D.method2807(var9, var5, var1, var0);
+         int var12 = Graphics3D.method2790(var9, var5, var1, var0);
+         var9 = var10;
+         var10 = Graphics3D.method2805(var6, var11, var3, var2);
+         var11 = Graphics3D.method2806(var6, var11, var3, var2);
+         var6 = var10;
+         var10 = Graphics3D.method2805(var8, var12, var3, var2);
+         var12 = Graphics3D.method2806(var8, var12, var3, var2);
+         class120.field1657 = (var10 + var6) / 2;
+         class120.field1659 = (var9 + var7) / 2;
+         class177.field2283 = (var12 + var11) / 2;
+         class303.field3721 = (var10 - var6) / 2;
+         class120.field1651 = (var9 - var7) / 2;
+         class120.field1654 = (var12 - var11) / 2;
+         class98.field1335 = Math.abs(class303.field3721);
+         class120.field1655 = Math.abs(class120.field1651);
+         ClassInfo.field3757 = Math.abs(class120.field1654);
       }
    }
 }

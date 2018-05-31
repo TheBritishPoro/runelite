@@ -4,36 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("gs")
 @Implements("ISAACCipher")
 public final class ISAACCipher {
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = 520314597
+      intValue = 1238242625
    )
    @Export("valuesRemaining")
    int valuesRemaining;
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @Export("randResult")
    int[] randResult;
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @Export("mm")
    int[] mm;
-   @ObfuscatedName("h")
+   @ObfuscatedName("k")
    @ObfuscatedGetter(
-      intValue = 970541073
+      intValue = -32911809
    )
-   int field2410;
+   int field2387;
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 165032263
+   )
+   int field2385;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
-      intValue = -1251804139
+      intValue = -248497899
    )
-   int field2407;
-   @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -672814477
-   )
-   int field2408;
+   int field2382;
 
    public ISAACCipher(int[] var1) {
       this.mm = new int[256];
@@ -43,13 +43,13 @@ public final class ISAACCipher {
          this.randResult[var2] = var1[var2];
       }
 
-      this.method3919();
+      this.method3861();
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "-336347120"
+      garbageValue = "1244339201"
    )
    @Export("nextInt")
    final int nextInt() {
@@ -61,12 +61,12 @@ public final class ISAACCipher {
       return this.randResult[this.valuesRemaining];
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "1220190858"
+      garbageValue = "1777636866"
    )
-   final int method3905() {
+   final int method3853() {
       if(this.valuesRemaining == 0) {
          this.generateMoreResults();
          this.valuesRemaining = 256;
@@ -75,43 +75,43 @@ public final class ISAACCipher {
       return this.randResult[this.valuesRemaining - 1];
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(I)V",
-      garbageValue = "-2029066640"
+      garbageValue = "-544469787"
    )
    @Export("generateMoreResults")
    final void generateMoreResults() {
-      this.field2407 += ++this.field2408;
+      this.field2385 += ++this.field2382;
 
       for(int var1 = 0; var1 < 256; ++var1) {
          int var2 = this.mm[var1];
          if((var1 & 2) == 0) {
             if((var1 & 1) == 0) {
-               this.field2410 ^= this.field2410 << 13;
+               this.field2387 ^= this.field2387 << 13;
             } else {
-               this.field2410 ^= this.field2410 >>> 6;
+               this.field2387 ^= this.field2387 >>> 6;
             }
          } else if((var1 & 1) == 0) {
-            this.field2410 ^= this.field2410 << 2;
+            this.field2387 ^= this.field2387 << 2;
          } else {
-            this.field2410 ^= this.field2410 >>> 16;
+            this.field2387 ^= this.field2387 >>> 16;
          }
 
-         this.field2410 += this.mm[128 + var1 & 255];
+         this.field2387 += this.mm[128 + var1 & 255];
          int var3;
-         this.mm[var1] = var3 = this.mm[(var2 & 1020) >> 2] + this.field2410 + this.field2407;
-         this.randResult[var1] = this.field2407 = this.mm[(var3 >> 8 & 1020) >> 2] + var2;
+         this.mm[var1] = var3 = this.mm[(var2 & 1020) >> 2] + this.field2385 + this.field2387;
+         this.randResult[var1] = this.field2385 = this.mm[(var3 >> 8 & 1020) >> 2] + var2;
       }
 
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
       signature = "(I)V",
-      garbageValue = "-1857553965"
+      garbageValue = "-322691741"
    )
-   final void method3919() {
+   final void method3861() {
       int var9 = -1640531527;
       int var8 = -1640531527;
       int var7 = -1640531527;
@@ -239,18 +239,12 @@ public final class ISAACCipher {
       this.valuesRemaining = 256;
    }
 
-   @ObfuscatedName("a")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(II)V",
-      garbageValue = "1759225092"
+      signature = "(IS)I",
+      garbageValue = "-25401"
    )
-   public static void method3911(int var0) {
-      class217.field2486 = 1;
-      class26.field236 = null;
-      WorldMapDecoration.field167 = -1;
-      class217.field2487 = -1;
-      class21.field185 = 0;
-      class178.field2317 = false;
-      class308.field3746 = var0;
+   public static int method3865(int var0) {
+      return var0 >> 17 & 7;
    }
 }

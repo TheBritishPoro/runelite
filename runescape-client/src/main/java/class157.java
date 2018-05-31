@@ -1,83 +1,48 @@
 import java.io.IOException;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ft")
+@ObfuscatedName("fd")
 public abstract class class157 {
-   @ObfuscatedName("py")
-   @ObfuscatedGetter(
-      intValue = 200599753
-   )
-   static int field1999;
-
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(II)Z",
-      garbageValue = "-1138130565"
+      signature = "(IB)Z",
+      garbageValue = "1"
    )
-   public abstract boolean vmethod3355(int var1) throws IOException;
+   public abstract boolean vmethod3350(int var1) throws IOException;
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "255159045"
+      garbageValue = "1213474120"
    )
-   public abstract int vmethod3354() throws IOException;
-
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "-1722557406"
-   )
-   public abstract int vmethod3353() throws IOException;
-
-   @ObfuscatedName("j")
-   @ObfuscatedSignature(
-      signature = "([BIII)I",
-      garbageValue = "-61239109"
-   )
-   public abstract int vmethod3356(byte[] var1, int var2, int var3) throws IOException;
-
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      signature = "([BIII)V",
-      garbageValue = "-1450005148"
-   )
-   public abstract void vmethod3385(byte[] var1, int var2, int var3) throws IOException;
+   public abstract int vmethod3349() throws IOException;
 
    @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(I)V",
-      garbageValue = "188281095"
+      signature = "(I)I",
+      garbageValue = "-2096783031"
    )
-   public abstract void vmethod3368();
+   public abstract int vmethod3353() throws IOException;
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "(Liv;Liv;Liv;Liv;B)V",
-      garbageValue = "8"
+      signature = "([BIII)I",
+      garbageValue = "-2097961075"
    )
-   public static void method3310(IndexDataBase var0, IndexDataBase var1, IndexDataBase var2, IndexDataBase var3) {
-      Frames.widgetIndex = var0;
-      Widget.field2613 = var1;
-      KeyFocusListener.field354 = var2;
-      class217.field2489 = var3;
-      Widget.widgets = new Widget[Frames.widgetIndex.size()][];
-      Item.validInterfaces = new boolean[Frames.widgetIndex.size()];
-   }
-
-   @ObfuscatedName("m")
-   public static double method3303(double var0, double var2, double var4) {
-      return FileOnDisk.method2581((var0 - var2) / var4) / var4;
-   }
+   public abstract int vmethod3351(byte[] var1, int var2, int var3) throws IOException;
 
    @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "-6"
+      signature = "([BIIB)V",
+      garbageValue = "-100"
    )
-   public static void method3307() {
-      VarPlayerType.varplayers.reset();
-   }
+   public abstract void vmethod3347(byte[] var1, int var2, int var3) throws IOException;
+
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "(I)V",
+      garbageValue = "1775992211"
+   )
+   public abstract void vmethod3346();
 }

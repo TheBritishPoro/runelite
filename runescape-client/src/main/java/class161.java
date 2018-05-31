@@ -3,115 +3,122 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fh")
+@ObfuscatedName("fr")
 public final class class161 extends class157 implements Runnable {
+   @ObfuscatedName("fm")
+   @ObfuscatedSignature(
+      signature = "[Lll;"
+   )
+   @Export("crossSprites")
+   static SpritePixels[] crossSprites;
+   @ObfuscatedName("z")
+   InputStream field1988;
    @ObfuscatedName("w")
-   InputStream field2017;
-   @ObfuscatedName("m")
-   OutputStream field2015;
+   OutputStream field1986;
+   @ObfuscatedName("s")
+   Socket field1985;
+   @ObfuscatedName("l")
+   boolean field1990;
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "Lev;"
+   )
+   Signlink field1989;
    @ObfuscatedName("q")
-   Socket field2022;
-   @ObfuscatedName("b")
-   boolean field2012;
-   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      signature = "Lea;"
+      signature = "Lee;"
    )
-   Signlink field2010;
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      signature = "Led;"
+   Task field1987;
+   @ObfuscatedName("k")
+   byte[] field1994;
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = -540627
    )
-   Task field2014;
-   @ObfuscatedName("h")
-   byte[] field2011;
+   int field1992;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
-      intValue = -1306170743
+      intValue = -1830674929
    )
-   int field2016;
-   @ObfuscatedName("j")
+   int field1993;
+   @ObfuscatedName("e")
+   boolean field1998;
+   @ObfuscatedName("p")
    @ObfuscatedGetter(
-      intValue = -1028476947
+      intValue = -841887779
    )
-   int field2009;
-   @ObfuscatedName("a")
-   boolean field2018;
-   @ObfuscatedName("l")
+   final int field1995;
+   @ObfuscatedName("b")
    @ObfuscatedGetter(
-      intValue = -1256523181
+      intValue = -1684221721
    )
-   final int field2019;
-   @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = -1431179485
-   )
-   final int field2020;
+   final int field1996;
 
    @ObfuscatedSignature(
-      signature = "(Ljava/net/Socket;Lea;I)V"
+      signature = "(Ljava/net/Socket;Lev;I)V"
    )
    public class161(Socket var1, Signlink var2, int var3) throws IOException {
-      this.field2012 = false;
-      this.field2016 = 0;
-      this.field2009 = 0;
-      this.field2018 = false;
-      this.field2010 = var2;
-      this.field2022 = var1;
-      this.field2019 = var3;
-      this.field2020 = var3 - 100;
-      this.field2022.setSoTimeout(30000);
-      this.field2022.setTcpNoDelay(true);
-      this.field2022.setReceiveBufferSize(65536);
-      this.field2022.setSendBufferSize(65536);
-      this.field2017 = this.field2022.getInputStream();
-      this.field2015 = this.field2022.getOutputStream();
+      this.field1990 = false;
+      this.field1992 = 0;
+      this.field1993 = 0;
+      this.field1998 = false;
+      this.field1989 = var2;
+      this.field1985 = var1;
+      this.field1995 = var3;
+      this.field1996 = var3 - 100;
+      this.field1985.setSoTimeout(30000);
+      this.field1985.setTcpNoDelay(true);
+      this.field1985.setReceiveBufferSize(65536);
+      this.field1985.setSendBufferSize(65536);
+      this.field1988 = this.field1985.getInputStream();
+      this.field1986 = this.field1985.getOutputStream();
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(II)Z",
-      garbageValue = "-1138130565"
+      signature = "(IB)Z",
+      garbageValue = "1"
    )
-   public boolean vmethod3355(int var1) throws IOException {
-      return this.field2012?false:this.field2017.available() >= var1;
+   public boolean vmethod3350(int var1) throws IOException {
+      return this.field1990?false:this.field1988.available() >= var1;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "255159045"
+      garbageValue = "1213474120"
    )
-   public int vmethod3354() throws IOException {
-      return this.field2012?0:this.field2017.available();
+   public int vmethod3349() throws IOException {
+      return this.field1990?0:this.field1988.available();
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "-1722557406"
+      garbageValue = "-2096783031"
    )
    public int vmethod3353() throws IOException {
-      return this.field2012?0:this.field2017.read();
+      return this.field1990?0:this.field1988.read();
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
       signature = "([BIII)I",
-      garbageValue = "-61239109"
+      garbageValue = "-2097961075"
    )
-   public int vmethod3356(byte[] var1, int var2, int var3) throws IOException {
-      if(this.field2012) {
+   public int vmethod3351(byte[] var1, int var2, int var3) throws IOException {
+      if(this.field1990) {
          return 0;
       } else {
          int var4;
          int var5;
          for(var4 = var3; var3 > 0; var3 -= var5) {
-            var5 = this.field2017.read(var1, var2, var3);
+            var5 = this.field1988.read(var1, var2, var3);
             if(var5 <= 0) {
                throw new EOFException();
             }
@@ -123,71 +130,71 @@ public final class class161 extends class157 implements Runnable {
       }
    }
 
-   @ObfuscatedName("a")
+   @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "([BIII)V",
-      garbageValue = "-1450005148"
+      signature = "([BIIB)V",
+      garbageValue = "-100"
    )
-   public void vmethod3385(byte[] var1, int var2, int var3) throws IOException {
-      this.method3383(var1, var2, var3);
+   public void vmethod3347(byte[] var1, int var2, int var3) throws IOException {
+      this.method3352(var1, var2, var3);
    }
 
-   @ObfuscatedName("l")
+   @ObfuscatedName("i")
    @ObfuscatedSignature(
       signature = "(I)V",
-      garbageValue = "188281095"
+      garbageValue = "1775992211"
    )
-   public void vmethod3368() {
-      if(!this.field2012) {
+   public void vmethod3346() {
+      if(!this.field1990) {
          synchronized(this) {
-            this.field2012 = true;
+            this.field1990 = true;
             this.notifyAll();
          }
 
-         if(this.field2014 != null) {
-            while(this.field2014.status == 0) {
-               WorldMapType1.method218(1L);
+         if(this.field1987 != null) {
+            while(this.field1987.status == 0) {
+               Actor.method1539(1L);
             }
 
-            if(this.field2014.status == 1) {
+            if(this.field1987.status == 1) {
                try {
-                  ((Thread)this.field2014.value).join();
+                  ((Thread)this.field1987.value).join();
                } catch (InterruptedException var3) {
                   ;
                }
             }
          }
 
-         this.field2014 = null;
+         this.field1987 = null;
       }
    }
 
-   @ObfuscatedName("ag")
+   @ObfuscatedName("ak")
    @ObfuscatedSignature(
       signature = "([BIII)V",
-      garbageValue = "-702422468"
+      garbageValue = "-436228985"
    )
-   void method3383(byte[] var1, int var2, int var3) throws IOException {
-      if(!this.field2012) {
-         if(this.field2018) {
-            this.field2018 = false;
+   void method3352(byte[] var1, int var2, int var3) throws IOException {
+      if(!this.field1990) {
+         if(this.field1998) {
+            this.field1998 = false;
             throw new IOException();
          } else {
-            if(this.field2011 == null) {
-               this.field2011 = new byte[this.field2019];
+            if(this.field1994 == null) {
+               this.field1994 = new byte[this.field1995];
             }
 
             synchronized(this) {
                for(int var5 = 0; var5 < var3; ++var5) {
-                  this.field2011[this.field2009] = var1[var5 + var2];
-                  this.field2009 = (this.field2009 + 1) % this.field2019;
-                  if((this.field2016 + this.field2020) % this.field2019 == this.field2009) {
+                  this.field1994[this.field1993] = var1[var5 + var2];
+                  this.field1993 = (this.field1993 + 1) % this.field1995;
+                  if((this.field1996 + this.field1992) % this.field1995 == this.field1993) {
                      throw new IOException();
                   }
                }
 
-               if(this.field2014 == null) {
-                  this.field2014 = this.field2010.createRunnable(this, 3);
+               if(this.field1987 == null) {
+                  this.field1987 = this.field1989.createRunnable(this, 3);
                }
 
                this.notifyAll();
@@ -203,8 +210,8 @@ public final class class161 extends class157 implements Runnable {
                int var1;
                int var2;
                synchronized(this) {
-                  if(this.field2009 == this.field2016) {
-                     if(this.field2012) {
+                  if(this.field1993 == this.field1992) {
+                     if(this.field1990) {
                         break label84;
                      }
 
@@ -215,11 +222,11 @@ public final class class161 extends class157 implements Runnable {
                      }
                   }
 
-                  var2 = this.field2016;
-                  if(this.field2009 >= this.field2016) {
-                     var1 = this.field2009 - this.field2016;
+                  var2 = this.field1992;
+                  if(this.field1993 >= this.field1992) {
+                     var1 = this.field1993 - this.field1992;
                   } else {
-                     var1 = this.field2019 - this.field2016;
+                     var1 = this.field1995 - this.field1992;
                   }
                }
 
@@ -228,49 +235,58 @@ public final class class161 extends class157 implements Runnable {
                }
 
                try {
-                  this.field2015.write(this.field2011, var2, var1);
+                  this.field1986.write(this.field1994, var2, var1);
                } catch (IOException var9) {
-                  this.field2018 = true;
+                  this.field1998 = true;
                }
 
-               this.field2016 = (var1 + this.field2016) % this.field2019;
+               this.field1992 = (var1 + this.field1992) % this.field1995;
 
                try {
-                  if(this.field2016 == this.field2009) {
-                     this.field2015.flush();
+                  if(this.field1993 == this.field1992) {
+                     this.field1986.flush();
                   }
                } catch (IOException var8) {
-                  this.field2018 = true;
+                  this.field1998 = true;
                }
                continue;
             }
 
             try {
-               if(this.field2017 != null) {
-                  this.field2017.close();
+               if(this.field1988 != null) {
+                  this.field1988.close();
                }
 
-               if(this.field2015 != null) {
-                  this.field2015.close();
+               if(this.field1986 != null) {
+                  this.field1986.close();
                }
 
-               if(this.field2022 != null) {
-                  this.field2022.close();
+               if(this.field1985 != null) {
+                  this.field1985.close();
                }
             } catch (IOException var7) {
                ;
             }
 
-            this.field2011 = null;
+            this.field1994 = null;
             break;
          }
       } catch (Exception var12) {
-         class43.processClientError((String)null, var12);
+         UnitPriceComparator.processClientError((String)null, var12);
       }
 
    }
 
    protected void finalize() {
-      this.vmethod3368();
+      this.vmethod3346();
+   }
+
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "(CI)Z",
+      garbageValue = "1286925984"
+   )
+   public static boolean method3362(char var0) {
+      return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
    }
 }

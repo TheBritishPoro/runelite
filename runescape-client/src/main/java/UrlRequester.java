@@ -5,24 +5,36 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ScheduledExecutorService;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ep")
+@ObfuscatedName("er")
 @Implements("UrlRequester")
 public class UrlRequester implements Runnable {
+   @ObfuscatedName("i")
+   static ScheduledExecutorService field1855;
+   @ObfuscatedName("cp")
+   @ObfuscatedSignature(
+      signature = "Lic;"
+   )
+   @Export("indexCache4")
+   static IndexData indexCache4;
+   @ObfuscatedName("jf")
+   @ObfuscatedGetter(
+      intValue = 1445652317
+   )
+   static int field1856;
    @ObfuscatedName("z")
-   @Export("osName")
-   public static String osName;
-   @ObfuscatedName("w")
    @Export("thread")
    final Thread thread;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @Export("isClosed")
    volatile boolean isClosed;
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @Export("requests")
    Queue requests;
 
@@ -33,10 +45,10 @@ public class UrlRequester implements Runnable {
       this.thread.start();
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(Ljava/net/URL;I)Ler;",
-      garbageValue = "-1125383185"
+      signature = "(Ljava/net/URL;I)Leh;",
+      garbageValue = "790678851"
    )
    @Export("request")
    public UrlRequest request(URL var1) {
@@ -48,10 +60,10 @@ public class UrlRequester implements Runnable {
       }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "(I)V",
-      garbageValue = "-317870921"
+      garbageValue = "-1955026569"
    )
    @Export("close")
    public void close() {
@@ -116,41 +128,44 @@ public class UrlRequester implements Runnable {
 
             }
          } catch (Exception var17) {
-            class43.processClientError((String)null, var17);
+            UnitPriceComparator.processClientError((String)null, var17);
          }
       }
 
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("ak")
    @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "1745487182"
+      signature = "(II)V",
+      garbageValue = "892303579"
    )
-   public static int method3116() {
-      return ++MouseInput.mouseIdleTicks - 1;
+   @Export("runWidgetOnLoadListener")
+   static void runWidgetOnLoadListener(int var0) {
+      if(var0 != -1) {
+         if(CombatInfo2.loadWidget(var0)) {
+            Widget[] var1 = GameCanvas.widgets[var0];
+
+            for(int var2 = 0; var2 < var1.length; ++var2) {
+               Widget var3 = var1[var2];
+               if(var3.onLoadListener != null) {
+                  ScriptEvent var4 = new ScriptEvent();
+                  var4.source = var3;
+                  var4.params = var3.onLoadListener;
+                  class309.runScript(var4, 5000000);
+               }
+            }
+
+         }
+      }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("iz")
    @ObfuscatedSignature(
-      signature = "(IB)Lij;",
-      garbageValue = "2"
+      signature = "(III)Ljava/lang/String;",
+      garbageValue = "-509659041"
    )
-   @Export("getUnderlayDefinition")
-   public static FloorUnderlayDefinition getUnderlayDefinition(int var0) {
-      FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.underlays.get((long)var0);
-      if(var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = class231.underlay_ref.getConfigData(1, var0);
-         var1 = new FloorUnderlayDefinition();
-         if(var2 != null) {
-            var1.decode(new Buffer(var2), var0);
-         }
-
-         var1.post();
-         FloorUnderlayDefinition.underlays.put(var1, (long)var0);
-         return var1;
-      }
+   static final String method3113(int var0, int var1) {
+      int var2 = var1 - var0;
+      return var2 < -9?class6.getColTags(16711680):(var2 < -6?class6.getColTags(16723968):(var2 < -3?class6.getColTags(16740352):(var2 < 0?class6.getColTags(16756736):(var2 > 9?class6.getColTags(65280):(var2 > 6?class6.getColTags(4259584):(var2 > 3?class6.getColTags(8453888):(var2 > 0?class6.getColTags(12648192):class6.getColTags(16776960))))))));
    }
 }

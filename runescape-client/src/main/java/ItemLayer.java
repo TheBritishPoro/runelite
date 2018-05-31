@@ -1,4 +1,3 @@
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -8,339 +7,312 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dp")
 @Implements("ItemLayer")
 public final class ItemLayer {
-   @ObfuscatedName("ff")
-   static byte[][] field1475;
+   @ObfuscatedName("bo")
+   @ObfuscatedSignature(
+      signature = "Liw;"
+   )
+   static JagexGame field1455;
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "Ldf;"
+   )
+   @Export("bottom")
+   Renderable bottom;
    @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = -1016013399
+      intValue = -1713209305
    )
    @Export("tileHeight")
    int tileHeight;
-   @ObfuscatedName("m")
+   @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = -487172753
+   )
+   @Export("x")
+   int x;
+   @ObfuscatedName("l")
+   @ObfuscatedGetter(
+      intValue = -629897321
+   )
+   @Export("y")
+   int y;
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "Ldz;"
+      signature = "Ldf;"
    )
    @Export("middle")
    Renderable middle;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 152782163
-   )
-   @Export("x")
-   int x;
-   @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -736197147
-   )
-   @Export("y")
-   int y;
-   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      signature = "Ldz;"
-   )
-   @Export("bottom")
-   Renderable bottom;
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      signature = "Ldz;"
+      signature = "Ldf;"
    )
    @Export("top")
    Renderable top;
-   @ObfuscatedName("h")
+   @ObfuscatedName("k")
    @ObfuscatedGetter(
-      longValue = 7654269406186050467L
+      longValue = -7021382517737045299L
    )
    @Export("hash")
    long hash;
-   @ObfuscatedName("x")
+   @ObfuscatedName("i")
    @ObfuscatedGetter(
-      intValue = -1231787727
+      intValue = -766143801
    )
    @Export("height")
    int height;
 
-   @ObfuscatedName("r")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(ILcs;ZI)I",
-      garbageValue = "-1308565855"
+      signature = "(IIILfw;Lfk;Z[I[II)I",
+      garbageValue = "190310969"
    )
-   static int method2617(int var0, Script var1, boolean var2) {
-      String var3;
-      int var4;
-      if(var0 == 4100) {
-         var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-         var4 = class69.intStack[--class45.intStackSize];
-         class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3 + var4;
-         return 1;
+   public static int method2566(int var0, int var1, int var2, class166 var3, CollisionData var4, boolean var5, int[] var6, int[] var7) {
+      int var9;
+      for(int var8 = 0; var8 < 128; ++var8) {
+         for(var9 = 0; var9 < 128; ++var9) {
+            class165.field2035[var8][var9] = 0;
+            class165.field2041[var8][var9] = 99999999;
+         }
+      }
+
+      int var10;
+      int var11;
+      byte var13;
+      int var14;
+      int var15;
+      int var17;
+      int var19;
+      int var20;
+      int var21;
+      boolean var28;
+      int var30;
+      int var31;
+      int var33;
+      if(var2 == 1) {
+         var10 = var0;
+         var11 = var1;
+         byte var12 = 64;
+         var13 = 64;
+         var14 = var0 - var12;
+         var15 = var1 - var13;
+         class165.field2035[var12][var13] = 99;
+         class165.field2041[var12][var13] = 0;
+         byte var16 = 0;
+         var17 = 0;
+         class165.field2039[var16] = var0;
+         var33 = var16 + 1;
+         class165.field2038[var16] = var1;
+         int[][] var18 = var4.flags;
+
+         boolean var29;
+         while(true) {
+            if(var33 == var17) {
+               WorldMapDecoration.field152 = var10;
+               class165.field2037 = var11;
+               var29 = false;
+               break;
+            }
+
+            var10 = class165.field2039[var17];
+            var11 = class165.field2038[var17];
+            var17 = var17 + 1 & 4095;
+            var30 = var10 - var14;
+            var31 = var11 - var15;
+            var19 = var10 - var4.x;
+            var20 = var11 - var4.y;
+            if(var3.vmethod3440(1, var10, var11, var4)) {
+               WorldMapDecoration.field152 = var10;
+               class165.field2037 = var11;
+               var29 = true;
+               break;
+            }
+
+            var21 = class165.field2041[var30][var31] + 1;
+            if(var30 > 0 && class165.field2035[var30 - 1][var31] == 0 && (var18[var19 - 1][var20] & 19136776) == 0) {
+               class165.field2039[var33] = var10 - 1;
+               class165.field2038[var33] = var11;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30 - 1][var31] = 2;
+               class165.field2041[var30 - 1][var31] = var21;
+            }
+
+            if(var30 < 127 && class165.field2035[var30 + 1][var31] == 0 && (var18[var19 + 1][var20] & 19136896) == 0) {
+               class165.field2039[var33] = var10 + 1;
+               class165.field2038[var33] = var11;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30 + 1][var31] = 8;
+               class165.field2041[var30 + 1][var31] = var21;
+            }
+
+            if(var31 > 0 && class165.field2035[var30][var31 - 1] == 0 && (var18[var19][var20 - 1] & 19136770) == 0) {
+               class165.field2039[var33] = var10;
+               class165.field2038[var33] = var11 - 1;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30][var31 - 1] = 1;
+               class165.field2041[var30][var31 - 1] = var21;
+            }
+
+            if(var31 < 127 && class165.field2035[var30][var31 + 1] == 0 && (var18[var19][var20 + 1] & 19136800) == 0) {
+               class165.field2039[var33] = var10;
+               class165.field2038[var33] = var11 + 1;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30][var31 + 1] = 4;
+               class165.field2041[var30][var31 + 1] = var21;
+            }
+
+            if(var30 > 0 && var31 > 0 && class165.field2035[var30 - 1][var31 - 1] == 0 && (var18[var19 - 1][var20 - 1] & 19136782) == 0 && (var18[var19 - 1][var20] & 19136776) == 0 && (var18[var19][var20 - 1] & 19136770) == 0) {
+               class165.field2039[var33] = var10 - 1;
+               class165.field2038[var33] = var11 - 1;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30 - 1][var31 - 1] = 3;
+               class165.field2041[var30 - 1][var31 - 1] = var21;
+            }
+
+            if(var30 < 127 && var31 > 0 && class165.field2035[var30 + 1][var31 - 1] == 0 && (var18[var19 + 1][var20 - 1] & 19136899) == 0 && (var18[var19 + 1][var20] & 19136896) == 0 && (var18[var19][var20 - 1] & 19136770) == 0) {
+               class165.field2039[var33] = var10 + 1;
+               class165.field2038[var33] = var11 - 1;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30 + 1][var31 - 1] = 9;
+               class165.field2041[var30 + 1][var31 - 1] = var21;
+            }
+
+            if(var30 > 0 && var31 < 127 && class165.field2035[var30 - 1][var31 + 1] == 0 && (var18[var19 - 1][var20 + 1] & 19136824) == 0 && (var18[var19 - 1][var20] & 19136776) == 0 && (var18[var19][var20 + 1] & 19136800) == 0) {
+               class165.field2039[var33] = var10 - 1;
+               class165.field2038[var33] = var11 + 1;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30 - 1][var31 + 1] = 6;
+               class165.field2041[var30 - 1][var31 + 1] = var21;
+            }
+
+            if(var30 < 127 && var31 < 127 && class165.field2035[var30 + 1][var31 + 1] == 0 && (var18[var19 + 1][var20 + 1] & 19136992) == 0 && (var18[var19 + 1][var20] & 19136896) == 0 && (var18[var19][var20 + 1] & 19136800) == 0) {
+               class165.field2039[var33] = var10 + 1;
+               class165.field2038[var33] = var11 + 1;
+               var33 = var33 + 1 & 4095;
+               class165.field2035[var30 + 1][var31 + 1] = 12;
+               class165.field2041[var30 + 1][var31 + 1] = var21;
+            }
+         }
+
+         var28 = var29;
+      } else if(var2 == 2) {
+         var28 = SoundTaskDataProvider.method693(var0, var1, var3, var4);
       } else {
-         String var35;
-         if(var0 == 4101) {
-            class83.scriptStringStackSize -= 2;
-            var3 = class69.scriptStringStack[class83.scriptStringStackSize];
-            var35 = class69.scriptStringStack[class83.scriptStringStackSize + 1];
-            class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3 + var35;
-            return 1;
-         } else if(var0 == 4102) {
-            var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-            var4 = class69.intStack[--class45.intStackSize];
-            class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3 + MapIcon.method517(var4, true);
-            return 1;
-         } else if(var0 == 4103) {
-            var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-            class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3.toLowerCase();
-            return 1;
-         } else {
-            int var8;
-            int var21;
-            int var29;
-            if(var0 == 4104) {
-               var21 = class69.intStack[--class45.intStackSize];
-               long var22 = (11745L + (long)var21) * 86400000L;
-               class69.field1024.setTime(new Date(var22));
-               var29 = class69.field1024.get(5);
-               int var28 = class69.field1024.get(2);
-               var8 = class69.field1024.get(1);
-               class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var29 + "-" + class69.field1018[var28] + "-" + var8;
-               return 1;
-            } else if(var0 == 4105) {
-               class83.scriptStringStackSize -= 2;
-               var3 = class69.scriptStringStack[class83.scriptStringStackSize];
-               var35 = class69.scriptStringStack[class83.scriptStringStackSize + 1];
-               if(MilliTimer.localPlayer.composition != null && MilliTimer.localPlayer.composition.isFemale) {
-                  class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var35;
-               } else {
-                  class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3;
-               }
+         var28 = class21.method273(var0, var1, var2, var3, var4);
+      }
 
-               return 1;
-            } else if(var0 == 4106) {
-               var21 = class69.intStack[--class45.intStackSize];
-               class69.scriptStringStack[++class83.scriptStringStackSize - 1] = Integer.toString(var21);
-               return 1;
-            } else {
-               int var5;
-               if(var0 == 4107) {
-                  class83.scriptStringStackSize -= 2;
-                  int[] var27 = class69.intStack;
-                  var4 = ++class45.intStackSize - 1;
-                  String var37 = class69.scriptStringStack[class83.scriptStringStackSize];
-                  String var38 = class69.scriptStringStack[class83.scriptStringStackSize + 1];
-                  var8 = Client.languageId;
-                  int var9 = var37.length();
-                  int var10 = var38.length();
-                  int var11 = 0;
-                  int var12 = 0;
-                  char var13 = 0;
-                  char var14 = 0;
+      var9 = var0 - 64;
+      var10 = var1 - 64;
+      var11 = WorldMapDecoration.field152;
+      var30 = class165.field2037;
+      if(!var28) {
+         var31 = Integer.MAX_VALUE;
+         var14 = Integer.MAX_VALUE;
+         byte var32 = 10;
+         var33 = var3.field2043;
+         var17 = var3.field2048;
+         int var27 = var3.field2042;
+         var19 = var3.field2045;
 
-                  label258:
-                  while(true) {
-                     if(var11 - var13 >= var9 && var12 - var14 >= var10) {
-                        int var32 = Math.min(var9, var10);
-
-                        char var18;
-                        int var33;
-                        for(var33 = 0; var33 < var32; ++var33) {
-                           char var17 = var37.charAt(var33);
-                           var18 = var38.charAt(var33);
-                           if(var18 != var17 && Character.toUpperCase(var17) != Character.toUpperCase(var18)) {
-                              var17 = Character.toLowerCase(var17);
-                              var18 = Character.toLowerCase(var18);
-                              if(var17 != var18) {
-                                 var5 = class236.method4597(var17, var8) - class236.method4597(var18, var8);
-                                 break label258;
-                              }
-                           }
-                        }
-
-                        var33 = var9 - var10;
-                        if(var33 != 0) {
-                           var5 = var33;
-                        } else {
-                           for(int var34 = 0; var34 < var32; ++var34) {
-                              var18 = var37.charAt(var34);
-                              char var19 = var38.charAt(var34);
-                              if(var19 != var18) {
-                                 var5 = class236.method4597(var18, var8) - class236.method4597(var19, var8);
-                                 break label258;
-                              }
-                           }
-
-                           var5 = 0;
-                        }
-                        break;
-                     }
-
-                     if(var11 - var13 >= var9) {
-                        var5 = -1;
-                        break;
-                     }
-
-                     if(var12 - var14 >= var10) {
-                        var5 = 1;
-                        break;
-                     }
-
-                     char var15;
-                     if(var13 != 0) {
-                        var15 = var13;
-                        boolean var30 = false;
-                     } else {
-                        var15 = var37.charAt(var11++);
-                     }
-
-                     char var16;
-                     if(var14 != 0) {
-                        var16 = var14;
-                        boolean var31 = false;
-                     } else {
-                        var16 = var38.charAt(var12++);
-                     }
-
-                     var13 = class76.method1850(var15);
-                     var14 = class76.method1850(var16);
-                     var15 = class222.method4446(var15, var8);
-                     var16 = class222.method4446(var16, var8);
-                     if(var16 != var15 && Character.toUpperCase(var15) != Character.toUpperCase(var16)) {
-                        var15 = Character.toLowerCase(var15);
-                        var16 = Character.toLowerCase(var16);
-                        if(var16 != var15) {
-                           var5 = class236.method4597(var15, var8) - class236.method4597(var16, var8);
-                           break;
-                        }
-                     }
+         for(var20 = var33 - var32; var20 <= var32 + var33; ++var20) {
+            for(var21 = var17 - var32; var21 <= var32 + var17; ++var21) {
+               int var22 = var20 - var9;
+               int var23 = var21 - var10;
+               if(var22 >= 0 && var23 >= 0 && var22 < 128 && var23 < 128 && class165.field2041[var22][var23] < 100) {
+                  int var24 = 0;
+                  if(var20 < var33) {
+                     var24 = var33 - var20;
+                  } else if(var20 > var27 + var33 - 1) {
+                     var24 = var20 - (var27 + var33 - 1);
                   }
 
-                  var27[var4] = class183.method3824(var5);
-                  return 1;
-               } else {
-                  byte[] var24;
-                  Font var25;
-                  if(var0 == 4108) {
-                     var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                     class45.intStackSize -= 2;
-                     var4 = class69.intStack[class45.intStackSize];
-                     var5 = class69.intStack[class45.intStackSize + 1];
-                     var24 = TotalQuantityComparator.indexCache13.getConfigData(var5, 0);
-                     var25 = new Font(var24);
-                     class69.intStack[++class45.intStackSize - 1] = var25.method5539(var3, var4);
-                     return 1;
-                  } else if(var0 == 4109) {
-                     var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                     class45.intStackSize -= 2;
-                     var4 = class69.intStack[class45.intStackSize];
-                     var5 = class69.intStack[class45.intStackSize + 1];
-                     var24 = TotalQuantityComparator.indexCache13.getConfigData(var5, 0);
-                     var25 = new Font(var24);
-                     class69.intStack[++class45.intStackSize - 1] = var25.method5538(var3, var4);
-                     return 1;
-                  } else if(var0 == 4110) {
-                     class83.scriptStringStackSize -= 2;
-                     var3 = class69.scriptStringStack[class83.scriptStringStackSize];
-                     var35 = class69.scriptStringStack[class83.scriptStringStackSize + 1];
-                     if(class69.intStack[--class45.intStackSize] == 1) {
-                        class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3;
-                     } else {
-                        class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var35;
-                     }
+                  int var25 = 0;
+                  if(var21 < var17) {
+                     var25 = var17 - var21;
+                  } else if(var21 > var17 + var19 - 1) {
+                     var25 = var21 - (var17 + var19 - 1);
+                  }
 
-                     return 1;
-                  } else if(var0 == 4111) {
-                     var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                     class69.scriptStringStack[++class83.scriptStringStackSize - 1] = FontTypeFace.appendTags(var3);
-                     return 1;
-                  } else if(var0 == 4112) {
-                     var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                     var4 = class69.intStack[--class45.intStackSize];
-                     class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3 + (char)var4;
-                     return 1;
-                  } else {
-                     char var7;
-                     if(var0 != 4113) {
-                        if(var0 == 4114) {
-                           var21 = class69.intStack[--class45.intStackSize];
-                           class69.intStack[++class45.intStackSize - 1] = class148.method3206((char)var21)?1:0;
-                           return 1;
-                        } else if(var0 == 4115) {
-                           var21 = class69.intStack[--class45.intStackSize];
-                           class69.intStack[++class45.intStackSize - 1] = Frames.method3095((char)var21)?1:0;
-                           return 1;
-                        } else if(var0 == 4116) {
-                           var21 = class69.intStack[--class45.intStackSize];
-                           class69.intStack[++class45.intStackSize - 1] = class184.method3830((char)var21)?1:0;
-                           return 1;
-                        } else if(var0 == 4117) {
-                           var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                           if(var3 != null) {
-                              class69.intStack[++class45.intStackSize - 1] = var3.length();
-                           } else {
-                              class69.intStack[++class45.intStackSize - 1] = 0;
-                           }
-
-                           return 1;
-                        } else if(var0 == 4118) {
-                           var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                           class45.intStackSize -= 2;
-                           var4 = class69.intStack[class45.intStackSize];
-                           var5 = class69.intStack[class45.intStackSize + 1];
-                           class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var3.substring(var4, var5);
-                           return 1;
-                        } else if(var0 == 4119) {
-                           var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                           StringBuilder var36 = new StringBuilder(var3.length());
-                           boolean var26 = false;
-
-                           for(var29 = 0; var29 < var3.length(); ++var29) {
-                              var7 = var3.charAt(var29);
-                              if(var7 == '<') {
-                                 var26 = true;
-                              } else if(var7 == '>') {
-                                 var26 = false;
-                              } else if(!var26) {
-                                 var36.append(var7);
-                              }
-                           }
-
-                           class69.scriptStringStack[++class83.scriptStringStackSize - 1] = var36.toString();
-                           return 1;
-                        } else if(var0 == 4120) {
-                           var3 = class69.scriptStringStack[--class83.scriptStringStackSize];
-                           var4 = class69.intStack[--class45.intStackSize];
-                           class69.intStack[++class45.intStackSize - 1] = var3.indexOf(var4);
-                           return 1;
-                        } else if(var0 == 4121) {
-                           class83.scriptStringStackSize -= 2;
-                           var3 = class69.scriptStringStack[class83.scriptStringStackSize];
-                           var35 = class69.scriptStringStack[class83.scriptStringStackSize + 1];
-                           var5 = class69.intStack[--class45.intStackSize];
-                           class69.intStack[++class45.intStackSize - 1] = var3.indexOf(var35, var5);
-                           return 1;
-                        } else {
-                           return 2;
-                        }
-                     } else {
-                        var21 = class69.intStack[--class45.intStackSize];
-                        int[] var20 = class69.intStack;
-                        var5 = ++class45.intStackSize - 1;
-                        var7 = (char)var21;
-                        boolean var6;
-                        if(var7 >= ' ' && var7 <= '~') {
-                           var6 = true;
-                        } else if(var7 >= 160 && var7 <= 255) {
-                           var6 = true;
-                        } else if(var7 != 8364 && var7 != 338 && var7 != 8212 && var7 != 339 && var7 != 376) {
-                           var6 = false;
-                        } else {
-                           var6 = true;
-                        }
-
-                        var20[var5] = var6?1:0;
-                        return 1;
-                     }
+                  int var26 = var24 * var24 + var25 * var25;
+                  if(var26 < var31 || var31 == var26 && class165.field2041[var22][var23] < var14) {
+                     var31 = var26;
+                     var14 = class165.field2041[var22][var23];
+                     var11 = var20;
+                     var30 = var21;
                   }
                }
             }
          }
+
+         if(var31 == Integer.MAX_VALUE) {
+            return -1;
+         }
       }
+
+      if(var0 == var11 && var30 == var1) {
+         return 0;
+      } else {
+         var13 = 0;
+         class165.field2039[var13] = var11;
+         var31 = var13 + 1;
+         class165.field2038[var13] = var30;
+
+         for(var14 = var15 = class165.field2035[var11 - var9][var30 - var10]; var0 != var11 || var30 != var1; var14 = class165.field2035[var11 - var9][var30 - var10]) {
+            if(var15 != var14) {
+               var15 = var14;
+               class165.field2039[var31] = var11;
+               class165.field2038[var31++] = var30;
+            }
+
+            if((var14 & 2) != 0) {
+               ++var11;
+            } else if((var14 & 8) != 0) {
+               --var11;
+            }
+
+            if((var14 & 1) != 0) {
+               ++var30;
+            } else if((var14 & 4) != 0) {
+               --var30;
+            }
+         }
+
+         var33 = 0;
+
+         while(var31-- > 0) {
+            var6[var33] = class165.field2039[var31];
+            var7[var33++] = class165.field2038[var31];
+            if(var33 >= var6.length) {
+               break;
+            }
+         }
+
+         return var33;
+      }
+   }
+
+   @ObfuscatedName("hd")
+   @ObfuscatedSignature(
+      signature = "(II)V",
+      garbageValue = "464504900"
+   )
+   static final void method2564(int var0) {
+      if(var0 >= 0) {
+         int var1 = Client.menuActionParams0[var0];
+         int var2 = Client.menuActionParams1[var0];
+         int var3 = Client.menuTypes[var0];
+         int var4 = Client.menuIdentifiers[var0];
+         String var5 = Client.menuOptions[var0];
+         String var6 = Client.menuTargets[var0];
+         KeyFocusListener.menuAction(var1, var2, var3, var4, var5, var6, MouseInput.mouseLastPressedX, MouseInput.mouseLastPressedY);
+      }
+   }
+
+   @ObfuscatedName("jz")
+   @ObfuscatedSignature(
+      signature = "(Lhi;II)Ljava/lang/String;",
+      garbageValue = "878774611"
+   )
+   static String method2565(Widget var0, int var1) {
+      return !SoundTask.method2214(class24.getWidgetClickMask(var0), var1) && var0.onOpListener == null?null:(var0.actions != null && var0.actions.length > var1 && var0.actions[var1] != null && var0.actions[var1].trim().length() != 0?var0.actions[var1]:null);
    }
 }

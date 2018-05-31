@@ -1,89 +1,58 @@
-import java.lang.management.GarbageCollectorMXBean;
 import java.math.BigInteger;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("bz")
+@ObfuscatedName("bt")
 public class class76 {
+   @ObfuscatedName("z")
+   static final BigInteger field1071;
    @ObfuscatedName("w")
-   static final BigInteger field1093;
-   @ObfuscatedName("m")
-   static final BigInteger field1087;
-   @ObfuscatedName("a")
-   public static short[][] field1091;
-   @ObfuscatedName("ab")
-   protected static GarbageCollectorMXBean field1092;
+   static final BigInteger field1069;
+   @ObfuscatedName("g")
+   @ObfuscatedSignature(
+      signature = "[Ldy;"
+   )
+   @Export("idxFiles")
+   public static CacheFile[] idxFiles;
+   @ObfuscatedName("ak")
+   static int[] field1073;
 
    static {
-      field1093 = new BigInteger("10001", 16);
-      field1087 = new BigInteger("a0be39298d552cd768de266917d1b5520dba6db5152e2fc6928eb3070e3d2644f84aee395e32ac18e4e44722440ceed6e1164dc39d8619feb2ca6eda3081876a39c374f1588a22a85c8f246293bc4e62441d1453209b5ae18c8ccb4e40fb85116ad91261589b2991643d8e84b595ccb7b95b19c93a2876f669ec1e0a5bb30d83", 16);
+      field1071 = new BigInteger("10001", 16);
+      field1069 = new BigInteger("97e13ef453eef11c2e2b108891d256c90098b9da343c760762cdc2ccb5b9cc01552ee1f17fef7e9ad45cce00f378db17ae8f17c43fa4bdab098e5022b17175b147560d10c86658c7a471514e0bdce6c95f1b0ba8ceb5322e09b64b6bb30b1f88d2a879f88b871b4519717800df32d7f3e55f492af08025ab7ccd747491e82fe5", 16);
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(CI)C",
-      garbageValue = "-1305416058"
+      signature = "([Lgt;IB)Lgt;",
+      garbageValue = "0"
    )
-   public static char method1850(char var0) {
-      return (char)(var0 == 198?69:(var0 == 230?101:(var0 == 223?115:(var0 == 338?69:(var0 == 339?'e':'\u0000')))));
-   }
+   @Export("forOrdinal")
+   public static Enumerated forOrdinal(Enumerated[] var0, int var1) {
+      Enumerated[] var2 = var0;
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(Ljava/lang/String;B)Ljava/lang/Class;",
-      garbageValue = "8"
-   )
-   @Export("loadClassFromDescriptor")
-   public static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-      return var0.equals("B")?Byte.TYPE:(var0.equals("I")?Integer.TYPE:(var0.equals("S")?Short.TYPE:(var0.equals("J")?Long.TYPE:(var0.equals("Z")?Boolean.TYPE:(var0.equals("F")?Float.TYPE:(var0.equals("D")?Double.TYPE:(var0.equals("C")?Character.TYPE:(var0.equals("void")?Void.TYPE:Reflection.findClass(var0)))))))));
-   }
-
-   @ObfuscatedName("l")
-   @ObfuscatedSignature(
-      signature = "(I)V",
-      garbageValue = "934914920"
-   )
-   public static void method1851() {
-      try {
-         class155.dat2File.close();
-
-         for(int var0 = 0; var0 < class155.idxCount; ++var0) {
-            class155.idxFiles[var0].close();
+      for(int var3 = 0; var3 < var2.length; ++var3) {
+         Enumerated var4 = var2[var3];
+         if(var1 == var4.rsOrdinal()) {
+            return var4;
          }
-
-         class155.idx255File.close();
-         class155.randomDat.close();
-      } catch (Exception var2) {
-         ;
       }
 
+      return null;
    }
 
-   @ObfuscatedName("je")
+   @ObfuscatedName("e")
    @ObfuscatedSignature(
-      signature = "(III)V",
-      garbageValue = "1671718269"
+      signature = "(IIIZII)J",
+      garbageValue = "1782575928"
    )
-   static final void method1849(int var0, int var1) {
-      if(GameCanvas.loadWidget(var0)) {
-         WorldComparator.method2(Widget.widgets[var0], var1);
-      }
-   }
-
-   @ObfuscatedName("ke")
-   @ObfuscatedSignature(
-      signature = "(Lgy;II)V",
-      garbageValue = "1257304632"
-   )
-   static void method1852(Buffer var0, int var1) {
-      byte[] var2 = var0.payload;
-      if(Client.field718 == null) {
-         Client.field718 = new byte[24];
+   public static long method1804(int var0, int var1, int var2, boolean var3, int var4) {
+      long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17;
+      if(var3) {
+         var5 |= 65536L;
       }
 
-      class193.method3951(var2, var1, Client.field718, 0, 24);
-      class187.method3855(var0, var1);
+      return var5;
    }
 }

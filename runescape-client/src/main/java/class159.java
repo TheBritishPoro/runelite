@@ -4,130 +4,118 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
+@ObfuscatedName("ft")
 public class class159 extends class157 {
+   @ObfuscatedName("z")
+   Socket field1982;
    @ObfuscatedName("w")
-   Socket field2003;
-   @ObfuscatedName("m")
    @ObfuscatedSignature(
-      signature = "Lee;"
+      signature = "Lej;"
    )
-   class151 field2004;
-   @ObfuscatedName("q")
+   class151 field1980;
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Lfi;"
+      signature = "Lfc;"
    )
-   GameSocket field2005;
+   GameSocket field1983;
 
    class159(Socket var1, int var2, int var3) throws IOException {
-      this.field2003 = var1;
-      this.field2003.setSoTimeout(30000);
-      this.field2003.setTcpNoDelay(true);
-      this.field2003.setReceiveBufferSize(65536);
-      this.field2003.setSendBufferSize(65536);
-      this.field2004 = new class151(this.field2003.getInputStream(), var2);
-      this.field2005 = new GameSocket(this.field2003.getOutputStream(), var3);
+      this.field1982 = var1;
+      this.field1982.setSoTimeout(30000);
+      this.field1982.setTcpNoDelay(true);
+      this.field1982.setReceiveBufferSize(65536);
+      this.field1982.setSendBufferSize(65536);
+      this.field1980 = new class151(this.field1982.getInputStream(), var2);
+      this.field1983 = new GameSocket(this.field1982.getOutputStream(), var3);
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(II)Z",
-      garbageValue = "-1138130565"
+      signature = "(IB)Z",
+      garbageValue = "1"
    )
-   public boolean vmethod3355(int var1) throws IOException {
-      return this.field2004.method3222(var1);
+   public boolean vmethod3350(int var1) throws IOException {
+      return this.field1980.method3219(var1);
    }
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "255159045"
-   )
-   public int vmethod3354() throws IOException {
-      return this.field2004.method3227();
-   }
-
-   @ObfuscatedName("x")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(I)I",
-      garbageValue = "-1722557406"
+      garbageValue = "1213474120"
    )
-   public int vmethod3353() throws IOException {
-      return this.field2004.method3223();
-   }
-
-   @ObfuscatedName("j")
-   @ObfuscatedSignature(
-      signature = "([BIII)I",
-      garbageValue = "-61239109"
-   )
-   public int vmethod3356(byte[] var1, int var2, int var3) throws IOException {
-      return this.field2004.method3224(var1, var2, var3);
-   }
-
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      signature = "([BIII)V",
-      garbageValue = "-1450005148"
-   )
-   public void vmethod3385(byte[] var1, int var2, int var3) throws IOException {
-      this.field2005.read(var1, var2, var3);
+   public int vmethod3349() throws IOException {
+      return this.field1980.method3217();
    }
 
    @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(I)V",
-      garbageValue = "188281095"
+      signature = "(I)I",
+      garbageValue = "-2096783031"
    )
-   public void vmethod3368() {
-      this.field2005.method3402();
+   public int vmethod3353() throws IOException {
+      return this.field1980.method3218();
+   }
+
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "([BIII)I",
+      garbageValue = "-2097961075"
+   )
+   public int vmethod3351(byte[] var1, int var2, int var3) throws IOException {
+      return this.field1980.method3224(var1, var2, var3);
+   }
+
+   @ObfuscatedName("q")
+   @ObfuscatedSignature(
+      signature = "([BIIB)V",
+      garbageValue = "-100"
+   )
+   public void vmethod3347(byte[] var1, int var2, int var3) throws IOException {
+      this.field1983.read(var1, var2, var3);
+   }
+
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "(I)V",
+      garbageValue = "1775992211"
+   )
+   public void vmethod3346() {
+      this.field1983.method3384();
 
       try {
-         this.field2003.close();
+         this.field1982.close();
       } catch (IOException var2) {
          ;
       }
 
-      this.field2004.method3225();
+      this.field1980.method3215();
    }
 
    protected void finalize() {
-      this.vmethod3368();
+      this.vmethod3346();
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("e")
    @ObfuscatedSignature(
-      signature = "(IIIII)V",
-      garbageValue = "-1607363329"
+      signature = "([BZI)Ljava/lang/Object;",
+      garbageValue = "-826976613"
    )
-   @Export("setItemTableSlot")
-   static void setItemTableSlot(int var0, int var1, int var2, int var3) {
-      ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-      if(var4 == null) {
-         var4 = new ItemContainer();
-         ItemContainer.itemContainers.put(var4, (long)var0);
-      }
-
-      if(var4.itemIds.length <= var1) {
-         int[] var5 = new int[var1 + 1];
-         int[] var6 = new int[var1 + 1];
-
-         int var7;
-         for(var7 = 0; var7 < var4.itemIds.length; ++var7) {
-            var5[var7] = var4.itemIds[var7];
-            var6[var7] = var4.stackSizes[var7];
+   @Export("byteArrayToObject")
+   public static Object byteArrayToObject(byte[] var0, boolean var1) {
+      if(var0 == null) {
+         return null;
+      } else {
+         if(var0.length > 136 && !AbstractByteBuffer.directBufferUnavailable) {
+            try {
+               DirectByteBuffer var2 = new DirectByteBuffer();
+               var2.put(var0);
+               return var2;
+            } catch (Throwable var3) {
+               AbstractByteBuffer.directBufferUnavailable = true;
+            }
          }
 
-         for(var7 = var4.itemIds.length; var7 < var1; ++var7) {
-            var5[var7] = -1;
-            var6[var7] = 0;
-         }
-
-         var4.itemIds = var5;
-         var4.stackSizes = var6;
+         return var0;
       }
-
-      var4.itemIds[var1] = var2;
-      var4.stackSizes[var1] = var3;
    }
 }

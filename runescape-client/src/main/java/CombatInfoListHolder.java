@@ -1,51 +1,41 @@
+import java.awt.Image;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("bv")
 @Implements("CombatInfoListHolder")
 public class CombatInfoListHolder extends Node {
-   @ObfuscatedName("eu")
-   @ObfuscatedGetter(
-      intValue = 867319259
-   )
-   @Export("baseY")
-   static int baseY;
-   @ObfuscatedName("fj")
+   @ObfuscatedName("at")
+   static Image field1028;
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "[Llh;"
-   )
-   @Export("scrollbarSprites")
-   static IndexedSprite[] scrollbarSprites;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "Ljv;"
+      signature = "Lja;"
    )
    @Export("combatInfo2")
    CombatInfo2 combatInfo2;
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "Lgt;"
+      signature = "Lgy;"
    )
    @Export("combatInfo1")
    CombatInfoList combatInfo1;
 
    @ObfuscatedSignature(
-      signature = "(Ljv;)V"
+      signature = "(Lja;)V"
    )
    CombatInfoListHolder(CombatInfo2 var1) {
       this.combatInfo1 = new CombatInfoList();
       this.combatInfo2 = var1;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
       signature = "(IIIII)V",
-      garbageValue = "-1546275303"
+      garbageValue = "2106192110"
    )
-   void method1815(int var1, int var2, int var3, int var4) {
+   void method1772(int var1, int var2, int var3, int var4) {
       CombatInfo1 var5 = null;
       int var6 = 0;
 
@@ -67,7 +57,7 @@ public class CombatInfoListHolder extends Node {
          }
 
       } else {
-         CombatInfoList.method4089(new CombatInfo1(var1, var2, var3, var4), var5);
+         CombatInfoList.method4036(new CombatInfo1(var1, var2, var3, var4), var5);
          if(var6 >= 4) {
             this.combatInfo1.last().unlink();
          }
@@ -75,12 +65,12 @@ public class CombatInfoListHolder extends Node {
       }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(IB)Lbi;",
-      garbageValue = "3"
+      signature = "(II)Lbn;",
+      garbageValue = "1625981633"
    )
-   CombatInfo1 method1816(int var1) {
+   CombatInfo1 method1773(int var1) {
       CombatInfo1 var2 = (CombatInfo1)this.combatInfo1.last();
       if(var2 != null && var2.cycle <= var1) {
          for(CombatInfo1 var3 = (CombatInfo1)this.combatInfo1.previous(); var3 != null && var3.cycle <= var1; var3 = (CombatInfo1)this.combatInfo1.previous()) {
@@ -88,7 +78,7 @@ public class CombatInfoListHolder extends Node {
             var2 = var3;
          }
 
-         if(this.combatInfo2.field3330 + var2.int2 + var2.cycle > var1) {
+         if(this.combatInfo2.field3313 + var2.cycle + var2.int2 > var1) {
             return var2;
          } else {
             var2.unlink();
@@ -99,35 +89,42 @@ public class CombatInfoListHolder extends Node {
       }
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "(B)Z",
-      garbageValue = "13"
+      garbageValue = "44"
    )
-   boolean method1817() {
+   boolean method1774() {
       return this.combatInfo1.isEmpty();
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("b")
    @ObfuscatedSignature(
-      signature = "(Lgx;ILjava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "-391307830"
+      signature = "(I)Lll;",
+      garbageValue = "792090098"
    )
-   static String method1822(IterableHashTable var0, int var1, String var2) {
-      if(var0 == null) {
-         return var2;
-      } else {
-         ObjectNode var3 = (ObjectNode)var0.get((long)var1);
-         return var3 == null?var2:(String)var3.value;
-      }
-   }
+   static SpritePixels method1781() {
+      SpritePixels var0 = new SpritePixels();
+      var0.maxWidth = class305.indexedSpriteWidth;
+      var0.maxHeight = class319.indexedSpriteHeight;
+      var0.offsetX = class7.indexedSpriteOffsetXs[0];
+      var0.offsetY = class225.indexedSpriteOffsetYs[0];
+      var0.width = class319.indexSpriteWidths[0];
+      var0.height = class319.indexedSpriteHeights[0];
+      int var1 = var0.height * var0.width;
+      byte[] var2 = class319.spritePixels[0];
+      var0.pixels = new int[var1];
 
-   @ObfuscatedName("ea")
-   @ObfuscatedSignature(
-      signature = "(B)Llz;",
-      garbageValue = "0"
-   )
-   static RenderOverview method1821() {
-      return Preferences.renderOverview;
+      for(int var3 = 0; var3 < var1; ++var3) {
+         var0.pixels[var3] = PacketNode.indexedSpritePalette[var2[var3] & 255];
+      }
+
+      class7.indexedSpriteOffsetXs = null;
+      class225.indexedSpriteOffsetYs = null;
+      class319.indexSpriteWidths = null;
+      class319.indexedSpriteHeights = null;
+      PacketNode.indexedSpritePalette = null;
+      class319.spritePixels = null;
+      return var0;
    }
 }

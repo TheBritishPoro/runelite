@@ -1,57 +1,68 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ly")
+@ObfuscatedName("li")
 public enum class316 implements Enumerated {
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "Lli;"
+   )
+   field3775(0, 0),
    @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "Lly;"
+      signature = "Lli;"
    )
-   field3781(0, 0),
-   @ObfuscatedName("m")
+   field3771(1, 1),
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "Lly;"
+      signature = "Lli;"
    )
-   field3777(1, 1),
-   @ObfuscatedName("q")
+   field3772(2, 2),
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "Lly;"
+      signature = "Lli;"
    )
-   field3778(2, 2),
-   @ObfuscatedName("b")
+   field3773(3, 3),
+   @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "Lly;"
+      signature = "Lli;"
    )
-   field3779(3, 3),
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "Lly;"
-   )
-   field3780(4, 4);
+   field3774(4, 4);
 
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = 109639589
+      intValue = -1008174629
    )
    public final int field3776;
-   @ObfuscatedName("h")
+   @ObfuscatedName("k")
    @ObfuscatedGetter(
-      intValue = -1972745365
+      intValue = 1612299179
    )
-   final int field3783;
+   final int field3770;
 
    class316(int var3, int var4) {
       this.field3776 = var3;
-      this.field3783 = var4;
+      this.field3770 = var4;
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "(B)I",
-      garbageValue = "60"
+      garbageValue = "59"
    )
    public int rsOrdinal() {
-      return this.field3783;
+      return this.field3770;
+   }
+
+   @ObfuscatedName("p")
+   @ObfuscatedSignature(
+      signature = "(Ljava/lang/String;S)I",
+      garbageValue = "256"
+   )
+   @Export("getLength")
+   public static int getLength(String var0) {
+      return var0.length() + 1;
    }
 }

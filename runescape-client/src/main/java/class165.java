@@ -3,55 +3,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
+@ObfuscatedName("fh")
 public class class165 {
+   @ObfuscatedName("s")
+   static int[][] field2035;
+   @ObfuscatedName("l")
+   static int[][] field2041;
+   @ObfuscatedName("u")
+   @Export("tileOverlayIds")
+   static byte[][][] tileOverlayIds;
    @ObfuscatedName("q")
-   public static int[][] field2059;
-   @ObfuscatedName("b")
-   public static int[][] field2058;
-   @ObfuscatedName("x")
-   public static int[] field2061;
-   @ObfuscatedName("j")
-   public static int[] field2060;
-   @ObfuscatedName("ef")
    @ObfuscatedGetter(
-      longValue = -6186679556520973423L
+      intValue = 294749139
    )
-   static long field2065;
+   static int field2037;
+   @ObfuscatedName("i")
+   static int[] field2039;
+   @ObfuscatedName("x")
+   static int[] field2038;
 
    static {
-      field2059 = new int[128][128];
-      field2058 = new int[128][128];
-      field2061 = new int[4096];
-      field2060 = new int[4096];
+      field2035 = new int[128][128];
+      field2041 = new int[128][128];
+      field2039 = new int[4096];
+      field2038 = new int[4096];
    }
 
-   @ObfuscatedName("j")
+   @ObfuscatedName("b")
    @ObfuscatedSignature(
-      signature = "([BIIB)Ljava/lang/String;",
-      garbageValue = "-58"
+      signature = "(I)Z",
+      garbageValue = "-2015697461"
    )
-   @Export("getString")
-   public static String getString(byte[] var0, int var1, int var2) {
-      char[] var3 = new char[var2];
-      int var4 = 0;
-
-      for(int var5 = 0; var5 < var2; ++var5) {
-         int var6 = var0[var5 + var1] & 255;
-         if(var6 != 0) {
-            if(var6 >= 128 && var6 < 160) {
-               char var7 = class301.cp1252AsciiExtension[var6 - 128];
-               if(var7 == 0) {
-                  var7 = '?';
-               }
-
-               var6 = var7;
-            }
-
-            var3[var4++] = (char)var6;
-         }
-      }
-
-      return new String(var3, 0, var4);
+   static final boolean method3437() {
+      return class120.Viewport_containsMouse;
    }
 }

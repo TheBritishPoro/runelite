@@ -1,17 +1,17 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cr")
+@ObfuscatedName("cz")
 public abstract class class100 extends Node {
-   @ObfuscatedName("w")
-   int field1364;
+   @ObfuscatedName("z")
+   int field1338;
+
+   @ObfuscatedName("z")
+   abstract void method2231();
 
    @ObfuscatedName("w")
-   abstract void method2291();
-
-   @ObfuscatedName("m")
    @ObfuscatedSignature(
-      signature = "(Lcp;)I"
+      signature = "(Lca;)I"
    )
-   abstract int method2298();
+   abstract int method2232();
 }

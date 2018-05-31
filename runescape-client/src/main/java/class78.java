@@ -4,174 +4,172 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("cy")
 public class class78 {
+   @ObfuscatedName("z")
+   static boolean field1101;
    @ObfuscatedName("w")
-   static boolean field1122;
-   @ObfuscatedName("m")
    @ObfuscatedGetter(
-      intValue = -958297323
+      intValue = 1570895999
    )
-   static int field1104;
+   static int field1082;
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "Lly;"
+   )
+   static IndexedSprite field1083;
+   @ObfuscatedName("l")
+   @ObfuscatedSignature(
+      signature = "Lly;"
+   )
+   static IndexedSprite field1084;
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "[Lly;"
+   )
+   @Export("runeSprites")
+   static IndexedSprite[] runeSprites;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "Llh;"
+      signature = "Lll;"
    )
-   static IndexedSprite field1105;
-   @ObfuscatedName("b")
+   static SpritePixels field1092;
+   @ObfuscatedName("k")
    @ObfuscatedSignature(
-      signature = "Llh;"
+      signature = "Lll;"
    )
-   static IndexedSprite field1113;
-   @ObfuscatedName("n")
+   static SpritePixels field1087;
+   @ObfuscatedName("i")
    @ObfuscatedSignature(
-      signature = "Llc;"
-   )
-   static SpritePixels field1107;
-   @ObfuscatedName("h")
-   static int[] field1123;
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      signature = "Llh;"
+      signature = "Lly;"
    )
    @Export("logoSprite")
    static IndexedSprite logoSprite;
-   @ObfuscatedName("a")
+   @ObfuscatedName("b")
    @ObfuscatedSignature(
-      signature = "Llh;"
+      signature = "Lly;"
    )
-   static IndexedSprite field1109;
-   @ObfuscatedName("d")
-   @ObfuscatedSignature(
-      signature = "Llh;"
-   )
-   static IndexedSprite field1110;
-   @ObfuscatedName("e")
+   static IndexedSprite field1089;
+   @ObfuscatedName("t")
    @ObfuscatedGetter(
-      intValue = -1316524303
+      intValue = 497255191
    )
    @Export("loginWindowX")
    static int loginWindowX;
-   @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = 1697231611
-   )
-   static int field1112;
-   @ObfuscatedName("i")
-   static int[] field1128;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
-      intValue = -87428017
+      intValue = 1723235133
+   )
+   static int field1091;
+   @ObfuscatedName("a")
+   static int[] field1093;
+   @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 176451679
+   )
+   static int field1088;
+   @ObfuscatedName("af")
+   @ObfuscatedGetter(
+      intValue = 1171598757
+   )
+   static int field1094;
+   @ObfuscatedName("as")
+   @ObfuscatedGetter(
+      intValue = 1476562557
+   )
+   static int field1095;
+   @ObfuscatedName("an")
+   @ObfuscatedGetter(
+      intValue = 1033770495
+   )
+   static int field1096;
+   @ObfuscatedName("ao")
+   @ObfuscatedGetter(
+      intValue = -1870143355
+   )
+   static int field1097;
+   @ObfuscatedName("at")
+   @ObfuscatedGetter(
+      intValue = 868889457
    )
    static int field1114;
    @ObfuscatedName("ai")
    @ObfuscatedGetter(
-      intValue = -205035095
-   )
-   static int field1138;
-   @ObfuscatedName("an")
-   @ObfuscatedGetter(
-      intValue = 611421647
-   )
-   static int field1116;
-   @ObfuscatedName("as")
-   @ObfuscatedGetter(
-      intValue = -1149667631
-   )
-   static int field1103;
-   @ObfuscatedName("aw")
-   @ObfuscatedGetter(
-      intValue = 704697207
-   )
-   static int field1118;
-   @ObfuscatedName("ag")
-   @ObfuscatedGetter(
-      intValue = -662415189
-   )
-   static int field1119;
-   @ObfuscatedName("ah")
-   @ObfuscatedGetter(
-      intValue = 716800149
+      intValue = 1434866071
    )
    @Export("loadingBarPercentage")
    static int loadingBarPercentage;
-   @ObfuscatedName("az")
+   @ObfuscatedName("ac")
    @Export("loadingText")
    static String loadingText;
-   @ObfuscatedName("af")
+   @ObfuscatedName("ar")
    @ObfuscatedGetter(
-      intValue = -859976059
+      intValue = -1062373165
    )
    @Export("loginIndex")
    static int loginIndex;
-   @ObfuscatedName("am")
+   @ObfuscatedName("au")
    @Export("Login_response0")
    static String Login_response0;
-   @ObfuscatedName("aq")
+   @ObfuscatedName("av")
    @Export("loginMessage1")
    static String loginMessage1;
-   @ObfuscatedName("aj")
+   @ObfuscatedName("al")
    @Export("loginMessage2")
    static String loginMessage2;
    @ObfuscatedName("ae")
    @Export("loginMessage3")
    static String loginMessage3;
-   @ObfuscatedName("au")
+   @ObfuscatedName("az")
    @Export("username")
    static String username;
-   @ObfuscatedName("av")
+   @ObfuscatedName("aq")
    @Export("password")
    static String password;
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ad")
    @Export("Login_isUsernameRemembered")
    static boolean Login_isUsernameRemembered;
-   @ObfuscatedName("bo")
-   static boolean field1133;
-   @ObfuscatedName("bx")
-   static boolean field1131;
-   @ObfuscatedName("bk")
-   static boolean field1132;
-   @ObfuscatedName("bn")
+   @ObfuscatedName("bp")
+   static boolean field1110;
+   @ObfuscatedName("bi")
+   static boolean field1115;
+   @ObfuscatedName("bq")
+   static boolean field1104;
+   @ObfuscatedName("bh")
    @ObfuscatedGetter(
-      intValue = -34194823
+      intValue = -705152905
    )
    @Export("currentLoginField")
    static int currentLoginField;
    @ObfuscatedName("bl")
    @Export("worldSelectShown")
    static boolean worldSelectShown;
-   @ObfuscatedName("bw")
+   @ObfuscatedName("bs")
    @ObfuscatedGetter(
-      intValue = -1264645055
+      intValue = 381075233
    )
-   static int field1137;
-   @ObfuscatedName("bv")
+   static int field1116;
+   @ObfuscatedName("be")
    @ObfuscatedGetter(
-      longValue = -5566811140603222517L
+      longValue = -8950576353384891287L
    )
-   static long field1106;
-   @ObfuscatedName("bf")
+   static long field1109;
+   @ObfuscatedName("by")
    @ObfuscatedGetter(
-      longValue = -4385139388265106463L
+      longValue = 8067562351581494099L
    )
-   static long field1141;
-   @ObfuscatedName("fn")
-   @ObfuscatedSignature(
-      signature = "[Llh;"
-   )
-   @Export("modIconSprites")
-   static IndexedSprite[] modIconSprites;
+   static long field1118;
 
    static {
-      field1104 = 0;
-      loginWindowX = field1104 + 202;
-      field1128 = new int[256];
+      field1082 = 0;
+      loginWindowX = field1082 + 202;
+      field1093 = new int[256];
+      field1088 = 0;
+      field1094 = 0;
+      field1095 = 0;
+      field1096 = 0;
+      field1097 = 0;
       field1114 = 0;
-      field1138 = 0;
-      field1116 = 0;
-      field1103 = 0;
-      field1118 = 0;
-      field1119 = 0;
       loadingBarPercentage = 10;
       loadingText = "";
       loginIndex = 0;
@@ -182,15 +180,44 @@ public class class78 {
       username = "";
       password = "";
       Login_isUsernameRemembered = false;
-      field1133 = false;
-      field1131 = false;
-      field1132 = true;
+      field1110 = false;
+      field1115 = false;
+      field1104 = true;
       currentLoginField = 0;
       worldSelectShown = false;
-      field1137 = -1;
+      field1116 = -1;
       new DecimalFormat("##0.00");
       new class148();
-      field1106 = -1L;
-      field1141 = -1L;
+      field1109 = -1L;
+      field1118 = -1L;
+   }
+
+   @ObfuscatedName("q")
+   @ObfuscatedSignature(
+      signature = "([BIII)Ljava/lang/String;",
+      garbageValue = "-1849601215"
+   )
+   @Export("getString")
+   public static String getString(byte[] var0, int var1, int var2) {
+      char[] var3 = new char[var2];
+      int var4 = 0;
+
+      for(int var5 = 0; var5 < var2; ++var5) {
+         int var6 = var0[var5 + var1] & 255;
+         if(var6 != 0) {
+            if(var6 >= 128 && var6 < 160) {
+               char var7 = class301.cp1252AsciiExtension[var6 - 128];
+               if(var7 == 0) {
+                  var7 = '?';
+               }
+
+               var6 = var7;
+            }
+
+            var3[var4++] = (char)var6;
+         }
+      }
+
+      return new String(var3, 0, var4);
    }
 }

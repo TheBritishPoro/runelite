@@ -1,236 +1,322 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.Hook;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iu")
+@ObfuscatedName("il")
 @Implements("FileSystem")
 public class FileSystem extends Node {
-   @ObfuscatedName("pt")
-   @ObfuscatedSignature(
-      signature = "Lcx;"
-   )
-   static Resampler field3166;
-   @ObfuscatedName("cc")
-   @ObfuscatedSignature(
-      signature = "Lic;"
-   )
-   @Export("indexInterfaces")
-   static IndexData indexInterfaces;
-   @ObfuscatedName("w")
+   @ObfuscatedName("pq")
    @ObfuscatedGetter(
-      intValue = 642153213
+      intValue = 117401965
+   )
+   static int field3154;
+   @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = 2021384191
    )
    @Export("type")
    int type;
-   @ObfuscatedName("m")
-   public byte[] field3165;
-   @ObfuscatedName("q")
+   @ObfuscatedName("w")
+   byte[] field3149;
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "Lff;"
    )
    @Export("index")
-   public IndexFile index;
-   @ObfuscatedName("b")
+   IndexFile index;
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
       signature = "Lic;"
    )
    @Export("data")
-   public IndexData data;
+   IndexData data;
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("hj")
    @ObfuscatedSignature(
-      signature = "(IB)Z",
-      garbageValue = "-94"
+      signature = "(ZLgi;B)V",
+      garbageValue = "30"
    )
-   public static boolean method4620(int var0) {
-      return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
-   }
-
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(Lge;I)V",
-      garbageValue = "358617615"
-   )
-   static final void method4619(PacketBuffer var0) {
-      int var1 = 0;
-      var0.bitAccess();
-
-      int var2;
-      int var3;
+   @Hook("onNpcUpdate")
+   @Export("updateNpcs")
+   static final void updateNpcs(boolean var0, PacketBuffer var1) {
+      Client.field701 = 0;
+      Client.pendingNpcFlagsCount = 0;
+      PacketBuffer var2 = Client.field626.packetBuffer;
+      var2.bitAccess();
+      int var3 = var2.getBits(8);
       int var4;
-      for(var2 = 0; var2 < class81.playerIndexesCount; ++var2) {
-         var3 = class81.playerIndices[var2];
-         if((class81.field1183[var3] & 1) == 0) {
-            if(var1 > 0) {
-               --var1;
-               class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-            } else {
-               var4 = var0.getBits(1);
-               if(var4 == 0) {
-                  var1 = class73.method1843(var0);
-                  class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-               } else {
-                  GrandExchangeEvents.decodeMovement(var0, var3);
-               }
-            }
+      if(var3 < Client.npcIndexesCount) {
+         for(var4 = var3; var4 < Client.npcIndexesCount; ++var4) {
+            Client.field702[++Client.field701 - 1] = Client.npcIndices[var4];
          }
       }
 
-      var0.byteAccess();
-      if(var1 != 0) {
-         throw new RuntimeException();
+      if(var3 > Client.npcIndexesCount) {
+         throw new RuntimeException("");
       } else {
-         var0.bitAccess();
+         Client.npcIndexesCount = 0;
 
-         for(var2 = 0; var2 < class81.playerIndexesCount; ++var2) {
-            var3 = class81.playerIndices[var2];
-            if((class81.field1183[var3] & 1) != 0) {
-               if(var1 > 0) {
-                  --var1;
-                  class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-               } else {
-                  var4 = var0.getBits(1);
-                  if(var4 == 0) {
-                     var1 = class73.method1843(var0);
-                     class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-                  } else {
-                     GrandExchangeEvents.decodeMovement(var0, var3);
+         int var5;
+         int var7;
+         int var8;
+         int var9;
+         int var10;
+         int var11;
+         for(var4 = 0; var4 < var3; ++var4) {
+            var5 = Client.npcIndices[var4];
+            NPC var6 = Client.cachedNPCs[var5];
+            var7 = var2.getBits(1);
+            if(var7 == 0) {
+               Client.npcIndices[++Client.npcIndexesCount - 1] = var5;
+               var6.npcCycle = Client.gameCycle;
+            } else {
+               var8 = var2.getBits(2);
+               if(var8 == 0) {
+                  Client.npcIndices[++Client.npcIndexesCount - 1] = var5;
+                  var6.npcCycle = Client.gameCycle;
+                  Client.pendingNpcFlagsIndices[++Client.pendingNpcFlagsCount - 1] = var5;
+               } else if(var8 == 1) {
+                  Client.npcIndices[++Client.npcIndexesCount - 1] = var5;
+                  var6.npcCycle = Client.gameCycle;
+                  var9 = var2.getBits(3);
+                  var6.method1794(var9, (byte)1);
+                  var10 = var2.getBits(1);
+                  if(var10 == 1) {
+                     Client.pendingNpcFlagsIndices[++Client.pendingNpcFlagsCount - 1] = var5;
                   }
+               } else if(var8 == 2) {
+                  Client.npcIndices[++Client.npcIndexesCount - 1] = var5;
+                  var6.npcCycle = Client.gameCycle;
+                  var9 = var2.getBits(3);
+                  var6.method1794(var9, (byte)2);
+                  var10 = var2.getBits(3);
+                  var6.method1794(var10, (byte)2);
+                  var11 = var2.getBits(1);
+                  if(var11 == 1) {
+                     Client.pendingNpcFlagsIndices[++Client.pendingNpcFlagsCount - 1] = var5;
+                  }
+               } else if(var8 == 3) {
+                  Client.field702[++Client.field701 - 1] = var5;
                }
             }
          }
 
-         var0.byteAccess();
-         if(var1 != 0) {
-            throw new RuntimeException();
-         } else {
-            var0.bitAccess();
+         WorldMapManager.method500(var0, var1);
 
-            for(var2 = 0; var2 < class81.field1182; ++var2) {
-               var3 = class81.field1175[var2];
-               if((class81.field1183[var3] & 1) != 0) {
-                  if(var1 > 0) {
-                     --var1;
-                     class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-                  } else {
-                     var4 = var0.getBits(1);
-                     if(var4 == 0) {
-                        var1 = class73.method1843(var0);
-                        class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-                     } else if(Widget.decodeRegionHash(var0, var3)) {
-                        class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
+         int var14;
+         for(var14 = 0; var14 < Client.pendingNpcFlagsCount; ++var14) {
+            var3 = Client.pendingNpcFlagsIndices[var14];
+            NPC var15 = Client.cachedNPCs[var3];
+            var5 = var1.readUnsignedByte();
+            int var16;
+            if((var5 & 4) != 0) {
+               var15.graphic = var1.method3646();
+               var16 = var1.method3770();
+               var15.field871 = var16 >> 16;
+               var15.graphicsDelay = (var16 & 65535) + Client.gameCycle;
+               var15.spotAnimFrame = 0;
+               var15.spotAnimFrameCycle = 0;
+               if(var15.graphicsDelay > Client.gameCycle) {
+                  var15.spotAnimFrame = -1;
+               }
+
+               if(var15.graphic == 65535) {
+                  var15.graphic = -1;
+               }
+            }
+
+            if((var5 & 1) != 0) {
+               var16 = var1.method3585();
+               var7 = var1.method3585();
+               var8 = var15.x - (var16 - PendingSpawn.baseX - PendingSpawn.baseX) * 64;
+               var9 = var15.y - (var7 - Client.baseY - Client.baseY) * 64;
+               if(var8 != 0 || var9 != 0) {
+                  var15.field920 = (int)(Math.atan2((double)var8, (double)var9) * 325.949D) & 2047;
+               }
+            }
+
+            if((var5 & 64) != 0) {
+               var16 = var1.method3577();
+               int var12;
+               if(var16 > 0) {
+                  for(var7 = 0; var7 < var16; ++var7) {
+                     var9 = -1;
+                     var10 = -1;
+                     var11 = -1;
+                     var8 = var1.getUSmart();
+                     if(var8 == 32767) {
+                        var8 = var1.getUSmart();
+                        var10 = var1.getUSmart();
+                        var9 = var1.getUSmart();
+                        var11 = var1.getUSmart();
+                     } else if(var8 != 32766) {
+                        var10 = var1.getUSmart();
+                     } else {
+                        var8 = -1;
+                     }
+
+                     var12 = var1.getUSmart();
+                     var15.applyActorHitsplat(var8, var10, var9, var11, Client.gameCycle, var12);
+                  }
+               }
+
+               var7 = var1.method3577();
+               if(var7 > 0) {
+                  for(var8 = 0; var8 < var7; ++var8) {
+                     var9 = var1.getUSmart();
+                     var10 = var1.getUSmart();
+                     if(var10 != 32767) {
+                        var11 = var1.getUSmart();
+                        var12 = var1.method3765();
+                        int var13 = var10 > 0?var1.method3765():var12;
+                        var15.setCombatInfo(var9, Client.gameCycle, var10, var11, var12, var13);
+                     } else {
+                        var15.method1557(var9);
                      }
                   }
                }
             }
 
-            var0.byteAccess();
-            if(var1 != 0) {
-               throw new RuntimeException();
-            } else {
-               var0.bitAccess();
+            if((var5 & 8) != 0) {
+               var15.composition = HorizontalAlignment.getNpcDefinition(var1.method3613());
+               var15.field874 = var15.composition.size;
+               var15.field924 = var15.composition.rotation;
+               var15.field899 = var15.composition.walkingAnimation;
+               var15.field880 = var15.composition.rotate180Animation;
+               var15.field870 = var15.composition.rotate90RightAnimation;
+               var15.field882 = var15.composition.rotate90LeftAnimation;
+               var15.idlePoseAnimation = var15.composition.standingAnimation;
+               var15.field877 = var15.composition.field3496;
+               var15.field878 = var15.composition.field3486;
+            }
 
-               for(var2 = 0; var2 < class81.field1182; ++var2) {
-                  var3 = class81.field1175[var2];
-                  if((class81.field1183[var3] & 1) == 0) {
-                     if(var1 > 0) {
-                        --var1;
-                        class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-                     } else {
-                        var4 = var0.getBits(1);
-                        if(var4 == 0) {
-                           var1 = class73.method1843(var0);
-                           class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
-                        } else if(Widget.decodeRegionHash(var0, var3)) {
-                           class81.field1183[var3] = (byte)(class81.field1183[var3] | 2);
+            if((var5 & 16) != 0) {
+               var15.interacting = var1.method3585();
+               if(var15.interacting == 65535) {
+                  var15.interacting = -1;
+               }
+            }
+
+            if((var5 & 32) != 0) {
+               var16 = var1.method3613();
+               if(var16 == 65535) {
+                  var16 = -1;
+               }
+
+               var7 = var1.readUnsignedByte();
+               if(var16 == var15.animation && var16 != -1) {
+                  var8 = TotalQuantityComparator.getAnimation(var16).replyMode;
+                  if(var8 == 1) {
+                     var15.actionFrame = 0;
+                     var15.actionFrameCycle = 0;
+                     var15.actionAnimationDisable = var7;
+                     var15.field907 = 0;
+                  }
+
+                  if(var8 == 2) {
+                     var15.field907 = 0;
+                  }
+               } else if(var16 == -1 || var15.animation == -1 || TotalQuantityComparator.getAnimation(var16).forcedPriority >= TotalQuantityComparator.getAnimation(var15.animation).forcedPriority) {
+                  var15.animation = var16;
+                  var15.actionFrame = 0;
+                  var15.actionFrameCycle = 0;
+                  var15.actionAnimationDisable = var7;
+                  var15.field907 = 0;
+                  var15.field930 = var15.queueSize;
+               }
+            }
+
+            if((var5 & 2) != 0) {
+               var15.overhead = var1.readString();
+               var15.overheadTextCyclesRemaining = 100;
+            }
+         }
+
+         for(var14 = 0; var14 < Client.field701; ++var14) {
+            var3 = Client.field702[var14];
+            if(Client.cachedNPCs[var3].npcCycle != Client.gameCycle) {
+               Client.cachedNPCs[var3].composition = null;
+               Client.cachedNPCs[var3] = null;
+            }
+         }
+
+         if(var1.offset != Client.field626.packetLength) {
+            throw new RuntimeException(var1.offset + "," + Client.field626.packetLength);
+         } else {
+            for(var14 = 0; var14 < Client.npcIndexesCount; ++var14) {
+               if(Client.cachedNPCs[Client.npcIndices[var14]] == null) {
+                  throw new RuntimeException(var14 + "," + Client.npcIndexesCount);
+               }
+            }
+
+         }
+      }
+   }
+
+   @ObfuscatedName("jp")
+   @ObfuscatedSignature(
+      signature = "([Lhi;II)V",
+      garbageValue = "-2000374394"
+   )
+   static final void method4620(Widget[] var0, int var1) {
+      for(int var2 = 0; var2 < var0.length; ++var2) {
+         Widget var3 = var0[var2];
+         if(var3 != null && var3.parentId == var1 && (!var3.hasScript || !class81.method1885(var3))) {
+            if(var3.type == 0) {
+               if(!var3.hasScript && class81.method1885(var3) && var3 != class143.field1897) {
+                  continue;
+               }
+
+               method4620(var0, var3.id);
+               if(var3.children != null) {
+                  method4620(var3.children, var3.id);
+               }
+
+               WidgetNode var4 = (WidgetNode)Client.componentTable.get((long)var3.id);
+               if(var4 != null) {
+                  class21.method270(var4.id);
+               }
+            }
+
+            if(var3.type == 6) {
+               int var5;
+               if(var3.field2595 != -1 || var3.field2653 != -1) {
+                  boolean var7 = Occluder.method3097(var3);
+                  if(var7) {
+                     var5 = var3.field2653;
+                  } else {
+                     var5 = var3.field2595;
+                  }
+
+                  if(var5 != -1) {
+                     Sequence var6 = TotalQuantityComparator.getAnimation(var5);
+
+                     for(var3.field2613 += Client.field700; var3.field2613 > var6.frameLengths[var3.field2728]; Player.method1114(var3)) {
+                        var3.field2613 -= var6.frameLengths[var3.field2728];
+                        ++var3.field2728;
+                        if(var3.field2728 >= var6.frameIDs.length) {
+                           var3.field2728 -= var6.frameStep;
+                           if(var3.field2728 < 0 || var3.field2728 >= var6.frameIDs.length) {
+                              var3.field2728 = 0;
+                           }
                         }
                      }
                   }
                }
 
-               var0.byteAccess();
-               if(var1 != 0) {
-                  throw new RuntimeException();
-               } else {
-                  class81.playerIndexesCount = 0;
-                  class81.field1182 = 0;
-
-                  for(var2 = 1; var2 < 2048; ++var2) {
-                     class81.field1183[var2] = (byte)(class81.field1183[var2] >> 1);
-                     Player var5 = Client.cachedPlayers[var2];
-                     if(var5 != null) {
-                        class81.playerIndices[++class81.playerIndexesCount - 1] = var2;
-                     } else {
-                        class81.field1175[++class81.field1182 - 1] = var2;
-                     }
-                  }
-
+               if(var3.field2732 != 0 && !var3.hasScript) {
+                  int var8 = var3.field2732 >> 16;
+                  var5 = var3.field2732 << 16 >> 16;
+                  var8 *= Client.field700;
+                  var5 *= Client.field700;
+                  var3.rotationX = var8 + var3.rotationX & 2047;
+                  var3.rotationZ = var5 + var3.rotationZ & 2047;
+                  Player.method1114(var3);
                }
             }
-         }
-      }
-   }
-
-   @ObfuscatedName("l")
-   @ObfuscatedSignature(
-      signature = "(ZI)V",
-      garbageValue = "-1680267972"
-   )
-   static void method4617(boolean var0) {
-      class78.loginMessage1 = "";
-      class78.loginMessage2 = "Enter your username/email & password.";
-      class78.loginMessage3 = "";
-      class78.loginIndex = 2;
-      if(var0) {
-         class78.password = "";
-      }
-
-      Occluder.method3110();
-      class274.method5248();
-   }
-
-   @ObfuscatedName("iy")
-   @ObfuscatedSignature(
-      signature = "(Lhl;IIIIIII)V",
-      garbageValue = "1715888302"
-   )
-   static final void method4618(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-      if(Client.field659) {
-         Client.field736 = 32;
-      } else {
-         Client.field736 = 0;
-      }
-
-      Client.field659 = false;
-      int var7;
-      if(MouseInput.mouseCurrentButton == 1 || !class8.middleMouseMovesCamera && MouseInput.mouseCurrentButton == 4) {
-         if(var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
-            var0.scrollY -= 4;
-            DState.method3548(var0);
-         } else if(var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) {
-            var0.scrollY += 4;
-            DState.method3548(var0);
-         } else if(var5 >= var1 - Client.field736 && var5 < Client.field736 + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) {
-            var7 = var3 * (var3 - 32) / var4;
-            if(var7 < 8) {
-               var7 = 8;
-            }
-
-            int var8 = var6 - var2 - 16 - var7 / 2;
-            int var9 = var3 - 32 - var7;
-            var0.scrollY = var8 * (var4 - var3) / var9;
-            DState.method3548(var0);
-            Client.field659 = true;
-         }
-      }
-
-      if(Client.mouseWheelRotation != 0) {
-         var7 = var0.width;
-         if(var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) {
-            var0.scrollY += Client.mouseWheelRotation * 45;
-            DState.method3548(var0);
          }
       }
 

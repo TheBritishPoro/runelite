@@ -4,115 +4,119 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iq")
+@ObfuscatedName("ia")
 public class class250 {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "Lft;"
+      signature = "Lfd;"
    )
    @Export("NetCache_socket")
    public static class157 NetCache_socket;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = -292434043
+      intValue = 1110937007
    )
-   public static int field3209;
-   @ObfuscatedName("q")
+   public static int field3197;
+   @ObfuscatedName("s")
    @ObfuscatedGetter(
-      longValue = 3418162987922324045L
+      longValue = -5739275915681687991L
    )
-   public static long field3223;
-   @ObfuscatedName("b")
+   public static long field3203;
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "Lgd;"
+      signature = "Lgx;"
    )
    @Export("NetCache_pendingPriorityWrites")
    public static HashTable NetCache_pendingPriorityWrites;
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @ObfuscatedGetter(
-      intValue = -957679387
+      intValue = -1165925
    )
    @Export("NetCache_pendingPriorityWritesCount")
    public static int NetCache_pendingPriorityWritesCount;
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "Lgd;"
+      signature = "Lgx;"
    )
    @Export("NetCache_pendingPriorityResponses")
    public static HashTable NetCache_pendingPriorityResponses;
-   @ObfuscatedName("h")
+   @ObfuscatedName("k")
    @ObfuscatedGetter(
-      intValue = 832714855
+      intValue = 1214867787
    )
    @Export("NetCache_pendingPriorityResponsesCount")
    public static int NetCache_pendingPriorityResponsesCount;
-   @ObfuscatedName("x")
+   @ObfuscatedName("i")
    @ObfuscatedSignature(
-      signature = "Lgm;"
+      signature = "Lgo;"
    )
    @Export("NetCache_pendingWritesQueue")
    public static Node2LinkedList NetCache_pendingWritesQueue;
-   @ObfuscatedName("j")
+   @ObfuscatedName("x")
    @ObfuscatedSignature(
-      signature = "Lgd;"
+      signature = "Lgx;"
    )
    @Export("NetCache_pendingWrites")
-   public static HashTable NetCache_pendingWrites;
-   @ObfuscatedName("a")
+   static HashTable NetCache_pendingWrites;
+   @ObfuscatedName("e")
    @ObfuscatedGetter(
-      intValue = 1476715115
+      intValue = 351524551
    )
    @Export("NetCache_pendingWritesCount")
    public static int NetCache_pendingWritesCount;
-   @ObfuscatedName("l")
+   @ObfuscatedName("p")
    @ObfuscatedSignature(
-      signature = "Lgd;"
+      signature = "Lgx;"
    )
    @Export("NetCache_pendingResponses")
    public static HashTable NetCache_pendingResponses;
-   @ObfuscatedName("d")
+   @ObfuscatedName("b")
    @ObfuscatedGetter(
-      intValue = 1943132599
+      intValue = -887226239
    )
    @Export("NetCache_pendingResponsesCount")
    public static int NetCache_pendingResponsesCount;
-   @ObfuscatedName("s")
-   static boolean field3220;
+   @ObfuscatedName("f")
+   @ObfuscatedSignature(
+      signature = "Lig;"
+   )
+   @Export("currentRequest")
+   public static FileRequest currentRequest;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
-      signature = "Lgy;"
+      signature = "Lgk;"
    )
    @Export("NetCache_responseHeaderBuffer")
    public static Buffer NetCache_responseHeaderBuffer;
-   @ObfuscatedName("c")
+   @ObfuscatedName("r")
    @ObfuscatedGetter(
-      intValue = -5873175
+      intValue = 2092860897
    )
-   public static int field3221;
-   @ObfuscatedName("t")
+   public static int field3210;
+   @ObfuscatedName("o")
    @Export("NetCache_crc")
-   static CRC32 NetCache_crc;
-   @ObfuscatedName("i")
+   public static CRC32 NetCache_crc;
+   @ObfuscatedName("a")
    @ObfuscatedSignature(
       signature = "[Lic;"
    )
    @Export("NetCache_indexCaches")
-   static IndexData[] NetCache_indexCaches;
-   @ObfuscatedName("z")
-   public static byte field3225;
-   @ObfuscatedName("k")
+   public static IndexData[] NetCache_indexCaches;
+   @ObfuscatedName("j")
+   public static byte field3213;
+   @ObfuscatedName("d")
    @ObfuscatedGetter(
-      intValue = -423946815
+      intValue = 42575595
    )
-   public static int field3226;
-   @ObfuscatedName("r")
+   public static int field3214;
+   @ObfuscatedName("h")
    @ObfuscatedGetter(
-      intValue = 1107669235
+      intValue = -1264842351
    )
-   public static int field3227;
+   public static int field3215;
 
    static {
-      field3209 = 0;
+      field3197 = 0;
       NetCache_pendingPriorityWrites = new HashTable(4096);
       NetCache_pendingPriorityWritesCount = 0;
       NetCache_pendingPriorityResponses = new HashTable(32);
@@ -123,11 +127,101 @@ public class class250 {
       NetCache_pendingResponses = new HashTable(4096);
       NetCache_pendingResponsesCount = 0;
       NetCache_responseHeaderBuffer = new Buffer(8);
-      field3221 = 0;
+      field3210 = 0;
       NetCache_crc = new CRC32();
       NetCache_indexCaches = new IndexData[256];
-      field3225 = 0;
-      field3226 = 0;
-      field3227 = 0;
+      field3213 = 0;
+      field3214 = 0;
+      field3215 = 0;
+   }
+
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "(Lir;Lir;Lir;I)V",
+      garbageValue = "1897264020"
+   )
+   public static void method4766(IndexDataBase var0, IndexDataBase var1, IndexDataBase var2) {
+      class267.field3367 = var0;
+      class267.field3348 = var1;
+      class139.field1877 = var2;
+   }
+
+   @ObfuscatedName("w")
+   @ObfuscatedSignature(
+      signature = "(CI)C",
+      garbageValue = "-365895890"
+   )
+   public static char method4770(char var0) {
+      switch(var0) {
+      case ' ':
+      case '-':
+      case '_':
+      case ' ':
+         return '_';
+      case '#':
+      case '[':
+      case ']':
+         return var0;
+      case 'À':
+      case 'Á':
+      case 'Â':
+      case 'Ã':
+      case 'Ä':
+      case 'à':
+      case 'á':
+      case 'â':
+      case 'ã':
+      case 'ä':
+         return 'a';
+      case 'Ç':
+      case 'ç':
+         return 'c';
+      case 'È':
+      case 'É':
+      case 'Ê':
+      case 'Ë':
+      case 'è':
+      case 'é':
+      case 'ê':
+      case 'ë':
+         return 'e';
+      case 'Í':
+      case 'Î':
+      case 'Ï':
+      case 'í':
+      case 'î':
+      case 'ï':
+         return 'i';
+      case 'Ñ':
+      case 'ñ':
+         return 'n';
+      case 'Ò':
+      case 'Ó':
+      case 'Ô':
+      case 'Õ':
+      case 'Ö':
+      case 'ò':
+      case 'ó':
+      case 'ô':
+      case 'õ':
+      case 'ö':
+         return 'o';
+      case 'Ù':
+      case 'Ú':
+      case 'Û':
+      case 'Ü':
+      case 'ù':
+      case 'ú':
+      case 'û':
+      case 'ü':
+         return 'u';
+      case 'ß':
+         return 'b';
+      case 'ÿ':
+      case 'Ÿ':
+         return 'y';
+      default:
+         return Character.toLowerCase(var0);
+      }
    }
 }

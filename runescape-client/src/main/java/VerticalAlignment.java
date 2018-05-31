@@ -7,45 +7,45 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("is")
 @Implements("VerticalAlignment")
 public enum VerticalAlignment implements Enumerated {
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      signature = "Lis;"
+   )
+   field3224(2, 0),
    @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "Lis;"
    )
-   field3242(2, 0),
-   @ObfuscatedName("m")
+   field3222(1, 1),
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
       signature = "Lis;"
    )
-   field3241(1, 1),
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "Lis;"
-   )
-   field3243(0, 2);
+   field3221(0, 2);
 
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = -1688464985
+      intValue = -71275381
    )
    @Export("value")
    public final int value;
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @ObfuscatedGetter(
-      intValue = 1193385339
+      intValue = -199100421
    )
-   final int field3245;
+   final int field3225;
 
    VerticalAlignment(int var3, int var4) {
       this.value = var3;
-      this.field3245 = var4;
+      this.field3225 = var4;
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "(B)I",
-      garbageValue = "60"
+      garbageValue = "59"
    )
    public int rsOrdinal() {
-      return this.field3245;
+      return this.field3225;
    }
 }

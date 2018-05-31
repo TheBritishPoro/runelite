@@ -4,30 +4,41 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hh")
+@ObfuscatedName("ha")
 @Implements("Coordinates")
 public class Coordinates {
+   @ObfuscatedName("fj")
+   @ObfuscatedGetter(
+      intValue = 1986316761
+   )
+   static int field2568;
+   @ObfuscatedName("gi")
+   @ObfuscatedGetter(
+      intValue = -1575232807
+   )
+   @Export("cameraY")
+   static int cameraY;
    @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = 327374529
+      intValue = 208134387
    )
    @Export("plane")
    public int plane;
-   @ObfuscatedName("m")
+   @ObfuscatedName("s")
    @ObfuscatedGetter(
-      intValue = -510649741
+      intValue = 44298731
    )
    @Export("worldX")
    public int worldX;
-   @ObfuscatedName("q")
+   @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = 104556867
+      intValue = -187382705
    )
    @Export("worldY")
    public int worldY;
 
    @ObfuscatedSignature(
-      signature = "(Lhh;)V"
+      signature = "(Lha;)V"
    )
    public Coordinates(Coordinates var1) {
       this.plane = var1.plane;
@@ -56,10 +67,10 @@ public class Coordinates {
 
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "(IIIB)V",
-      garbageValue = "62"
+      signature = "(IIII)V",
+      garbageValue = "-2113986105"
    )
    @Export("set")
    public void set(int var1, int var2, int var3) {
@@ -68,36 +79,32 @@ public class Coordinates {
       this.worldY = var3;
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(B)I",
-      garbageValue = "92"
+      signature = "(I)I",
+      garbageValue = "1904396734"
    )
    @Export("bitpack")
    public int bitpack() {
       return this.plane << 28 | this.worldX << 14 | this.worldY;
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(Lhh;I)Z",
-      garbageValue = "-1581452973"
+      signature = "(Lha;I)Z",
+      garbageValue = "-1097701365"
    )
-   boolean method4468(Coordinates var1) {
+   boolean method4439(Coordinates var1) {
       return this.plane != var1.plane?false:(this.worldX != var1.worldX?false:this.worldY == var1.worldY);
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(Ljava/lang/String;B)Ljava/lang/String;",
-      garbageValue = "-37"
+      signature = "(Ljava/lang/String;I)Ljava/lang/String;",
+      garbageValue = "-1171766630"
    )
-   String method4470(String var1) {
+   String method4441(String var1) {
       return this.plane + var1 + (this.worldX >> 6) + var1 + (this.worldY >> 6) + var1 + (this.worldX & 63) + var1 + (this.worldY & 63);
-   }
-
-   public boolean equals(Object var1) {
-      return this == var1?true:(!(var1 instanceof Coordinates)?false:this.method4468((Coordinates)var1));
    }
 
    public int hashCode() {
@@ -105,49 +112,10 @@ public class Coordinates {
    }
 
    public String toString() {
-      return this.method4470(",");
+      return this.method4441(",");
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      signature = "(II)Z",
-      garbageValue = "741148208"
-   )
-   public static boolean method4482(int var0) {
-      return (var0 >> 28 & 1) != 0;
-   }
-
-   @ObfuscatedName("y")
-   @ObfuscatedSignature(
-      signature = "(I)[Llc;",
-      garbageValue = "2024020127"
-   )
-   static SpritePixels[] method4483() {
-      SpritePixels[] var0 = new SpritePixels[class319.indexedSpriteCount];
-
-      for(int var1 = 0; var1 < class319.indexedSpriteCount; ++var1) {
-         SpritePixels var2 = var0[var1] = new SpritePixels();
-         var2.maxWidth = class319.indexedSpriteWidth;
-         var2.maxHeight = class275.indexedSpriteHeight;
-         var2.offsetX = class319.indexedSpriteOffsetXs[var1];
-         var2.offsetY = class319.indexedSpriteOffsetYs[var1];
-         var2.width = class192.indexSpriteWidths[var1];
-         var2.height = class319.indexedSpriteHeights[var1];
-         int var3 = var2.width * var2.height;
-         byte[] var4 = class294.spritePixels[var1];
-         var2.pixels = new int[var3];
-
-         for(int var5 = 0; var5 < var3; ++var5) {
-            var2.pixels[var5] = class319.indexedSpritePalette[var4[var5] & 255];
-         }
-      }
-
-      class319.indexedSpriteOffsetXs = null;
-      class319.indexedSpriteOffsetYs = null;
-      class192.indexSpriteWidths = null;
-      class319.indexedSpriteHeights = null;
-      class319.indexedSpritePalette = null;
-      class294.spritePixels = null;
-      return var0;
+   public boolean equals(Object var1) {
+      return this == var1?true:(!(var1 instanceof Coordinates)?false:this.method4439((Coordinates)var1));
    }
 }

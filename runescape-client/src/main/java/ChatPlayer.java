@@ -4,23 +4,23 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kd")
+@ObfuscatedName("kz")
 @Implements("ChatPlayer")
 public class ChatPlayer extends Nameable {
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @ObfuscatedGetter(
-      intValue = -1818299933
+      intValue = -1986288725
    )
    @Export("world")
    public int world;
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = -467035593
+      intValue = -745943211
    )
-   public int field3649;
-   @ObfuscatedName("h")
+   public int field3627;
+   @ObfuscatedName("k")
    @ObfuscatedGetter(
-      intValue = -1378703733
+      intValue = 1388711563
    )
    @Export("rank")
    public int rank;
@@ -32,28 +32,28 @@ public class ChatPlayer extends Nameable {
    @ObfuscatedName("ax")
    @ObfuscatedSignature(
       signature = "(III)V",
-      garbageValue = "698375569"
+      garbageValue = "-414916451"
    )
-   void method5432(int var1, int var2) {
+   void method5412(int var1, int var2) {
       this.world = var1;
-      this.field3649 = var2;
+      this.field3627 = var2;
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("am")
    @ObfuscatedSignature(
-      signature = "(B)I",
-      garbageValue = "-21"
+      signature = "(I)I",
+      garbageValue = "1524390251"
    )
-   public int method5433() {
+   public int method5414() {
       return this.world;
    }
 
-   @ObfuscatedName("ak")
+   @ObfuscatedName("ay")
    @ObfuscatedSignature(
       signature = "(B)Z",
-      garbageValue = "5"
+      garbageValue = "-34"
    )
-   public boolean method5438() {
+   public boolean method5415() {
       return this.world > 0;
    }
 }

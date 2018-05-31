@@ -3,47 +3,42 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.Hook;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ea")
+@ObfuscatedName("ev")
 @Implements("Signlink")
 public class Signlink implements Runnable {
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @Export("javaVendor")
    public static String javaVendor;
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @Export("javaVersion")
    public static String javaVersion;
-   @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = -717725833
-   )
-   static int field1980;
-   @ObfuscatedName("gd")
-   @ObfuscatedGetter(
-      intValue = 1240744529
-   )
-   static int field1979;
-   @ObfuscatedName("q")
+   @ObfuscatedName("e")
    @ObfuscatedSignature(
-      signature = "Led;"
+      signature = "Lir;"
+   )
+   static IndexDataBase field1956;
+   @ObfuscatedName("aw")
+   static java.awt.Font field1961;
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "Lee;"
    )
    @Export("currentTask")
    Task currentTask;
-   @ObfuscatedName("b")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "Led;"
+      signature = "Lee;"
    )
    @Export("cachedTask")
    Task cachedTask;
-   @ObfuscatedName("f")
+   @ObfuscatedName("u")
    @Export("sysEventQueue")
    Thread sysEventQueue;
-   @ObfuscatedName("n")
+   @ObfuscatedName("q")
    @Export("closed")
    boolean closed;
 
@@ -68,10 +63,10 @@ public class Signlink implements Runnable {
       this.sysEventQueue.start();
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
       signature = "(I)V",
-      garbageValue = "-1910531284"
+      garbageValue = "417031791"
    )
    @Export("join")
    public final void join() {
@@ -88,10 +83,10 @@ public class Signlink implements Runnable {
 
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(IIILjava/lang/Object;B)Led;",
-      garbageValue = "107"
+      signature = "(IIILjava/lang/Object;I)Lee;",
+      garbageValue = "755580471"
    )
    @Export("newTask")
    final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -112,20 +107,20 @@ public class Signlink implements Runnable {
       }
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(Ljava/lang/String;II)Led;",
-      garbageValue = "-1394371433"
+      signature = "(Ljava/lang/String;II)Lee;",
+      garbageValue = "-334479783"
    )
    @Export("createSocket")
    public final Task createSocket(String var1, int var2) {
       return this.newTask(1, var2, 0, var1);
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      signature = "(Ljava/lang/Runnable;IB)Led;",
-      garbageValue = "1"
+      signature = "(Ljava/lang/Runnable;II)Lee;",
+      garbageValue = "1672602296"
    )
    @Export("createRunnable")
    public final Task createRunnable(Runnable var1, int var2) {
@@ -181,40 +176,12 @@ public class Signlink implements Runnable {
       }
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "214742600"
+      signature = "(IB)I",
+      garbageValue = "-80"
    )
-   @Export("addChatMessage")
-   @Hook("addChatMessage")
-   static void addChatMessage(int var0, String var1, String var2, String var3) {
-      ChatLineBuffer var4 = (ChatLineBuffer)class83.chatLineMap.get(Integer.valueOf(var0));
-      if(var4 == null) {
-         var4 = new ChatLineBuffer();
-         class83.chatLineMap.put(Integer.valueOf(var0), var4);
-      }
-
-      MessageNode var5 = var4.addMessage(var0, var1, var2, var3);
-      class83.messages.put(var5, (long)var5.id);
-      class83.field1205.add(var5);
-      Client.chatCycle = Client.cycleCntr;
-   }
-
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(Lic;II)V",
-      garbageValue = "-95084124"
-   )
-   static void method3242(IndexData var0, int var1) {
-      if(class325.NetCache_reference != null) {
-         class325.NetCache_reference.offset = var1 * 8 + 5;
-         int var2 = class325.NetCache_reference.readInt();
-         int var3 = class325.NetCache_reference.readInt();
-         var0.setInformation(var2, var3);
-      } else {
-         class37.requestNetFile((IndexData)null, 255, 255, 0, (byte)0, true);
-         class250.NetCache_indexCaches[var1] = var0;
-      }
+   public static int method3252(int var0) {
+      return var0 >> 11 & 63;
    }
 }
