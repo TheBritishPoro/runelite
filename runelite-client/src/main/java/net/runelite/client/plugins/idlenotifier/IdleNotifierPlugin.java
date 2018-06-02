@@ -188,6 +188,9 @@ public class IdleNotifierPlugin extends Plugin
 
 		switch (state)
 		{
+			case LOGIN_SCREEN:
+				resetTimers();
+				break;
 			case LOGGING_IN:
 			case HOPPING:
 			case CONNECTION_LOST:
@@ -198,7 +201,9 @@ public class IdleNotifierPlugin extends Plugin
 				{
 					sixHourWarningTime = Instant.now().plus(SIX_HOUR_LOGOUT_WARNING_AFTER_DURATION);
 					ready = false;
+					resetTimers();
 				}
+
 				break;
 		}
 	}
