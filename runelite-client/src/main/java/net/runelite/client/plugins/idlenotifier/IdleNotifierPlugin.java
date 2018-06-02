@@ -25,12 +25,14 @@
  */
 package net.runelite.client.plugins.idlenotifier;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Provides;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 import net.runelite.api.Actor;
 import net.runelite.api.AnimationID;
@@ -42,7 +44,6 @@ import net.runelite.api.NPCComposition;
 import net.runelite.api.Player;
 import net.runelite.api.Skill;
 import net.runelite.api.Varbits;
-import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.client.Notifier;
@@ -57,6 +58,100 @@ public class IdleNotifierPlugin extends Plugin
 {
 	private static final int LOGOUT_WARNING_AFTER_TICKS = 14000; // 4 minutes and 40 seconds
 	private static final Duration SIX_HOUR_LOGOUT_WARNING_AFTER_DURATION = Duration.ofMinutes(340);
+	private static final Set<Integer> IDLE_ANIMATIONS = ImmutableSet
+		.<Integer>builder()
+		.add(
+			/* Woodcutting */
+			WOODCUTTING_BRONZE,
+			WOODCUTTING_IRON,
+			WOODCUTTING_STEEL,
+			WOODCUTTING_BLACK,
+			WOODCUTTING_MITHRIL,
+			WOODCUTTING_ADAMANT,
+			WOODCUTTING_RUNE,
+			WOODCUTTING_DRAGON,
+			WOODCUTTING_INFERNAL,
+			WOODCUTTING_3A_AXE,
+			/* Cooking(Fire, Range) */
+			COOKING_FIRE,
+			COOKING_RANGE,
+			COOKING_WINE,
+			/* Crafting(Gem Cutting, Glassblowing, Spinning, Battlestaves) */
+			GEM_CUTTING_OPAL,
+			GEM_CUTTING_JADE,
+			GEM_CUTTING_REDTOPAZ,
+			GEM_CUTTING_SAPPHIRE,
+			GEM_CUTTING_EMERALD,
+			GEM_CUTTING_RUBY,
+			GEM_CUTTING_DIAMOND,
+			CRAFTING_GLASSBLOWING,
+			CRAFTING_SPINNING,
+			CRAFTING_BATTLESTAVES,
+			/* Fletching(Cutting, Stringing) */
+			FLETCHING_BOW_CUTTING,
+			FLETCHING_STRING_NORMAL_SHORTBOW,
+			FLETCHING_STRING_OAK_SHORTBOW,
+			FLETCHING_STRING_WILLOW_SHORTBOW,
+			FLETCHING_STRING_MAPLE_SHORTBOW,
+			FLETCHING_STRING_YEW_SHORTBOW,
+			FLETCHING_STRING_MAGIC_SHORTBOW,
+			FLETCHING_STRING_NORMAL_LONGBOW,
+			FLETCHING_STRING_OAK_LONGBOW,
+			FLETCHING_STRING_WILLOW_LONGBOW,
+			FLETCHING_STRING_MAPLE_LONGBOW,
+			FLETCHING_STRING_YEW_LONGBOW,
+			FLETCHING_STRING_MAGIC_LONGBOW,
+			/* Smithing(Anvil, Furnace, Cannonballs */
+			SMITHING_ANVIL,
+			SMITHING_SMELTING,
+			SMITHING_CANNONBALL,
+			/* Fishing */
+			FISHING_NET,
+			FISHING_BIG_NET,
+			FISHING_HARPOON,
+			FISHING_BARBTAIL_HARPOON,
+			FISHING_DRAGON_HARPOON,
+			FISHING_CAGE,
+			FISHING_POLE_CAST,
+			FISHING_INFERNAL_HARPOON,
+			FISHING_OILY_ROD,
+			FISHING_KARAMBWAN,
+			FISHING_CRUSHING_INFERNAL_EELS,
+			FISHING_BAREHAND,
+			/* Mining(Normal) */
+			MINING_BRONZE_PICKAXE,
+			MINING_IRON_PICKAXE,
+			MINING_STEEL_PICKAXE,
+			MINING_BLACK_PICKAXE,
+			MINING_MITHRIL_PICKAXE,
+			MINING_ADAMANT_PICKAXE,
+			MINING_RUNE_PICKAXE,
+			MINING_DRAGON_PICKAXE,
+			MINING_DRAGON_PICKAXE_ORN,
+			MINING_INFERNAL_PICKAXE,
+			MINING_3A_PICKAXE,
+			/* Mining(Motherlode) */
+			MINING_MOTHERLODE_BRONZE,
+			MINING_MOTHERLODE_IRON,
+			MINING_MOTHERLODE_STEEL,
+			MINING_MOTHERLODE_BLACK,
+			MINING_MOTHERLODE_MITHRIL,
+			MINING_MOTHERLODE_ADAMANT,
+			MINING_MOTHERLODE_RUNE,
+			MINING_MOTHERLODE_DRAGON,
+			MINING_MOTHERLODE_DRAGON_ORN,
+			MINING_MOTHERLODE_INFERNAL,
+			MINING_MOTHERLODE_3A,
+			/* Herblore */
+			HERBLORE_POTIONMAKING,
+			HERBLORE_MAKE_TAR,
+			/* Magic */
+			MAGIC_CHARGING_ORBS,
+			MAGIC_LUNAR_STRING_JEWELRY,
+			MAGIC_LUNAR_BAKE_PIE,
+			/* Prayer */
+			USING_GILDED_ALTAR)
+		.build();
 
 	@Inject
 	private Notifier notifier;
@@ -82,119 +177,6 @@ public class IdleNotifierPlugin extends Plugin
 	IdleNotifierConfig provideConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(IdleNotifierConfig.class);
-	}
-
-	@Subscribe
-	public void onAnimationChanged(AnimationChanged event)
-	{
-		if (client.getGameState() != GameState.LOGGED_IN)
-		{
-			return;
-		}
-
-		Player localPlayer = client.getLocalPlayer();
-		if (localPlayer != event.getActor())
-		{
-			return;
-		}
-
-		int animation = localPlayer.getAnimation();
-		switch (animation)
-		{
-			/* Woodcutting */
-			case WOODCUTTING_BRONZE:
-			case WOODCUTTING_IRON:
-			case WOODCUTTING_STEEL:
-			case WOODCUTTING_BLACK:
-			case WOODCUTTING_MITHRIL:
-			case WOODCUTTING_ADAMANT:
-			case WOODCUTTING_RUNE:
-			case WOODCUTTING_DRAGON:
-			case WOODCUTTING_INFERNAL:
-			case WOODCUTTING_3A_AXE:
-			/* Cooking(Fire, Range) */
-			case COOKING_FIRE:
-			case COOKING_RANGE:
-			case COOKING_WINE:
-			/* Crafting(Gem Cutting, Glassblowing, Spinning, Battlestaves) */
-			case GEM_CUTTING_OPAL:
-			case GEM_CUTTING_JADE:
-			case GEM_CUTTING_REDTOPAZ:
-			case GEM_CUTTING_SAPPHIRE:
-			case GEM_CUTTING_EMERALD:
-			case GEM_CUTTING_RUBY:
-			case GEM_CUTTING_DIAMOND:
-			case CRAFTING_GLASSBLOWING:
-			case CRAFTING_SPINNING:
-			case CRAFTING_BATTLESTAVES:
-			/* Fletching(Cutting, Stringing) */
-			case FLETCHING_BOW_CUTTING:
-			case FLETCHING_STRING_NORMAL_SHORTBOW:
-			case FLETCHING_STRING_OAK_SHORTBOW:
-			case FLETCHING_STRING_WILLOW_SHORTBOW:
-			case FLETCHING_STRING_MAPLE_SHORTBOW:
-			case FLETCHING_STRING_YEW_SHORTBOW:
-			case FLETCHING_STRING_MAGIC_SHORTBOW:
-			case FLETCHING_STRING_NORMAL_LONGBOW:
-			case FLETCHING_STRING_OAK_LONGBOW:
-			case FLETCHING_STRING_WILLOW_LONGBOW:
-			case FLETCHING_STRING_MAPLE_LONGBOW:
-			case FLETCHING_STRING_YEW_LONGBOW:
-			case FLETCHING_STRING_MAGIC_LONGBOW:
-			/* Smithing(Anvil, Furnace, Cannonballs */
-			case SMITHING_ANVIL:
-			case SMITHING_SMELTING:
-			case SMITHING_CANNONBALL:
-			/* Fishing */
-			case FISHING_NET:
-			case FISHING_BIG_NET:
-			case FISHING_HARPOON:
-			case FISHING_BARBTAIL_HARPOON:
-			case FISHING_DRAGON_HARPOON:
-			case FISHING_CAGE:
-			case FISHING_POLE_CAST:
-			case FISHING_INFERNAL_HARPOON:
-			case FISHING_OILY_ROD:
-			case FISHING_KARAMBWAN:
-			case FISHING_CRUSHING_INFERNAL_EELS:
-			case FISHING_BAREHAND:
-			/* Mining(Normal) */
-			case MINING_BRONZE_PICKAXE:
-			case MINING_IRON_PICKAXE:
-			case MINING_STEEL_PICKAXE:
-			case MINING_BLACK_PICKAXE:
-			case MINING_MITHRIL_PICKAXE:
-			case MINING_ADAMANT_PICKAXE:
-			case MINING_RUNE_PICKAXE:
-			case MINING_DRAGON_PICKAXE:
-			case MINING_DRAGON_PICKAXE_ORN:
-			case MINING_INFERNAL_PICKAXE:
-			case MINING_3A_PICKAXE:
-			/* Mining(Motherlode) */
-			case MINING_MOTHERLODE_BRONZE:
-			case MINING_MOTHERLODE_IRON:
-			case MINING_MOTHERLODE_STEEL:
-			case MINING_MOTHERLODE_BLACK:
-			case MINING_MOTHERLODE_MITHRIL:
-			case MINING_MOTHERLODE_ADAMANT:
-			case MINING_MOTHERLODE_RUNE:
-			case MINING_MOTHERLODE_DRAGON:
-			case MINING_MOTHERLODE_DRAGON_ORN:
-			case MINING_MOTHERLODE_INFERNAL:
-			case MINING_MOTHERLODE_3A:
-			/* Herblore */
-			case HERBLORE_POTIONMAKING:
-			case HERBLORE_MAKE_TAR:
-			/* Magic */
-			case MAGIC_CHARGING_ORBS:
-			case MAGIC_LUNAR_STRING_JEWELRY:
-			case MAGIC_LUNAR_BAKE_PIE:
-			/* Prayer */
-			case USING_GILDED_ALTAR:
-				resetTimers();
-				notifyIdle = true;
-				break;
-		}
 	}
 
 	@Subscribe
@@ -394,6 +376,14 @@ public class IdleNotifierPlugin extends Plugin
 
 	private boolean checkAnimationIdle(Duration waitDuration, Player local)
 	{
+		final int animation = local.getAnimation();
+
+		if (IDLE_ANIMATIONS.contains(animation))
+		{
+			resetTimers();
+			notifyIdle = true;
+		}
+
 		if (notifyIdle)
 		{
 			if (lastAnimating != null)
@@ -405,7 +395,7 @@ public class IdleNotifierPlugin extends Plugin
 					return true;
 				}
 			}
-			else if (local.getAnimation() == IDLE)
+			else if (animation == IDLE)
 			{
 				lastAnimating = Instant.now();
 			}
