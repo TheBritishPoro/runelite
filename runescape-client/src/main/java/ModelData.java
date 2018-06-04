@@ -1601,7 +1601,7 @@ public class ModelData extends Renderable {
       var8.indices2 = this.trianglePointsY;
       var8.indices3 = this.trianglePointsZ;
       var8.field1645 = this.faceRenderPriorities;
-      var8.field1593 = this.faceAlphas;
+      var8.triangleTransparencies = this.faceAlphas;
       var8.field1596 = this.priority;
       var8.vertexGroups = this.field1481;
       var8.field1602 = this.field1482;

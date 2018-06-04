@@ -115,7 +115,8 @@ public class Model extends Renderable {
    @ObfuscatedName("m")
    byte[] field1645;
    @ObfuscatedName("r")
-   byte[] field1593;
+   @Export("triangleTransparencies")
+   byte[] triangleTransparencies;
    @ObfuscatedName("t")
    byte[] field1617;
    @ObfuscatedName("o")
@@ -253,7 +254,7 @@ public class Model extends Renderable {
                }
             }
 
-            var4 |= var8.field1593 != null;
+            var4 |= var8.triangleTransparencies != null;
             var5 |= var8.field1604 != null;
             var6 |= var8.field1617 != null;
          }
@@ -273,7 +274,7 @@ public class Model extends Renderable {
       }
 
       if(var4) {
-         this.field1593 = new byte[this.indicesCount];
+         this.triangleTransparencies = new byte[this.indicesCount];
       }
 
       if(var5) {
@@ -313,8 +314,8 @@ public class Model extends Renderable {
                   }
                }
 
-               if(var4 && var8.field1593 != null) {
-                  this.field1593[this.indicesCount] = var8.field1593[var9];
+               if(var4 && var8.triangleTransparencies != null) {
+                  this.triangleTransparencies[this.indicesCount] = var8.triangleTransparencies[var9];
                }
 
                if(var5) {
@@ -387,7 +388,7 @@ public class Model extends Renderable {
                var11.field1620 = this.field1620;
                var11.field1591 = this.field1591;
                var11.field1645 = this.field1645;
-               var11.field1593 = this.field1593;
+               var11.triangleTransparencies = this.triangleTransparencies;
                var11.field1617 = this.field1617;
                var11.field1604 = this.field1604;
                var11.field1596 = this.field1596;
@@ -499,16 +500,16 @@ public class Model extends Renderable {
       }
 
       if(var1) {
-         var2.field1593 = this.field1593;
+         var2.triangleTransparencies = this.triangleTransparencies;
       } else {
-         var2.field1593 = var3;
-         if(this.field1593 == null) {
+         var2.triangleTransparencies = var3;
+         if(this.triangleTransparencies == null) {
             for(var4 = 0; var4 < this.indicesCount; ++var4) {
-               var2.field1593[var4] = 0;
+               var2.triangleTransparencies[var4] = 0;
             }
          } else {
             for(var4 = 0; var4 < this.indicesCount; ++var4) {
-               var2.field1593[var4] = this.field1593[var4];
+               var2.triangleTransparencies[var4] = this.triangleTransparencies[var4];
             }
          }
       }
@@ -867,7 +868,7 @@ public class Model extends Renderable {
             }
 
          } else if(var1 == 5) {
-            if(this.field1602 != null && this.field1593 != null) {
+            if(this.field1602 != null && this.triangleTransparencies != null) {
                for(var7 = 0; var7 < var6; ++var7) {
                   var8 = var2[var7];
                   if(var8 < this.field1602.length) {
@@ -875,14 +876,14 @@ public class Model extends Renderable {
 
                      for(var19 = 0; var19 < var18.length; ++var19) {
                         var11 = var18[var19];
-                        var12 = (this.field1593[var11] & 255) + var3 * 8;
+                        var12 = (this.triangleTransparencies[var11] & 255) + var3 * 8;
                         if(var12 < 0) {
                            var12 = 0;
                         } else if(var12 > 255) {
                            var12 = 255;
                         }
 
-                        this.field1593[var11] = (byte)var12;
+                        this.triangleTransparencies[var11] = (byte)var12;
                      }
                   }
                }
@@ -1328,10 +1329,10 @@ public class Model extends Renderable {
          int var3 = this.indices2[var1];
          int var4 = this.indices3[var1];
          Graphics3D.rasterClipEnable = field1616[var1];
-         if(this.field1593 == null) {
+         if(this.triangleTransparencies == null) {
             Graphics3D.rasterAlpha = 0;
          } else {
-            Graphics3D.rasterAlpha = this.field1593[var1] & 255;
+            Graphics3D.rasterAlpha = this.triangleTransparencies[var1] & 255;
          }
 
          if(this.field1604 != null && this.field1604[var1] != -1) {
@@ -1374,10 +1375,10 @@ public class Model extends Renderable {
       int var8 = field1623[var5];
       int var9 = field1623[var6];
       int var10 = field1623[var7];
-      if(this.field1593 == null) {
+      if(this.triangleTransparencies == null) {
          Graphics3D.rasterAlpha = 0;
       } else {
-         Graphics3D.rasterAlpha = this.field1593[var1] & 255;
+         Graphics3D.rasterAlpha = this.triangleTransparencies[var1] & 255;
       }
 
       int var11;
