@@ -346,6 +346,13 @@ public class Hooks implements Callbacks
 	@Override
 	public void drawScene()
 	{
+		// Update selected region tile
+		if (!client.isMenuOpen())
+		{
+			client.setCheckClick(true);
+			client.setMouseCanvasHoverPosition(client.getMouseCanvasPosition());
+		}
+
 		MainBufferProvider bufferProvider = (MainBufferProvider) client.getBufferProvider();
 		BufferedImage image = (BufferedImage) bufferProvider.getImage();
 		Graphics2D graphics2d = image.createGraphics();
