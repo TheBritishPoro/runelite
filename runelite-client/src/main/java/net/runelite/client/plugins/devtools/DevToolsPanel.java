@@ -229,6 +229,7 @@ public class DevToolsPanel extends PluginPanel
 		{
 			highlightButton(oculusOrbBtn);
 			client.setOculusOrbState(oculusOrbBtn.getBackground().equals(Color.GREEN) ? 1 : 0);
+			client.setOculusOrbNormalSpeed(oculusOrbBtn.getBackground().equals(Color.GREEN) ? 36 : 12);
 		});
 		container.add(oculusOrbBtn);
 
