@@ -1431,6 +1431,13 @@ public interface Client extends GameEngine
 	void setOculusOrbState(int state);
 
 	/**
+	 * Gets the enabled state for the Oculus orb state
+	 *
+	 * @return oculus orb enabled state
+	 */
+	int getOculusOrbState();
+
+	/**
 	 * Sets the normal moving speed when using oculus orb (default value is 12)
 	 *
 	 * @param speed speed
