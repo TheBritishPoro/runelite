@@ -32,7 +32,11 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.ScriptCallbackEvent;
+import net.runelite.api.events.WidgetMenuOptionClicked;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
+import net.runelite.client.menus.MenuManager;
+import net.runelite.client.menus.WidgetMenuOption;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
@@ -45,11 +49,17 @@ import net.runelite.client.plugins.PluginDescriptor;
 @Slf4j
 public class CameraPlugin extends Plugin
 {
+	private final WidgetMenuOption TOGGLE_FREE_CAMERA_OPTION = new WidgetMenuOption(
+		"Toggle", "Free Camera", WidgetInfo.WORLD_MAP_OPTION);
+
 	@Inject
 	private Client client;
 
 	@Inject
 	private CameraConfig cameraConfig;
+
+	@Inject
+	private MenuManager menuManager;
 
 	@Provides
 	CameraConfig getConfig(ConfigManager configManager)
@@ -116,17 +126,51 @@ public class CameraPlugin extends Plugin
 	protected void startUp()
 	{
 		client.setCameraPitchRelaxerEnabled(cameraConfig.relaxCameraPitch());
+
+		if (cameraConfig.freeRoamCamera())
+		{
+			menuManager.addManagedCustomMenu(TOGGLE_FREE_CAMERA_OPTION);
+		}
 	}
 
 	@Override
 	protected void shutDown()
 	{
 		client.setCameraPitchRelaxerEnabled(false);
+		menuManager.removeManagedCustomMenu(TOGGLE_FREE_CAMERA_OPTION);
 	}
 
 	@Subscribe
 	public void onConfigChanged(ConfigChanged ev)
 	{
 		client.setCameraPitchRelaxerEnabled(cameraConfig.relaxCameraPitch());
+
+		if (cameraConfig.freeRoamCamera())
+		{
+			menuManager.addManagedCustomMenu(TOGGLE_FREE_CAMERA_OPTION);
+		}
+		else
+		{
+			menuManager.removeManagedCustomMenu(TOGGLE_FREE_CAMERA_OPTION);
+		}
+	}
+
+	@Subscribe
+	public void onWidgetMenuOptionClicked(final WidgetMenuOptionClicked event)
+	{
+		if (event.getWidget() != WidgetInfo.WORLD_MAP_OPTION)
+		{
+			return;
+		}
+
+		if (event.getMenuOption().equals(TOGGLE_FREE_CAMERA_OPTION.getMenuOption()) &&
+			event.getMenuTarget().equals(TOGGLE_FREE_CAMERA_OPTION.getMenuTarget()))
+		{
+			// Invert orb enabled state for free roam camera
+			final boolean enabled = client.getOculusOrbState() == 1;
+			final boolean inverted = !enabled;
+			client.setOculusOrbNormalSpeed(inverted ? 36 : 12);
+			client.setOculusOrbState(inverted ? 1 : 0);
+		}
 	}
 }
