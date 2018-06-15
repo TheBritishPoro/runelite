@@ -23,7 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.zoom;
+package net.runelite.client.plugins.camera;
 
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
@@ -37,24 +37,24 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
 @PluginDescriptor(
-	name = "Camera Zoom",
-	description = "Expand zoom limit and/or enable vertical camera",
+	name = "Camera",
+	description = "Configuration for the camera",
 	tags = {"limit", "vertical"},
 	enabledByDefault = false
 )
 @Slf4j
-public class ZoomPlugin extends Plugin
+public class CameraPlugin extends Plugin
 {
 	@Inject
 	private Client client;
 
 	@Inject
-	private ZoomConfig zoomConfig;
+	private CameraConfig cameraConfig;
 
 	@Provides
-	ZoomConfig getConfig(ConfigManager configManager)
+	CameraConfig getConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(ZoomConfig.class);
+		return configManager.getConfig(CameraConfig.class);
 	}
 
 	@Subscribe
@@ -62,7 +62,7 @@ public class ZoomPlugin extends Plugin
 	{
 		int[] intStack = client.getIntStack();
 		int intStackSize = client.getIntStackSize();
-		if (zoomConfig.outerLimit())
+		if (cameraConfig.outerLimit())
 		{
 			switch (event.getEventName())
 			{
@@ -74,7 +74,7 @@ public class ZoomPlugin extends Plugin
 					break;
 			}
 		}
-		if (zoomConfig.innerLimit())
+		if (cameraConfig.innerLimit())
 		{
 			switch (event.getEventName())
 			{
@@ -86,7 +86,7 @@ public class ZoomPlugin extends Plugin
 					break;
 			}
 		}
-		if (zoomConfig.outerLimit() || zoomConfig.innerLimit())
+		if (cameraConfig.outerLimit() || cameraConfig.innerLimit())
 		{
 			// This lets the options panel's slider have an exponential rate
 			final double exponent = 3.d;
@@ -115,7 +115,7 @@ public class ZoomPlugin extends Plugin
 	@Override
 	protected void startUp()
 	{
-		client.setCameraPitchRelaxerEnabled(zoomConfig.relaxCameraPitch());
+		client.setCameraPitchRelaxerEnabled(cameraConfig.relaxCameraPitch());
 	}
 
 	@Override
@@ -127,6 +127,6 @@ public class ZoomPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged ev)
 	{
-		client.setCameraPitchRelaxerEnabled(zoomConfig.relaxCameraPitch());
+		client.setCameraPitchRelaxerEnabled(cameraConfig.relaxCameraPitch());
 	}
 }
