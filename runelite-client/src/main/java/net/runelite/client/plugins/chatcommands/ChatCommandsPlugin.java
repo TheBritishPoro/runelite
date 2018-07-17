@@ -62,6 +62,8 @@ import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.StackFormatter;
+import net.runelite.http.api.chat.ChatDataClient;
+import net.runelite.http.api.chat.ChatDataType;
 import net.runelite.http.api.hiscore.HiscoreClient;
 import net.runelite.http.api.hiscore.HiscoreEndpoint;
 import net.runelite.http.api.hiscore.HiscoreResult;
@@ -71,7 +73,6 @@ import net.runelite.http.api.hiscore.Skill;
 import net.runelite.http.api.item.Item;
 import net.runelite.http.api.item.ItemPrice;
 import net.runelite.http.api.item.SearchResult;
-import net.runelite.http.api.kc.KillCountClient;
 
 @PluginDescriptor(
 	name = "Chat Commands",
@@ -88,7 +89,7 @@ public class ChatCommandsPlugin extends Plugin implements ChatboxInputListener
 	private static final Pattern BARROWS_PATERN = Pattern.compile("Your Barrows chest count is: <col=ff0000>(\\d+)</col>.");
 
 	private final HiscoreClient hiscoreClient = new HiscoreClient();
-	private final KillCountClient killCountClient = new KillCountClient();
+	private final ChatDataClient chatDataClient = new ChatDataClient();
 
 	private boolean logKills;
 
@@ -342,7 +343,7 @@ public class ChatCommandsPlugin extends Plugin implements ChatboxInputListener
 		{
 			try
 			{
-				killCountClient.submit(playerName, boss, kc);
+				chatDataClient.submit(playerName, ChatDataType.KILL_COUNT, boss, String.valueOf(kc));
 			}
 			catch (Exception ex)
 			{
@@ -381,7 +382,7 @@ public class ChatCommandsPlugin extends Plugin implements ChatboxInputListener
 		{
 			try
 			{
-				killCountClient.submit(playerName, boss, kc);
+				chatDataClient.submit(playerName, ChatDataType.KILL_COUNT, boss, String.valueOf(kc));
 			}
 			catch (Exception ex)
 			{
@@ -413,9 +414,9 @@ public class ChatCommandsPlugin extends Plugin implements ChatboxInputListener
 		final int kc;
 		try
 		{
-			kc = killCountClient.get(player, search);
+			kc = Integer.parseInt(chatDataClient.get(player, ChatDataType.KILL_COUNT, search));
 		}
-		catch (IOException ex)
+		catch (NumberFormatException | IOException ex)
 		{
 			log.debug("unable to lookup killcount", ex);
 			return;
