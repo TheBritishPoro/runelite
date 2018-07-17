@@ -33,6 +33,7 @@ import java.text.DecimalFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
@@ -43,6 +44,7 @@ import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.InstanceTemplates;
+import net.runelite.api.MessageNode;
 import net.runelite.api.NullObjectID;
 import static net.runelite.api.Perspective.SCENE_SIZE;
 import net.runelite.api.Point;
@@ -51,6 +53,7 @@ import net.runelite.api.VarPlayer;
 import net.runelite.api.Varbits;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.ConfigChanged;
+import net.runelite.api.events.SetMessage;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.events.WidgetHiddenChanged;
 import net.runelite.api.widgets.Widget;
@@ -58,8 +61,12 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.chat.ChatboxInputListener;
+import net.runelite.client.chat.CommandManager;
 import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
+import net.runelite.client.events.ChatboxInput;
+import net.runelite.client.events.PrivateMessageInput;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.raids.solver.Layout;
@@ -68,6 +75,8 @@ import net.runelite.client.plugins.raids.solver.RotationSolver;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.Text;
+import net.runelite.http.api.chat.ChatDataClient;
+import net.runelite.http.api.chat.ChatDataType;
 
 @PluginDescriptor(
 	name = "Chambers Of Xeric",
@@ -75,7 +84,7 @@ import net.runelite.client.util.Text;
 	tags = {"combat", "raid", "overlay"}
 )
 @Slf4j
-public class RaidsPlugin extends Plugin
+public class RaidsPlugin extends Plugin implements ChatboxInputListener
 {
 	private static final int LOBBY_PLANE = 3;
 	private static final String RAID_START_MESSAGE = "The raid has begun!";
@@ -86,6 +95,7 @@ public class RaidsPlugin extends Plugin
 	private static final String SPLIT_REGEX = "\\s*,\\s*";
 	private static final Pattern ROTATION_REGEX = Pattern.compile("\\[(.*?)]");
 
+	private final ChatDataClient chatDataClient = new ChatDataClient();
 	private BufferedImage raidsIcon;
 	private RaidsTimer timer;
 
@@ -115,6 +125,12 @@ public class RaidsPlugin extends Plugin
 
 	@Inject
 	private LayoutSolver layoutSolver;
+
+	@Inject
+	private ScheduledExecutorService executorService;
+
+	@Inject
+	private CommandManager commandManager;
 
 	@Getter
 	private Raid raid;
@@ -148,6 +164,7 @@ public class RaidsPlugin extends Plugin
 	{
 		overlayManager.add(overlay);
 		overlayManager.add(pointsOverlay);
+		commandManager.register(this);
 
 		if (client.getGameState() == GameState.LOGGED_IN)
 		{
@@ -163,11 +180,160 @@ public class RaidsPlugin extends Plugin
 	{
 		overlayManager.remove(overlay);
 		overlayManager.remove(pointsOverlay);
+		commandManager.unregister(this);
 
 		if (timer != null)
 		{
 			infoBoxManager.removeInfoBox(timer);
 		}
+	}
+
+	@Subscribe
+	public void onSetMessage(SetMessage setMessage)
+	{
+		if (client.getGameState() != GameState.LOGGED_IN)
+		{
+			return;
+		}
+
+		switch (setMessage.getType())
+		{
+			case PUBLIC:
+			case PUBLIC_MOD:
+			case CLANCHAT:
+			case PRIVATE_MESSAGE_RECEIVED:
+			case PRIVATE_MESSAGE_SENT:
+				break;
+			default:
+				return;
+		}
+
+		final String message = setMessage.getValue();
+
+		if (!message.toLowerCase().equals("!layout"))
+		{
+			return;
+		}
+
+		final MessageNode messageNode = setMessage.getMessageNode();
+
+		// clear RuneLite formatted message as the message node is
+		// being reused
+		messageNode.setRuneLiteFormatMessage(null);
+
+		final String player;
+		if (messageNode.getType().equals(ChatMessageType.PRIVATE_MESSAGE_SENT))
+		{
+			player = client.getLocalPlayer().getName();
+		}
+		else
+		{
+			player = Text.sanitize(setMessage.getName());
+		}
+
+		log.debug("Running raids lookup");
+		executorService.submit(() ->
+		{
+			final String layout;
+			try
+			{
+				layout = chatDataClient.get(player, ChatDataType.RAIDS_LAYOUT);
+			}
+			catch (IOException ex)
+			{
+				log.debug("unable to lookup raids layout", ex);
+				return;
+			}
+
+			final String chatMessage = new ChatMessageBuilder()
+				.append(ChatColorType.HIGHLIGHT)
+				.append("Layout: ")
+				.append(ChatColorType.NORMAL)
+				.append(layout)
+				.build();
+
+			setMessage.getMessageNode().setRuneLiteFormatMessage(chatMessage);
+			chatMessageManager.update(setMessage.getMessageNode());
+			client.refreshChat();
+		});
+	}
+
+	@Override
+	public boolean onChatboxInput(ChatboxInput chatboxInput)
+	{
+		if (!inRaidChambers)
+		{
+			return false;
+		}
+
+		final String value = chatboxInput.getValue();
+		if (!value.startsWith("!layout") && !value.startsWith("/!layout"))
+		{
+			return false;
+		}
+
+		final String layout = getRaid().getLayout().toCodeString();
+		final String rooms = getRaid().toRoomString();
+		final String raidData = "[" + layout + "]: " + rooms;
+		final String playerName = client.getLocalPlayer().getName();
+		log.debug("Submitting raids layout {} for {}", raidData, playerName);
+
+		executorService.submit(() ->
+		{
+			try
+			{
+				chatDataClient.submit(playerName, ChatDataType.RAIDS_LAYOUT, raidData);
+			}
+			catch (IOException e)
+			{
+				log.warn("unable to submit raids layout", e);
+			}
+			finally
+			{
+				chatboxInput.resume();
+			}
+		});
+
+		return true;
+	}
+
+	@Override
+	public boolean onPrivateMessageInput(PrivateMessageInput privateMessageInput)
+	{
+		if (!inRaidChambers)
+		{
+			return false;
+		}
+
+		final String message = privateMessageInput.getMessage();
+		if (!message.startsWith("!layout"))
+		{
+			return false;
+		}
+
+		final String layout = getRaid().getLayout().toCodeString();
+		final String rooms = getRaid().toRoomString();
+		final String raidData = "[" + layout + "]: " + rooms;
+		final String playerName = client.getLocalPlayer().getName();
+		log.debug("Submitting raids layout {} for {}", raidData, playerName);
+
+		executorService.submit(() ->
+		{
+			try
+			{
+				chatDataClient.submit(playerName, ChatDataType.RAIDS_LAYOUT, raidData);
+			}
+			catch (IOException e)
+			{
+				log.warn("unable to submit raids layout", e);
+			}
+			finally
+			{
+				privateMessageInput.resume();
+			}
+		});
+
+		return true;
 	}
 
 	@Subscribe
@@ -295,21 +461,21 @@ public class RaidsPlugin extends Plugin
 					double percentage = personalPoints / (totalPoints / 100.0);
 
 					String chatMessage = new ChatMessageBuilder()
-							.append(ChatColorType.NORMAL)
-							.append("Total points: ")
-							.append(ChatColorType.HIGHLIGHT)
-							.append(POINTS_FORMAT.format(totalPoints))
-							.append(ChatColorType.NORMAL)
-							.append(", Personal points: ")
-							.append(ChatColorType.HIGHLIGHT)
-							.append(POINTS_FORMAT.format(personalPoints))
-							.append(ChatColorType.NORMAL)
-							.append(" (")
-							.append(ChatColorType.HIGHLIGHT)
-							.append(DECIMAL_FORMAT.format(percentage))
-							.append(ChatColorType.NORMAL)
-							.append("%)")
-							.build();
+						.append(ChatColorType.NORMAL)
+						.append("Total points: ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(POINTS_FORMAT.format(totalPoints))
+						.append(ChatColorType.NORMAL)
+						.append(", Personal points: ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(POINTS_FORMAT.format(personalPoints))
+						.append(ChatColorType.NORMAL)
+						.append(" (")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(DECIMAL_FORMAT.format(percentage))
+						.append(ChatColorType.NORMAL)
+						.append("%)")
+						.build();
 
 					chatMessageManager.queue(QueuedMessage.builder()
 						.type(ChatMessageType.CLANCHAT_INFO)
@@ -371,7 +537,7 @@ public class RaidsPlugin extends Plugin
 		}
 	}
 
-	public int getRotationMatches()
+	int getRotationMatches()
 	{
 		String rotation = raid.getRotationString().toLowerCase();
 		String[] bosses = rotation.split(SPLIT_REGEX);
