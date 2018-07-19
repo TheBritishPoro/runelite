@@ -84,6 +84,22 @@ public class RaidsPlugin extends Plugin
 	static final DecimalFormat POINTS_FORMAT = new DecimalFormat("#,###");
 	private static final String SPLIT_REGEX = "\\s*,\\s*";
 	private static final Pattern ROTATION_REGEX = Pattern.compile("\\[(.*?)]");
+	private static final BufferedImage RAIDS_ICON;
+
+	static
+	{
+		try
+		{
+			synchronized (ImageIO.class)
+			{
+				RAIDS_ICON = ImageIO.read(RaidsPlugin.class.getResourceAsStream("raids_icon.png"));
+			}
+		}
+		catch (IOException ex)
+		{
+			throw new RuntimeException(ex);
+		}
+	}
 
 	private BufferedImage raidsIcon;
 	private RaidsTimer timer;
@@ -209,7 +225,7 @@ public class RaidsPlugin extends Plugin
 
 			if (config.raidsTimer() && message.startsWith(RAID_START_MESSAGE))
 			{
-				timer = new RaidsTimer(getRaidsIcon(), this, Instant.now());
+				timer = new RaidsTimer(RAIDS_ICON, this, Instant.now());
 				infoBoxManager.addInfoBox(timer);
 			}
 
@@ -585,26 +601,5 @@ public class RaidsPlugin extends Plugin
 		}
 
 		return room;
-	}
-
-	private BufferedImage getRaidsIcon()
-	{
-		if (raidsIcon != null)
-		{
-			return raidsIcon;
-		}
-		try
-		{
-			synchronized (ImageIO.class)
-			{
-				raidsIcon = ImageIO.read(RaidsPlugin.class.getResourceAsStream("raids_icon.png"));
-			}
-		}
-		catch (IOException ex)
-		{
-			log.warn("Unable to load image", ex);
-		}
-
-		return raidsIcon;
 	}
 }
