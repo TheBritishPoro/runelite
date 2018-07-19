@@ -41,7 +41,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
-import net.runelite.api.GameState;
 import net.runelite.api.InstanceTemplates;
 import net.runelite.api.NullObjectID;
 import static net.runelite.api.Perspective.SCENE_SIZE;
@@ -148,14 +147,8 @@ public class RaidsPlugin extends Plugin
 	{
 		overlayManager.add(overlay);
 		overlayManager.add(pointsOverlay);
-
-		if (client.getGameState() == GameState.LOGGED_IN)
-		{
-			inRaidChambers = client.getVar(Varbits.IN_RAID) == 1;
-			updateInfoBoxState();
-		}
-
 		updateLists();
+		checkRaidPresence();
 	}
 
 	@Override
@@ -163,40 +156,26 @@ public class RaidsPlugin extends Plugin
 	{
 		overlayManager.remove(overlay);
 		overlayManager.remove(pointsOverlay);
-
-		if (timer != null)
-		{
-			infoBoxManager.removeInfoBox(timer);
-		}
+		infoBoxManager.removeInfoBox(timer);
+		inRaidChambers = false;
+		raid = null;
 	}
 
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
+		if (!event.getGroup().equals("raids"))
+		{
+			return;
+		}
+
 		if (event.getKey().equals("raidsTimer"))
 		{
 			updateInfoBoxState();
+			return;
 		}
 
-		if (event.getKey().equals("whitelistedRooms"))
-		{
-			updateList(roomWhitelist, config.whitelistedRooms());
-		}
-
-		if (event.getKey().equals("blacklistedRooms"))
-		{
-			updateList(roomBlacklist, config.blacklistedRooms());
-		}
-
-		if (event.getKey().equals("whitelistedRotations"))
-		{
-			updateList(rotationWhitelist, config.whitelistedRotations());
-		}
-
-		if (event.getKey().equals("whitelistedLayouts"))
-		{
-			updateList(layoutWhitelist, config.whitelistedLayouts());
-		}
+		updateLists();
 	}
 
 	@Subscribe
@@ -218,47 +197,7 @@ public class RaidsPlugin extends Plugin
 	@Subscribe
 	public void onVarbitChange(VarbitChanged event)
 	{
-		boolean setting = client.getVar(Varbits.IN_RAID) == 1;
-
-		if (inRaidChambers != setting)
-		{
-			inRaidChambers = setting;
-			updateInfoBoxState();
-
-			if (inRaidChambers)
-			{
-				raid = buildRaid();
-
-				if (raid == null)
-				{
-					log.debug("Failed to build raid");
-					return;
-				}
-
-				Layout layout = layoutSolver.findLayout(raid.toCode());
-
-				if (layout == null)
-				{
-					log.debug("Could not find layout match");
-					return;
-				}
-
-				raid.updateLayout(layout);
-				RotationSolver.solve(raid.getCombatRooms());
-				overlay.setScoutOverlayShown(true);
-			}
-			else if (!config.scoutOverlayAtBank())
-			{
-				overlay.setScoutOverlayShown(false);
-				raid = null;
-			}
-		}
-
-		if (client.getVar(VarPlayer.IN_RAID_PARTY) == -1)
-		{
-			overlay.setScoutOverlayShown(false);
-			raid = null;
-		}
+		checkRaidPresence();
 	}
 
 	@Subscribe
@@ -320,23 +259,68 @@ public class RaidsPlugin extends Plugin
 		}
 	}
 
+	private void checkRaidPresence()
+	{
+		boolean setting = client.getVar(Varbits.IN_RAID) == 1;
+
+		if (inRaidChambers != setting)
+		{
+			inRaidChambers = setting;
+			updateInfoBoxState();
+
+			if (inRaidChambers)
+			{
+				raid = buildRaid();
+
+				if (raid == null)
+				{
+					log.debug("Failed to build raid");
+					return;
+				}
+
+				Layout layout = layoutSolver.findLayout(raid.toCode());
+
+				if (layout == null)
+				{
+					log.debug("Could not find layout match");
+					return;
+				}
+
+				raid.updateLayout(layout);
+				RotationSolver.solve(raid.getCombatRooms());
+				overlay.setScoutOverlayShown(true);
+			}
+			else if (!config.scoutOverlayAtBank())
+			{
+				overlay.setScoutOverlayShown(false);
+			}
+		}
+
+		if (client.getVar(VarPlayer.IN_RAID_PARTY) == -1)
+		{
+			overlay.setScoutOverlayShown(false);
+		}
+	}
+
 	private void updateInfoBoxState()
 	{
-		if (timer != null)
+		if (timer == null)
 		{
-			if (inRaidChambers && config.raidsTimer())
-			{
-				infoBoxManager.addInfoBox(timer);
-			}
-			else
-			{
-				infoBoxManager.removeInfoBox(timer);
-			}
+			return;
+		}
 
-			if (!inRaidChambers)
-			{
-				timer = null;
-			}
+		if (inRaidChambers && config.raidsTimer())
+		{
+			infoBoxManager.addInfoBox(timer);
+		}
+		else
+		{
+			infoBoxManager.removeInfoBox(timer);
+		}
+
+		if (!inRaidChambers)
+		{
+			timer = null;
 		}
 	}
 
@@ -371,7 +355,7 @@ public class RaidsPlugin extends Plugin
 		}
 	}
 
-	public int getRotationMatches()
+	int getRotationMatches()
 	{
 		String rotation = raid.getRotationString().toLowerCase();
 		String[] bosses = rotation.split(SPLIT_REGEX);
