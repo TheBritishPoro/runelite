@@ -44,6 +44,7 @@ import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Client;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.input.MouseManager;
@@ -86,6 +87,9 @@ public class ScreenMarkerPlugin extends Plugin
 
 	@Inject
 	private ScreenMarkerCreationOverlay overlay;
+
+	@Inject
+	private Client client;
 
 	private ScreenMarkerMouseListener mouseListener;
 	private ScreenMarkerPluginPanel pluginPanel;
@@ -165,7 +169,7 @@ public class ScreenMarkerPlugin extends Plugin
 		}
 	}
 
-	public void startCreation(Point location)
+	void startCreation(Point location)
 	{
 		currentMarker = new ScreenMarker(
 			Instant.now().toEpochMilli(),
@@ -178,7 +182,7 @@ public class ScreenMarkerPlugin extends Plugin
 
 		// Set overlay creator bounds to current position and default size
 		startLocation = location;
-		overlay.setPreferredLocation(location);
+		overlay.setAbsolutePreferredLocation(client, location);
 		overlay.setPreferredSize(DEFAULT_SIZE);
 		creatingScreenMarker = true;
 	}
@@ -188,7 +192,7 @@ public class ScreenMarkerPlugin extends Plugin
 		if (!aborted)
 		{
 			final ScreenMarkerOverlay screenMarkerOverlay = new ScreenMarkerOverlay(currentMarker);
-			screenMarkerOverlay.setPreferredLocation(overlay.getBounds().getLocation());
+			screenMarkerOverlay.setAbsolutePreferredLocation(client, overlay.getBounds().getLocation());
 			screenMarkerOverlay.setPreferredSize(overlay.getBounds().getSize());
 
 			screenMarkers.add(screenMarkerOverlay);
@@ -225,7 +229,7 @@ public class ScreenMarkerPlugin extends Plugin
 	{
 		Rectangle bounds = new Rectangle(startLocation);
 		bounds.add(point);
-		overlay.setPreferredLocation(bounds.getLocation());
+		overlay.setAbsolutePreferredLocation(client, bounds.getLocation());
 		overlay.setPreferredSize(bounds.getSize());
 	}
 
