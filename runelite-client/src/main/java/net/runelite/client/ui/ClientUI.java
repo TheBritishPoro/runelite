@@ -24,6 +24,7 @@
  */
 package net.runelite.client.ui;
 
+import com.google.common.base.Strings;
 import com.google.common.eventbus.Subscribe;
 import java.applet.Applet;
 import java.awt.Canvas;
@@ -58,8 +59,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.GameState;
+import net.runelite.api.Player;
 import net.runelite.api.Point;
 import net.runelite.api.events.ConfigChanged;
+import net.runelite.api.events.GameTick;
 import net.runelite.client.RuneLite;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.config.ConfigManager;
@@ -141,6 +144,7 @@ public class ClientUI
 	private NavigationButton sidebarNavigationButton;
 	private JButton sidebarNavigationJButton;
 	private Dimension lastClientSize;
+	private String lastName;
 
 	@Inject
 	private ClientUI(
@@ -272,6 +276,40 @@ public class ClientUI
 
 			pluginToolbar.removeComponent(event.getButton());
 		});
+	}
+
+	@Subscribe
+	public void onGameTick(final GameTick event)
+	{
+		if (!(client instanceof Client))
+		{
+			return;
+		}
+
+		if (lastName != null && !config.usernameInTitle())
+		{
+			frame.setTitle(properties.getTitle());
+			lastName = null;
+			return;
+		}
+
+		final Client client = (Client)this.client;
+		final Player localPlayer = client.getLocalPlayer();
+		final String oldName = lastName;
+		final String newName = localPlayer.getName();
+		lastName = newName;
+
+		if (Strings.isNullOrEmpty(newName))
+		{
+			return;
+		}
+
+		if (newName.equals(oldName))
+		{
+			return;
+		}
+
+		frame.setTitle(properties.getTitle() + " - " + newName);
 	}
 
 	/**
