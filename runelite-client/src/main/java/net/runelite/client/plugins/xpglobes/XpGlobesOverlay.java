@@ -39,7 +39,6 @@ import java.util.List;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.Experience;
 import net.runelite.api.Point;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.game.SkillIconManager;
@@ -49,7 +48,6 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
-import net.runelite.client.ui.overlay.components.ProgressBarComponent;
 
 @Slf4j
 public class XpGlobesOverlay extends Overlay
@@ -276,13 +274,6 @@ public class XpGlobesOverlay extends Overlay
 					.right(xpHrString)
 					.build());
 			}
-
-			//Create progress bar for skill.
-			ProgressBarComponent progressBar = new ProgressBarComponent();
-			double progress = mouseOverSkill.getSkillProgress(Experience.getXpForLevel(mouseOverSkill.getCurrentLevel()),
-				mouseOverSkill.getCurrentXp(), mouseOverSkill.getGoalXp());
-			progressBar.setValue(progress);
-			xpTooltip.getChildren().add(progressBar);
 		}
 
 		xpTooltip.render(graphics);
