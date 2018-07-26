@@ -29,12 +29,14 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.client.ui.overlay.components.ComponentConstants;
 import net.runelite.client.ui.overlay.components.LayoutableRenderableEntity;
 
 @Getter
 @Setter
 public abstract class Overlay implements LayoutableRenderableEntity
 {
+	private static final Dimension STANDARD_SIZE = new Dimension(ComponentConstants.STANDARD_WIDTH, 0);
 	private Point preferredLocation;
 	private Dimension preferredSize;
 	private OverlayPosition preferredPosition;
@@ -45,10 +47,32 @@ public abstract class Overlay implements LayoutableRenderableEntity
 
 	/**
 	 * Overlay name, used for saving the overlay, needs to be unique
+	 *
 	 * @return overlay name
 	 */
 	public String getName()
 	{
 		return this.getClass().getSimpleName();
+	}
+
+	/**
+	 * Returns either preferred size or standard size
+	 *
+	 * @return dimension
+	 */
+	public Dimension getSize()
+	{
+		return getSize(STANDARD_SIZE);
+	}
+
+	/**
+	 * Returns either preferred size or default size
+	 *
+	 * @param defaultSize default size to return
+	 * @return dimension
+	 */
+	public Dimension getSize(final Dimension defaultSize)
+	{
+		return getPreferredSize() != null ? getPreferredSize() : defaultSize;
 	}
 }
