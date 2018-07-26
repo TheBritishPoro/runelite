@@ -73,6 +73,7 @@ class InventoryViewerOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		final Item[] items = itemContainer.getItems();
 

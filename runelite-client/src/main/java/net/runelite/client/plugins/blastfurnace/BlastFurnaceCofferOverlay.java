@@ -62,6 +62,7 @@ class BlastFurnaceCofferOverlay extends Overlay
 		Widget sack = client.getWidget(WidgetInfo.BLAST_FURNACE_COFFER);
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		if (sack != null)
 		{

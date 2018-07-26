@@ -64,6 +64,7 @@ public class RaidsOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		if (plugin.getRaid() == null || plugin.getRaid().getLayout() == null)
 		{

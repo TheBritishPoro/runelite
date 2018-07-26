@@ -121,6 +121,7 @@ class PlayerComparisonOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 		generateComparisonTable(panelComponent, hiscoreResult);
 		return panelComponent.render(graphics);
 	}

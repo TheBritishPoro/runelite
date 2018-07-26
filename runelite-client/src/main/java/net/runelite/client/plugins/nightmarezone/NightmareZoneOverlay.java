@@ -97,6 +97,7 @@ class NightmareZoneOverlay extends Overlay
 		renderAbsorptionCounter();
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 		panelComponent.getChildren().add(LineComponent.builder()
 			.left("Points: ")
 			.right(StackFormatter.formatNumber(client.getVar(Varbits.NMZ_POINTS)))

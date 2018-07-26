@@ -73,6 +73,7 @@ public class MotherlodeGemOverlay extends Overlay
 		int sapphiresFound = session.getSapphiresFound();
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 		panelComponent.getChildren().add(TitleComponent.builder().text("Gems found").build());
 
 		if (diamondsFound > 0)

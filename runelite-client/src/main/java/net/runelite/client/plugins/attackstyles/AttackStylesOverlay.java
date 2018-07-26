@@ -62,10 +62,8 @@ public class AttackStylesOverlay extends Overlay
 				.color(warnedSkillSelected ? Color.RED : Color.WHITE)
 				.build());
 
-			panelComponent.setPreferredSize(new Dimension(
-				graphics.getFontMetrics().stringWidth(attackStyleString) + 10,
-				0));
-
+			final Dimension defaultSize = new Dimension(graphics.getFontMetrics().stringWidth(attackStyleString) + 10, 0);
+			panelComponent.setPreferredSize(getSize(defaultSize));
 			return panelComponent.render(graphics);
 		}
 

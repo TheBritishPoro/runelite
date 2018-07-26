@@ -58,6 +58,7 @@ public class TeamCapesOverlay extends Overlay
 			return null;
 		}
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		for (Map.Entry<Integer, Integer> team : teams.entrySet())
 		{

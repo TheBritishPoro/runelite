@@ -87,6 +87,7 @@ class MotherlodeOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		if (config.showMiningState())
 		{

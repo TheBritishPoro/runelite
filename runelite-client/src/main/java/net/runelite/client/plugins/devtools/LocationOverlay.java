@@ -48,7 +48,6 @@ public class LocationOverlay extends Overlay
 	{
 		this.client = client;
 		this.plugin = plugin;
-		panelComponent.setPreferredSize(new Dimension(150, 0));
 		setPosition(OverlayPosition.TOP_LEFT);
 	}
 
@@ -61,6 +60,7 @@ public class LocationOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize(new Dimension(150, 0)));
 		WorldPoint localWorld = client.getLocalPlayer().getWorldLocation();
 		LocalPoint localPoint = client.getLocalPlayer().getLocalLocation();
 

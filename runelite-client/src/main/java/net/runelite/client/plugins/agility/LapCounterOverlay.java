@@ -75,6 +75,7 @@ class LapCounterOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 		panelComponent.getChildren().add(LineComponent.builder()
 			.left("Total Laps")
 			.right(Integer.toString(session.getTotalLaps()))

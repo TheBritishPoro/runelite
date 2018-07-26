@@ -60,6 +60,7 @@ class TitheFarmSackOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 		sack.setHidden(true);
 
 		if (config.showSack())

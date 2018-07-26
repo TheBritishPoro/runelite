@@ -84,6 +84,7 @@ class FishingOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 		if (client.getLocalPlayer().getInteracting() != null && client.getLocalPlayer().getInteracting().getName()
 			.contains(FISHING_SPOT))
 		{

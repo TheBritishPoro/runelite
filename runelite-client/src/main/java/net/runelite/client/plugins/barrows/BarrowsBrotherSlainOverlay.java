@@ -68,6 +68,7 @@ public class BarrowsBrotherSlainOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		for (BarrowsBrothers brother : BarrowsBrothers.values())
 		{

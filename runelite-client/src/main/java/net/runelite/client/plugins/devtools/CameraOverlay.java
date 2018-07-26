@@ -45,7 +45,6 @@ public class CameraOverlay extends Overlay
 	{
 		this.client = client;
 		this.plugin = plugin;
-		panelComponent.setPreferredSize(new Dimension(150, 0));
 		setPosition(OverlayPosition.TOP_LEFT);
 	}
 
@@ -58,6 +57,7 @@ public class CameraOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize(new Dimension(150, 0)));
 
 		panelComponent.getChildren().add(TitleComponent.builder()
 				.text("Camera")

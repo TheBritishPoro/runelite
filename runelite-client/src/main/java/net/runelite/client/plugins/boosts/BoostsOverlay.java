@@ -62,6 +62,7 @@ class BoostsOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		int nextChange = plugin.getChangeDownTicks();
 

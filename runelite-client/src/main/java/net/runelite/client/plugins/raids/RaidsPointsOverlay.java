@@ -65,6 +65,7 @@ public class RaidsPointsOverlay extends Overlay
 		int personalPoints = client.getVar(Varbits.PERSONAL_POINTS);
 
 		panel.getChildren().clear();
+		panel.setPreferredSize(getSize());
 		panel.getChildren().add(LineComponent.builder()
 			.left("Total:")
 			.right(POINTS_FORMAT.format(totalPoints))

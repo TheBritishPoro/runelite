@@ -70,6 +70,7 @@ class WoodcuttingOverlay extends Overlay
 		}
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 
 		Axe axe = plugin.getAxe();
 		if (axe != null && axe.getAnimId() == client.getLocalPlayer().getAnimation())

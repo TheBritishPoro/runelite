@@ -69,6 +69,7 @@ class MotherlodeSackOverlay extends Overlay
 		Widget sack = client.getWidget(WidgetInfo.MOTHERLODE_MINE);
 
 		panelComponent.getChildren().clear();
+		panelComponent.setPreferredSize(getSize());
 		panelComponent.setBackgroundColor(ComponentConstants.STANDARD_BACKGROUND_COLOR);
 
 		if (sack != null)
